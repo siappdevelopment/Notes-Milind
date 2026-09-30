@@ -1,0 +1,1490 @@
+{
+  "version": 10029,
+  "appCode": [
+    10000
+  ],
+  "newReleaseList": [],
+  "showList": [
+    {
+      "id": "hot",
+      "label": {
+        "en": "Hot🔥",
+        "ar": "الاكثر شهرة",
+        "de": "Beliebt🔥",
+        "el": "Δημοφιλές 🔥",
+        "es": "Popular🔥",
+        "fa": "پرطرفدار",
+        "fil": "Patok🔥",
+        "fr": "Populaire🔥",
+        "hi": "लोकप्रिय🔥",
+        "hu": "Népszerű🔥",
+        "in": "Populer🔥",
+        "it": "Popolare🔥",
+        "ja": "人気🔥",
+        "ko": "인기🔥",
+        "ms": "Popular🔥",
+        "nl": "Populair🔥",
+        "pl": "Popularne🔥",
+        "pt": "Popular🔥",
+        "ro": "Populare🔥",
+        "ru": "Популярное🔥",
+        "te": "జనాదరణ పొందినది🔥",
+        "th": "ยอดนิยม🔥",
+        "tr": "Popüler🔥",
+        "uk": "Популярний🔥",
+        "vi": "Phổ biến🔥",
+        "zh_CN": "热门🔥",
+        "zh_TW": "熱門🔥"
+      },
+      "list": [
+        70012,
+        10001,
+        50001,
+        80001,
+        80002,
+        90009,
+        50008,
+        20008,
+        20003,
+        20011,
+        10018,
+        90007
+      ]
+    },
+    {
+      "id": "nature",
+      "label": {
+        "en": "Nature",
+        "ar": "طبيعة",
+        "de": "Natur",
+        "el": "Φύση",
+        "es": "Naturaleza",
+        "fa": "طبیعت",
+        "fil": "Kalikasan",
+        "fr": "Nature",
+        "hi": "प्रकृति",
+        "hu": "Természet",
+        "in": "Alam",
+        "it": "Natura",
+        "ja": "自然",
+        "ko": "자연",
+        "ms": "Alam semula jadi",
+        "nl": "Natuur",
+        "pl": "Natura",
+        "pt": "Natureza",
+        "ro": "Natură",
+        "ru": "Природа",
+        "te": "ప్రకృతి",
+        "th": "ธรรมชาติ",
+        "tr": "Doğa",
+        "uk": "Природа",
+        "vi": "Thiên nhiên",
+        "zh_CN": "自然",
+        "zh_TW": "自然"
+      },
+      "list": [
+        10001,
+        10018,
+        10008,
+        10002,
+        10022
+      ]
+    },
+    {
+      "id": "dark",
+      "label": {
+        "en": "Dark",
+        "ar": "لون غامق",
+        "de": "Dunkle Farbe",
+        "el": "Σκοτεινό χρώμα",
+        "es": "Color oscuro",
+        "fa": "رنگ تیره",
+        "fil": "Madilim na kulay",
+        "fr": "Couleur sombre",
+        "hi": "गाढ़ा रंग",
+        "hu": "Sötét szín",
+        "in": "Warna gelap",
+        "it": "Colore scuro",
+        "ja": "暗色",
+        "ko": "진한 색",
+        "ms": "Warna gelap",
+        "nl": "Donkere kleur",
+        "pl": "Ciemny kolor",
+        "pt": "Cor escura",
+        "ro": "Culoare inchisa",
+        "ru": "Темный цвет",
+        "te": "ముదురు రంగు",
+        "th": "สีเข้ม",
+        "tr": "Koyu renk",
+        "uk": "Темний колір",
+        "vi": "Màu tối",
+        "zh_CN": "暗色",
+        "zh_TW": "暗色"
+      },
+      "list": [
+        20002,
+        20003,
+        20008,
+        20006,
+        20011
+      ]
+    },
+    {
+      "id": "color",
+      "label": {
+        "en": "Color",
+        "ar": "لون",
+        "de": "Farbe",
+        "el": "Χρώμα",
+        "es": "Color",
+        "fa": "رنگ",
+        "fil": "Kulay",
+        "fr": "Couleur",
+        "hi": "रंग",
+        "hu": "Szín",
+        "in": "Warna",
+        "it": "Colore",
+        "ja": "色",
+        "ko": "색상",
+        "ms": "Warna",
+        "nl": "Kleur",
+        "pl": "Kolor",
+        "pt": "Cor",
+        "ro": "Culoare",
+        "ru": "Цвет",
+        "te": "రంగు",
+        "th": "สี",
+        "tr": "Renk",
+        "uk": "Колір",
+        "vi": "Màu sắc",
+        "zh_CN": "颜色",
+        "zh_TW": "顏色"
+      },
+      "list": []
+    },
+    {
+      "id": "cute",
+      "label": {
+        "en": "Cute",
+        "ar": "لطيف",
+        "de": "Niedlich",
+        "el": "Χαριτωμένος",
+        "es": "Lindo",
+        "fa": "جذاب",
+        "fil": "Ang cute",
+        "fr": "Mignon",
+        "hi": "प्यारा",
+        "hu": "Aranyos",
+        "in": "Imut-imut",
+        "it": "Carino",
+        "ja": "かわいい",
+        "ko": "귀여운",
+        "ms": "Comel",
+        "nl": "Schattig",
+        "pl": "Uroczy",
+        "pt": "Bonitinho",
+        "ro": "Drăguţ",
+        "ru": "Милый",
+        "te": "అందమైన",
+        "th": "น่ารัก",
+        "tr": "Sevimli",
+        "uk": "Милий",
+        "vi": "Dễ thương",
+        "zh_CN": "可爱",
+        "zh_TW": "可愛"
+      },
+      "list": [
+        80001,
+        80002,
+        80003,
+        80007
+      ]
+    },
+    {
+      "id": "life",
+      "label": {
+        "en": "Life",
+        "ar": "حياة",
+        "de": "Leben",
+        "el": "ΖΩΗ",
+        "es": "Vida",
+        "fa": "زندگی",
+        "fil": "Buhay",
+        "fr": "Vie",
+        "hi": "ज़िंदगी",
+        "hu": "Élet",
+        "in": "Kehidupan",
+        "it": "Vita",
+        "ja": "人生",
+        "ko": "삶",
+        "ms": "Kehidupan",
+        "nl": "Leven",
+        "pl": "Życie",
+        "pt": "Vida",
+        "ro": "Viaţă",
+        "ru": "Жизнь",
+        "te": "జీవితం",
+        "th": "ชีวิต",
+        "tr": "Hayat",
+        "uk": "Життя",
+        "vi": "Mạng sống",
+        "zh_CN": "生活",
+        "zh_TW": "生活"
+      },
+      "list": [
+        60001,
+        60002,
+        60013,
+        60019,
+        60006,
+        60016,
+        60024,
+        60005,
+        60004,
+        60021,
+        60022,
+        60015
+      ]
+    },
+    {
+      "id": "school",
+      "label": {
+        "en": "School",
+        "ar": "مدرسة",
+        "de": "Schule",
+        "el": "Σχολείο",
+        "es": "Escuela",
+        "fa": "مدرسه",
+        "fil": "Paaralan",
+        "fr": "École",
+        "hi": "विद्यालय",
+        "hu": "Iskola",
+        "in": "Sekolah",
+        "it": "Scuola",
+        "ja": "学校",
+        "ko": "학교",
+        "ms": "Sekolah",
+        "nl": "School",
+        "pl": "Szkoła",
+        "pt": "Escola",
+        "ro": "Şcoală",
+        "ru": "Школа",
+        "te": "పాఠశాల",
+        "th": "โรงเรียน",
+        "tr": "Okul",
+        "uk": "Школа",
+        "vi": "Trường học",
+        "zh_CN": "学校",
+        "zh_TW": "學校"
+      },
+      "list": [
+        50001,
+        50002,
+        50003,
+        50006,
+        50018,
+        50010,
+        50011,
+        50007,
+        50008
+      ]
+    },
+    {
+      "id": "sport",
+      "label": {
+        "en": "Sport",
+        "ar": "رياضة",
+        "de": "Sport",
+        "el": "Αθλημα",
+        "es": "Deporte",
+        "fa": "ورزش",
+        "fil": "Palakasan",
+        "fr": "Sport",
+        "hi": "खेल",
+        "hu": "Sport",
+        "in": "Olahraga",
+        "it": "Sport",
+        "ja": "スポーツ",
+        "ko": "스포츠",
+        "ms": "Sukan",
+        "nl": "Sport",
+        "pl": "Sport",
+        "pt": "Esporte",
+        "ro": "Sport",
+        "ru": "Спорт",
+        "te": "క్రీడ",
+        "th": "กีฬา",
+        "tr": "Spor",
+        "uk": "Спорт",
+        "vi": "Thể thao",
+        "zh_CN": "运动",
+        "zh_TW": "運動"
+      },
+      "list": [
+        90001,
+        90002,
+        90003,
+        90009,
+        90010,
+        90011,
+        90007
+      ]
+    },
+    {
+      "id": "festival",
+      "label": {
+        "en": "Festival",
+        "ar": "مهرجان",
+        "de": "Festival",
+        "el": "Φεστιβάλ",
+        "es": "Festival",
+        "fa": "جشنواره",
+        "fil": "Festival",
+        "fr": "Festival",
+        "hi": "त्योहार",
+        "hu": "Fesztivál",
+        "in": "Festival",
+        "it": "Festival",
+        "ja": "祭り",
+        "ko": "제전",
+        "ms": "Perayaan",
+        "nl": "Festival",
+        "pl": "Festiwal",
+        "pt": "Festival",
+        "ro": "Festival",
+        "ru": "Фестиваль",
+        "te": "పండుగ",
+        "th": "งานเทศกาล",
+        "tr": "Festival",
+        "uk": "Фестиваль",
+        "vi": "Lễ hội",
+        "zh_CN": "节日",
+        "zh_TW": "節慶"
+      },
+      "list": [
+        70028,
+        70029,
+        70012,
+        70004,
+        70020,
+        70003,
+        70001,
+        70025,
+        70048,
+        70007,
+        70040
+      ]
+    }
+  ],
+  "bgList": [
+    {
+      "id": 10001,
+      "thumbnail": "10001_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#CECDEA",
+          "#E6D2E8"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "10001_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 10002,
+      "isVip": true,
+      "thumbnail": "10002_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#7DD1FF",
+          "#91CFEC"
+        ],
+        "orientation": "top_bottom"
+      },
+      "phoneImages": [
+        {
+          "imageName": "10002_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 10008,
+      "isVip": true,
+      "thumbnail": "10008_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#F6EFE8"
+        ],
+        "bgName": "10008_bg.webp",
+        "bgType": "repeat"
+      },
+      "phoneImages": [
+        {
+          "imageName": "10008_phone_image_1.webp",
+          "imagePosition": "topLeft",
+          "imageWidthRatio": 0.6
+        },
+        {
+          "imageName": "10008_phone_image_2.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.71,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 10018,
+      "isVip": true,
+      "thumbnail": "10018_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#DDE9E9"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "10018_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 10022,
+      "isVip": true,
+      "thumbnail": "10022_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#5FA4E8",
+          "#9CE6FC"
+        ],
+        "orientation": "top_bottom"
+      },
+      "phoneImages": [
+        {
+          "imageName": "10022_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 20002,
+      "thumbnail": "20002_thumbnail.webp",
+      "thumbnailReady": true,
+      "isDarkBg": true,
+      "bg": {
+        "gradientColors": [
+          "#061D6A"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "20002_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 20003,
+      "isVip": true,
+      "thumbnail": "20003_thumbnail.webp",
+      "thumbnailReady": true,
+      "isDarkBg": true,
+      "bg": {
+        "gradientColors": [
+          "#100E2F"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "20003_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 20006,
+      "isVip": true,
+      "thumbnail": "20006_thumbnail.webp",
+      "thumbnailReady": true,
+      "isDarkBg": true,
+      "bg": {
+        "gradientColors": [
+          "#101A28",
+          "#8C7DB7"
+        ],
+        "orientation": "top_bottom"
+      },
+      "phoneImages": [
+        {
+          "imageName": "20006_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 20008,
+      "isVip": true,
+      "thumbnail": "20008_thumbnail.webp",
+      "thumbnailReady": true,
+      "isDarkBg": true,
+      "bg": {
+        "gradientColors": [
+          "#121022"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "20008_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 20011,
+      "isVip": true,
+      "thumbnail": "20011_thumbnail.webp",
+      "thumbnailReady": true,
+      "isDarkBg": true,
+      "bg": {
+        "gradientColors": [
+          "#08122B"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "20011_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 50001,
+      "thumbnail": "50001_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFFFFF"
+        ]
+      },
+      "line": {
+        "lineStyle": "grid",
+        "lineType": "normal",
+        "lineColor": "#CEEBFF",
+        "lineWidth": 0.5,
+        "lineSpacing": 15
+      },
+      "phoneImages": [
+        {
+          "imageName": "50001_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 0.93,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 50002,
+      "thumbnail": "50002_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#F0E7F3"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "50002_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 0.84,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 50003,
+      "thumbnail": "50003_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#F8A1C9"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "50003_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 0.84,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 50006,
+      "isVip": true,
+      "thumbnail": "50006_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FEFBFF"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "50006_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 0.84,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 50007,
+      "isVip": true,
+      "thumbnail": "50007_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFFFFF"
+        ]
+      },
+      "line": {
+        "lineStyle": "grid",
+        "lineType": "normal",
+        "lineColor": "#FFD8F1",
+        "lineWidth": 0.5,
+        "lineSpacing": 15
+      },
+      "phoneImages": [
+        {
+          "imageName": "50007_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 0.93,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 50008,
+      "isVip": true,
+      "thumbnail": "50008_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FAFAF9"
+        ]
+      },
+      "line": {
+        "lineStyle": "grid",
+        "lineType": "normal",
+        "lineColor": "#ECECEA",
+        "lineWidth": 0.5,
+        "lineSpacing": 15
+      },
+      "phoneImages": [
+        {
+          "imageName": "50008_phone_image_1.webp",
+          "imagePosition": "topLeft",
+          "imageWidthRatio": 0.92
+        },
+        {
+          "imageName": "50008_phone_image_2.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 50010,
+      "isVip": true,
+      "thumbnail": "50010_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFFFFF"
+        ]
+      },
+      "line": {
+        "lineStyle": "grid",
+        "lineType": "normal",
+        "lineColor": "#EBE9F6",
+        "lineWidth": 0.5,
+        "lineSpacing": 15
+      },
+      "phoneImages": [
+        {
+          "imageName": "50010_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.93,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 50011,
+      "isVip": true,
+      "thumbnail": "50011_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#EDEFEF"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "50011_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 0.84,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 50018,
+      "thumbnail": "50018_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#287D5B"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "50018_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.92,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 60001,
+      "thumbnail": "60001_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FCDFFD"
+        ],
+        "bgName": "60001_bg.webp",
+        "bgType": "repeat"
+      },
+      "phoneImages": [
+        {
+          "imageName": "60001_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.76,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 60002,
+      "thumbnail": "60002_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFE2D0"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "60002_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.6,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 60004,
+      "isVip": true,
+      "thumbnail": "60004_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFBF85"
+        ],
+        "bgName": "60004_bg.webp",
+        "bgType": "repeat"
+      },
+      "phoneImages": [
+        {
+          "imageName": "60004_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.69,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 60005,
+      "isVip": true,
+      "thumbnail": "60005_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FDF3EC"
+        ]
+      },
+      "frame": {
+        "editBgColor": "#FFFFFF"
+      },
+      "phoneImages": [
+        {
+          "imageName": "60005_phone_image_1.webp",
+          "imagePosition": "topCenter",
+          "imageWidthRatio": 1.0
+        },
+        {
+          "imageName": "60005_phone_image_2.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.52
+        }
+      ]
+    },
+    {
+      "id": 60006,
+      "isVip": true,
+      "thumbnail": "60006_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFD5DC"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "60006_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.58,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 60013,
+      "thumbnail": "60013_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#ABE6E3"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "60013_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.73,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 60015,
+      "isVip": true,
+      "thumbnail": "60015_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FBE6CA"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "60015_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 60016,
+      "isVip": true,
+      "thumbnail": "60016_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFDECB"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "60016_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.6,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 60019,
+      "isVip": true,
+      "thumbnail": "60019_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#E9FFFD"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "60019_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.81,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 60021,
+      "isVip": true,
+      "thumbnail": "60021_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#8AE9FF"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "60021_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 60022,
+      "isVip": true,
+      "thumbnail": "60022_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#9BD5FA"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "60022_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 60024,
+      "isVip": true,
+      "thumbnail": "60024_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFEBEB"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "60024_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.8,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 70001,
+      "thumbnail": "70001_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFB8B4"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "70001_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.72,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 70003,
+      "thumbnail": "70003_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#E4D1F2"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "70003_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.65,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 70004,
+      "thumbnail": "70004_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFF4E3"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "70004_phone_image_1.webp",
+          "imagePosition": "topLeft",
+          "imageWidthRatio": 1.0
+        },
+        {
+          "imageName": "70004_phone_image_2.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 70007,
+      "isVip": true,
+      "thumbnail": "70007_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#F4D1DA"
+        ],
+        "bgName": "70007_bg.webp",
+        "bgType": "repeat"
+      },
+      "phoneImages": [
+        {
+          "imageName": "70007_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 70012,
+      "thumbnail": "70012_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#ECB6BA"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "70012_phone_image_1.webp",
+          "imagePosition": "topLeft",
+          "imageWidthRatio": 0.38
+        },
+        {
+          "imageName": "70012_phone_image_2.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 70020,
+      "thumbnail": "70020_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFC670"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "70020_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.92,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 70025,
+      "thumbnail": "70025_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#BAE7FC"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "70025_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.86
+        }
+      ]
+    },
+    {
+      "id": 70028,
+      "thumbnail": "70028_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFD5CD"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "70028_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.92,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 70029,
+      "thumbnail": "70029_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#F9A5AF"
+        ]
+      },
+      "frame": {
+        "editBgColor": "#FFE6EA"
+      },
+      "phoneImages": [
+        {
+          "imageName": "70029_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 0.92,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 70040,
+      "thumbnail": "70040_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFD6C9"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "70040_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.8
+        }
+      ]
+    },
+    {
+      "id": 70047,
+      "isVip": true,
+      "thumbnail": "70047_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#F9FEDE",
+          "#FFE8CF"
+        ],
+        "orientation": "top_bottom"
+      },
+      "phoneImages": [
+        {
+          "imageName": "70047_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 70048,
+      "isVip": true,
+      "thumbnail": "70048_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFE9CC",
+          "#FFDCEC"
+        ],
+        "orientation": "top_bottom"
+      },
+      "phoneImages": [
+        {
+          "imageName": "70048_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.61,
+          "isFloat": true
+        },
+        {
+          "imageName": "70048_phone_image_2.webp",
+          "imagePosition": "topLeft",
+          "imageWidthRatio": 0.34,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 80001,
+      "thumbnail": "80001_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#F2E8EF"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "80001_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.5,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 80002,
+      "thumbnail": "80002_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#B2C4F4"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "80002_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.63,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 80003,
+      "isVip": true,
+      "thumbnail": "80003_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFE1E0"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "80003_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.55,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 80007,
+      "thumbnail": "80007_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#F5C07F"
+        ]
+      },
+      "frame": {
+        "editBgColor": "#FFF0D6"
+      },
+      "phoneImages": [
+        {
+          "imageName": "80007_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.64,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 90001,
+      "thumbnail": "90001_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FFE8C5"
+        ]
+      },
+      "frame": {
+        "editBgColor": "#FDFFE8"
+      },
+      "phoneImages": [
+        {
+          "imageName": "90001_phone_image_1.webp",
+          "imagePosition": "topLeft",
+          "imageWidthRatio": 0.63
+        },
+        {
+          "imageName": "90001_phone_image_2.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.57,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 90002,
+      "thumbnail": "90002_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#33B79E"
+        ]
+      },
+      "frame": {
+        "editBgColor": "#E8FFF4"
+      },
+      "phoneImages": [
+        {
+          "imageName": "90002_phone_image_1.webp",
+          "imagePosition": "topLeft",
+          "imageWidthRatio": 0.89
+        },
+        {
+          "imageName": "90002_phone_image_2.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 0.87,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 90003,
+      "thumbnail": "90003_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#AEE2F6"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "90003_phone_image_1.webp",
+          "imagePosition": "topCenter",
+          "imageWidthRatio": 1.0
+        },
+        {
+          "imageName": "90003_phone_image_2.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 0.92,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 90007,
+      "isVip": true,
+      "thumbnail": "90007_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#E1FFFD"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "90007_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    },
+    {
+      "id": 90009,
+      "thumbnail": "90009_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#A08FF9"
+        ]
+      },
+      "frame": {
+        "editBgColor": "#F8F3FF"
+      },
+      "phoneImages": [
+        {
+          "imageName": "90009_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0,
+          "isFloat": true
+        },
+        {
+          "imageName": "90009_phone_image_2.webp",
+          "imagePosition": "topLeft",
+          "imageWidthRatio": 0.64,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 90010,
+      "isVip": true,
+      "thumbnail": "90010_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#FDF2EB",
+          "#FDF2EB"
+        ],
+        "orientation": "top_bottom"
+      },
+      "phoneImages": [
+        {
+          "imageName": "90010_phone_image_1.webp",
+          "imagePosition": "bottomRight",
+          "imageWidthRatio": 0.69,
+          "isFloat": true
+        }
+      ]
+    },
+    {
+      "id": 90011,
+      "isVip": true,
+      "thumbnail": "90011_thumbnail.webp",
+      "thumbnailReady": true,
+      "bg": {
+        "gradientColors": [
+          "#EBF8FF"
+        ]
+      },
+      "phoneImages": [
+        {
+          "imageName": "90011_phone_image_1.webp",
+          "imagePosition": "bottomCenter",
+          "imageWidthRatio": 1.0
+        },
+        {
+          "imageName": "90011_phone_image_2.webp",
+          "imagePosition": "topCenter",
+          "imageWidthRatio": 1.0
+        }
+      ]
+    }
+  ]
+}

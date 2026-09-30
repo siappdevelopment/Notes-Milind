@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.HomeActivity"
+    tools:openDrawer="start">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <include
+            android:id="@+id/layoutTopBar"
+            layout="@layout/layout_home_top_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTopBar" />
+
+        <FrameLayout
+            android:id="@+id/bottomNavContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="@dimen/bottom_nav_shadow_padding"
+            android:paddingBottom="@dimen/bottom_nav_shadow_padding"
+            app:layout_constraintBottom_toTopOf="@id/llOtherScreenAds"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <!-- FrameLayout + surround shadow drawable (even glow on all sides) -->
+            <FrameLayout
+                android:id="@+id/bottomNavCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_bottom_nav_card"
+                android:padding="@dimen/bottom_nav_shadow_padding">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/bottom_nav_bar_height"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
+
+                    <!-- Sliding selected background pill -->
+                    <View
+                        android:id="@+id/navIndicator"
+                        android:layout_width="72dp"
+                        android:layout_height="@dimen/bottom_nav_item_height"
+                        android:layout_gravity="start|center_vertical"
+                        android:background="@drawable/bg_bottom_nav_active_pill"
+                        android:visibility="invisible" />
+
+                    <LinearLayout
+                        android:id="@+id/bottomNavCustom"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="6dp">
+
+                    <!-- Home -->
+                    <FrameLayout
+                        android:id="@+id/nav_home"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <LinearLayout
+                            android:id="@+id/nav_home_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/bottom_nav_item_height"
+                            android:layout_gravity="center"
+                            android:duplicateParentState="true"
+                            android:gravity="center"
+                            android:minWidth="72dp"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="16dp">
+
+                            <ImageView
+                                android:id="@+id/nav_home_icon"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:contentDescription="@string/nav_home"
+                                android:duplicateParentState="true"
+                                android:src="@drawable/ic_nv_home"
+                                app:tint="@color/nav_item_state_color" />
+
+                            <TextView
+                                android:id="@+id/nav_home_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:duplicateParentState="true"
+                                android:fontFamily="sans-serif-medium"
+                                android:includeFontPadding="false"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="@string/nav_home"
+                                android:textColor="@color/nav_item_state_color"
+                                android:textSize="11sp"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <!-- Reminder -->
+                    <FrameLayout
+                        android:id="@+id/nav_reminder"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <LinearLayout
+                            android:id="@+id/nav_reminder_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/bottom_nav_item_height"
+                            android:layout_gravity="center"
+                            android:duplicateParentState="true"
+                            android:gravity="center"
+                            android:minWidth="72dp"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="16dp">
+
+                            <ImageView
+                                android:id="@+id/nav_reminder_icon"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:contentDescription="@string/nav_reminder"
+                                android:duplicateParentState="true"
+                                android:src="@drawable/ic_nv_reminder"
+                                app:tint="@color/nav_item_state_color" />
+
+                            <TextView
+                                android:id="@+id/nav_reminder_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:duplicateParentState="true"
+                                android:fontFamily="sans-serif-medium"
+                                android:includeFontPadding="false"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="@string/nav_reminder"
+                                android:textColor="@color/nav_item_state_color"
+                                android:textSize="11sp"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <!-- Bookmark -->
+                    <FrameLayout
+                        android:id="@+id/nav_bookmark"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <LinearLayout
+                            android:id="@+id/nav_bookmark_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/bottom_nav_item_height"
+                            android:layout_gravity="center"
+                            android:duplicateParentState="true"
+                            android:gravity="center"
+                            android:minWidth="72dp"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="16dp">
+
+                            <ImageView
+                                android:id="@+id/nav_bookmark_icon"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:contentDescription="@string/nav_bookmark"
+                                android:duplicateParentState="true"
+                                android:src="@drawable/ic_nv_bookmark"
+                                app:tint="@color/nav_item_state_color" />
+
+                            <TextView
+                                android:id="@+id/nav_bookmark_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:duplicateParentState="true"
+                                android:fontFamily="sans-serif-medium"
+                                android:includeFontPadding="false"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="@string/nav_bookmark"
+                                android:textColor="@color/nav_item_state_color"
+                                android:textSize="11sp"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <!-- Archive -->
+                    <FrameLayout
+                        android:id="@+id/nav_archive"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <LinearLayout
+                            android:id="@+id/nav_archive_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/bottom_nav_item_height"
+                            android:layout_gravity="center"
+                            android:duplicateParentState="true"
+                            android:gravity="center"
+                            android:minWidth="72dp"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="16dp">
+
+                            <ImageView
+                                android:id="@+id/nav_archive_icon"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:contentDescription="@string/nav_archive"
+                                android:duplicateParentState="true"
+                                android:src="@drawable/ic_nv_archive"
+                                app:tint="@color/nav_item_state_color" />
+
+                            <TextView
+                                android:id="@+id/nav_archive_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:duplicateParentState="true"
+                                android:fontFamily="sans-serif-medium"
+                                android:includeFontPadding="false"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="@string/nav_archive"
+                                android:textColor="@color/nav_item_state_color"
+                                android:textSize="11sp"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <!-- More -->
+                    <FrameLayout
+                        android:id="@+id/nav_more"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <LinearLayout
+                            android:id="@+id/nav_more_container"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/bottom_nav_item_height"
+                            android:layout_gravity="center"
+                            android:duplicateParentState="true"
+                            android:gravity="center"
+                            android:minWidth="72dp"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="16dp">
+
+                            <ImageView
+                                android:id="@+id/nav_more_icon"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:contentDescription="@string/nav_more"
+                                android:duplicateParentState="true"
+                                android:src="@drawable/ic_nv_more"
+                                app:tint="@color/nav_item_state_color" />
+
+                            <TextView
+                                android:id="@+id/nav_more_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
+                                android:duplicateParentState="true"
+                                android:fontFamily="sans-serif-medium"
+                                android:includeFontPadding="false"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="@string/nav_more"
+                                android:textColor="@color/nav_item_state_color"
+                                android:textSize="11sp"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    </LinearLayout>
+                </FrameLayout>
+
+            </FrameLayout>
+
+            <include
+                android:id="@+id/selectionToolbar"
+                layout="@layout/layout_home_selection_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <include
+            android:id="@+id/llOtherScreenAds"
+            layout="@layout/layout_other_screen_ads"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/navDrawer"
+        layout="@layout/layout_nav_drawer"
+        android:layout_width="@dimen/nav_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:visibility="visible" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

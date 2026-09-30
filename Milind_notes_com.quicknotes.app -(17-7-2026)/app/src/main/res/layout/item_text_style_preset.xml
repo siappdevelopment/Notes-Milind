@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvPreset"
+    android:layout_width="wrap_content"
+    android:layout_height="38dp"
+    android:layout_marginEnd="4dp"
+    android:background="@drawable/bg_text_style_preset_unselected"
+    android:gravity="center"
+    android:textSize="14dp"
+    android:fontFamily="@font/plus_jakarta_sans_medium"
+    android:paddingHorizontal="14dp"
+    android:textColor="@color/grey_1"
+    tools:text="Normal" />

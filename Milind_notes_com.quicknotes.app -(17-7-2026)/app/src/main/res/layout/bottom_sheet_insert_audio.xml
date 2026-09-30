@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet_rounded"
+    android:orientation="vertical"
+    android:paddingTop="12dp"
+    android:paddingBottom="28dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/plus_jakarta_sans_semi_bold"
+            android:text="@string/insert_audio"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="@color/app_txt_black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnClose"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/close"
+            android:padding="4dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/grey_1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/plus_jakarta_sans_medium"
+        android:textColor="@color/app_txt_black"
+        android:textSize="22sp"
+        tools:text="00:00" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingHorizontal="40dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <ImageButton
+                android:id="@+id/btnCancel"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_audio_cancel_button"
+                android:contentDescription="@string/cancel"
+                android:padding="12dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_close"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@id/btnRecord"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tint="@color/audio_cancel_icon"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/pulseRingOuter"
+                android:layout_width="96dp"
+                android:layout_marginVertical="10dp"
+                android:layout_height="96dp"
+                android:background="@drawable/bg_audio_pulse_ring"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/btnRecord"
+                app:layout_constraintEnd_toEndOf="@id/btnRecord"
+                app:layout_constraintStart_toStartOf="@id/btnRecord"
+                app:layout_constraintTop_toTopOf="@id/btnRecord"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/pulseRingInner"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_audio_pulse_ring"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/btnRecord"
+                app:layout_constraintEnd_toEndOf="@id/btnRecord"
+                app:layout_constraintStart_toStartOf="@id/btnRecord"
+                app:layout_constraintTop_toTopOf="@id/btnRecord"
+                tools:visibility="visible" />
+
+            <ImageButton
+                android:id="@+id/btnRecord"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/bg_audio_record_button"
+                android:contentDescription="@string/recording"
+                android:padding="14dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_mic_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btnConfirm"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_audio_confirm_button"
+                android:contentDescription="@string/save"
+                android:padding="12dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_check"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnRecord"
+                app:tint="@color/app_primary_color"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_micwave"
+        android:layout_marginHorizontal="20dp"
+        android:layout_height="wrap_content">
+
+        <com.notebook.notes.checklist.ui.audio.AudioWaveformView
+            android:id="@+id/waveformView"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="12dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

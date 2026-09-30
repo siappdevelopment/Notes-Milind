@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="top"
+    android:orientation="horizontal"
+    android:paddingVertical="2dp">
+
+    <ImageView
+        android:id="@+id/ivDragHandle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:contentDescription="@string/reorder_todo"
+        android:scaleType="center"
+        android:src="@drawable/ic_drag_handle"
+        app:tint="@color/grey_1" />
+
+    <ImageView
+        android:id="@+id/ivTodoCheck"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="top"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/add_checkbox"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_todo_unchecked"
+        tools:src="@drawable/ic_todo_checked" />
+
+    <com.notebook.notes.checklist.ui.richtext.RichTextEditText    
+        android:id="@+id/etTodoText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginStart="5dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="top|start"
+        android:hint="@string/checkbox_item"
+        android:imeOptions="actionNext|flagNoExtractUi"
+        android:inputType="textCapSentences"
+        android:minHeight="40dp"
+        android:paddingVertical="4dp"
+        android:scrollHorizontally="false"
+        android:textColor="@color/app_txt_black"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="top"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/remove"
+        android:src="@drawable/ic_close"
+        app:tint="@color/grey_1" />
+
+</LinearLayout>

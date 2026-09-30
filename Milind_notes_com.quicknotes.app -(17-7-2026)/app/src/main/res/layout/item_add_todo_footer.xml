@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/addTodoFooterRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:minHeight="44dp"
+    android:orientation="horizontal"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="10dp">
+    <ImageView
+        android:id="@+id/ivDragHandle"
+        android:layout_width="32dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/reorder_todo"
+        android:paddingHorizontal="4dp"
+        android:scaleType="center"
+        android:visibility="invisible"
+        android:src="@drawable/ic_drag_handle"
+        app:tint="@color/grey_1" />
+
+
+
+
+    <TextView
+        android:id="@+id/tvPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/plus_jakarta_sans_medium"
+        android:includeFontPadding="false"
+        android:text="+"
+        android:textColor="@color/checklist_add_action"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/plus_jakarta_sans_medium"
+        android:text="@string/add_checklist_item"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:textColor="@color/checklist_add_action" />
+
+</LinearLayout>

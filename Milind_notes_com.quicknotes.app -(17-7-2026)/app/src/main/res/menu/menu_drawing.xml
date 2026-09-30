@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_color"
+        android:title="@string/color" />
+    <item
+        android:id="@+id/action_brush_size"
+        android:title="@string/brush_size" />
+    <item
+        android:id="@+id/action_clear"
+        android:title="@string/clear" />
+</menu>

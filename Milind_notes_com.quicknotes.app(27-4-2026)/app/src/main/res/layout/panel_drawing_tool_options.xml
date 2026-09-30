@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawingToolOptionsPanel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:contentDescription="@string/drawing_tool_settings"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <View
+        android:id="@+id/panelTopShadow"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:visibility="gone"
+        android:layout_gravity="top"
+        android:background="@drawable/bg_drawing_tool_options_top_shadow"
+        android:importantForAccessibility="no"
+        android:translationY="-20dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/panelContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:strokeColor="@color/bg_stroke"
+        app:cardBackgroundColor="@color/white"
+        app:contentPadding="0dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.DrawingToolPanel"
+        app:strokeWidth="0.5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/plus_jakarta_sans_semi_bold"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?attr/colorOnSurface"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnClose"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Watercolor" />
+
+            <ImageView
+                android:id="@+id/btnClose"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/close"
+                android:padding="4dp"
+                android:src="@drawable/ic_close"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorOnSurfaceVariant" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/sectionBrushSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_brushsize"
+            android:contentDescription="@string/brush_size"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="10dp">
+
+            <FrameLayout
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_preview_strok"
+                android:padding="8dp">
+
+                <com.notebook.notes.checklist.ui.drawing.StrokePreviewView
+                    android:id="@+id/strokePreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/brush_preview" />
+
+            </FrameLayout>
+
+            <SeekBar
+                android:id="@+id/seekBrushSize"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/brush_size"
+                android:maxHeight="32dp"
+                android:minHeight="32dp"
+                android:progress="19"
+                android:progressDrawable="@drawable/seekbar_style"
+                android:splitTrack="false"
+                android:thumb="@drawable/ic_seek_custom_thumb" />
+
+            <TextView
+                android:id="@+id/tvBrushSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:minWidth="48dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurface"
+                tools:text="4 Px" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/sectionColors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_brushsize"
+            android:contentDescription="@string/color"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvColors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="8"
+                tools:listitem="@layout/item_drawing_color_swatch" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvOutlineHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/outline_brush_shapes_hint"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/sectionShapes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_brushsize"
+            android:contentDescription="@string/shape"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="10dp">
+
+            <ImageView
+                android:id="@+id/btnShapeFreehand"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_brush_style_tab"
+                android:clickable="true"
+                android:contentDescription="@string/shape_freehand"
+                android:focusable="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_liner"
+                app:tint="@color/color_brush_style_tab_icon" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/btnShapeLine"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_brush_style_tab"
+                android:clickable="true"
+                android:contentDescription="@string/shape_line"
+                android:focusable="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_straigh_liner"
+                app:tint="@color/color_brush_style_tab_icon" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/btnShapeSquare"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_brush_style_tab"
+                android:clickable="true"
+                android:contentDescription="@string/shape_rectangle"
+                android:focusable="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_sequer"
+                app:tint="@color/color_brush_style_tab_icon" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/btnShapeCircle"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_brush_style_tab"
+                android:clickable="true"
+                android:contentDescription="@string/shape_circle"
+                android:focusable="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_circle"
+                app:tint="@color/color_brush_style_tab_icon" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/btnShapeArrow"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_brush_style_tab"
+                android:clickable="true"
+                android:contentDescription="@string/shape_arrow"
+                android:focusable="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_arrow"
+                app:tint="@color/color_brush_style_tab_icon" />
+
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/sectionBrushTypes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/bg_brush_type"
+            android:clipToPadding="false"
+            android:contentDescription="@string/brush_type"
+            android:overScrollMode="never"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="5dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/brushStyleTabs"
+                android:paddingHorizontal="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" />
+
+        </HorizontalScrollView>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

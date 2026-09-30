@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "101778040784",
+    "project_id": "notebook-notes-checklist",
+    "storage_bucket": "notebook-notes-checklist.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101778040784:android:d38a1d12f783c50ed8bbd5",
+        "android_client_info": {
+          "package_name": "com.notebook.notes.checklist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD14Il6jMqHgTn21ThNDjR_jt6OcbrDgDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="24dp"
+    android:paddingVertical="20dp"
+    android:background="@drawable/bg_dialog_rounded">
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:background="@drawable/bg_circle_light_purple"
+        android:padding="16dp"
+        android:src="@drawable/ic_recylerbin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/app_primary_color" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:text="@string/restore_note_title"
+        android:textColor="@color/app_txt_black"
+        android:textSize="18sp"
+        android:fontFamily="@font/plus_jakarta_sans_semi_bold"
+        app:layout_constraintTop_toBottomOf="@id/ivIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/are_you_sure_to_restore_these_items"
+        android:textColor="@color/grey_1"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:fontFamily="@font/plus_jakarta_sans_regular"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvMessage"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNegative"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/app_primary_color"
+            android:fontFamily="@font/plus_jakarta_sans_semi_bold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:backgroundTint="@color/app_primary_color_10"
+            app:cornerRadius="16dp"
+            android:textSize="14sp"
+            app:rippleColor="@color/app_primary_color_10"
+            style="@style/Widget.Material3.Button.UnelevatedButton"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPositive"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="@string/restore_note"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+
+            android:maxLines="2"
+            android:gravity="center"
+            android:fontFamily="@font/plus_jakarta_sans_semi_bold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingHorizontal="6dp"
+            android:textSize="14sp"
+            app:backgroundTint="@color/app_primary_color"
+            app:cornerRadius="16dp"
+            style="@style/Widget.Material3.Button.UnelevatedButton"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
