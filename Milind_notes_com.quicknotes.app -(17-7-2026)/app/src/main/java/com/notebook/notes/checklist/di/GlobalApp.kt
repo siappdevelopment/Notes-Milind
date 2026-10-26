@@ -1,22 +1,39 @@
 package com.notebook.notes.checklist.di
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.ads.module.admob.Admob
+import com.ads.module.admob.AppOpenManager
+import com.ads.module.ads.NotesAd
+import com.ads.module.config.AdjustConfig
+import com.ads.module.config.NotesAdConfig
 import com.facebook.ads.AdSettings
 import com.notebook.notes.checklist.Advertisement.ADSAppManage
 import com.notebook.notes.checklist.Advertisement.PremiumAdsSynchronizer
 import com.notebook.notes.checklist.BuildConfig
+import com.notebook.notes.checklist.R
+import com.notebook.notes.checklist.ads.AdRemoteConfig
 import com.notebook.notes.checklist.flow.SessionManager
 import com.notebook.notes.checklist.iap.BillingConstants
 import com.notebook.notes.checklist.iap.PremiumManager
 import com.notebook.notes.checklist.reminder.ReminderNotificationHelper
 import com.notebook.notes.checklist.repository.NoteRepository
+import com.notebook.notes.checklist.ui.activity.LanguageActivity
+import com.notebook.notes.checklist.ui.activity.Onboarding1Activity
+import com.notebook.notes.checklist.ui.activity.Onboarding2Activity
+import com.notebook.notes.checklist.ui.activity.Onboarding3Activity
+import com.notebook.notes.checklist.ui.activity.SplashActivity
 import com.notebook.notes.checklist.ui.richtext.RichTextFormats
 import com.notebook.notes.checklist.util.DateTimeUtils
 import com.notebook.notes.checklist.util.LocaleHelper
@@ -28,10 +45,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltAndroidApp
-class MyApplication : ADSAppManage() {
+class GlobalApp : ADSAppManage() {
 
     @Inject lateinit var reminderNotificationHelper: ReminderNotificationHelper
     @Inject lateinit var noteRepository: NoteRepository
@@ -42,20 +60,25 @@ class MyApplication : ADSAppManage() {
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     companion object {
+        @SuppressLint("StaticFieldLeak")
+        lateinit var instance: GlobalApp
 
+        @SuppressLint("StaticFieldLeak")
+        var currentActivity: Activity? = null
 
         @JvmField
         var _isAppInForeground: Boolean = false
 
-
-        fun isAppInForeground(): Boolean {
-            return _isAppInForeground
-        }
+        fun isAppInForeground(): Boolean = _isAppInForeground
     }
-
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+
         // Force light mode for this app only; system dark mode is ignored.
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         LocaleHelper.applySavedLanguage(this)
@@ -70,8 +93,7 @@ class MyApplication : ADSAppManage() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             premiumManager.start()
-        }, 2000) // 1 second delay
-
+        }, 2000)
 
         premiumAdsSynchronizer.start()
 
@@ -80,16 +102,22 @@ class MyApplication : ADSAppManage() {
         }
         ProcessLifecycleOwner.get().lifecycle.addObserver(processObserver)
 
-        //facebook
+        // facebook
         if (com.facebook.ads.BuildConfig.DEBUG) {
             AdSettings.setTestMode(false)
         }
-    }
 
+        initAdRemoteConfig()
+        initAds()
+
+        // Unconditionally register lifecycle observer and callbacks so dynamic welcome/resume toggling works during testing
+        ProcessLifecycleOwner.get().lifecycle.addObserver(AppLifecycleObserver())
+        registerActivityLifecycleCallbacks(AppActivityLifecycleCallbacks())
+    }
 
     /**
      * Kept as a separate observer rather than implementing [DefaultLifecycleObserver] on the
-     * Application: its `onCreate` would collide with [Application.onCreate].
+     * Application: its `onCreate` would collide with [android.app.Application.onCreate].
      */
     private val processObserver = object : DefaultLifecycleObserver {
         override fun onStart(owner: LifecycleOwner) {
@@ -127,14 +155,45 @@ class MyApplication : ADSAppManage() {
                 .build(),
         )
 
-
         if (BuildConfig.DEBUG || BillingConstants.ENABLE_DEBUG_LOGGING) {
             Log.d(BillingConstants.TAG, "RevenueCat configured (Google Play SDK key)")
         }
     }
 
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
+    private fun initAdRemoteConfig() {
+        AdRemoteConfig.initializeFromAssets(this)
     }
 
+    private fun initAds() {
+        val environment =
+            if (BuildConfig.DEBUG) NotesAdConfig.ENVIRONMENT_DEVELOP else NotesAdConfig.ENVIRONMENT_PRODUCTION
+        val adConfig = NotesAdConfig(this, environment)
+
+        adConfig.adjustConfig = AdjustConfig(true, resources.getString(R.string.adjust_token))
+        adConfig.facebookClientToken = resources.getString(R.string.facebook_client_token)
+        adConfig.adjustTokenTiktok = resources.getString(R.string.event_token)
+        adConfig.intervalInterstitialAd = 35
+        adConfig.idAdResume = ""
+
+        NotesAd.getInstance().init(this, adConfig)
+
+        Admob.getInstance().setDisableAdResumeWhenClickAds(true)
+        Admob.getInstance().setOpenActivityAfterShowInterAds(false)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity::class.java)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(LanguageActivity::class.java)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(Onboarding1Activity::class.java)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(Onboarding2Activity::class.java)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(Onboarding3Activity::class.java)
+    }
+
+    fun Context.getSystemLocaleString(@StringRes resId: Int): String {
+        val systemConfig = Resources.getSystem().configuration
+        val systemLocale = systemConfig.locales[0]
+
+        val config = Configuration(resources.configuration)
+        config.setLocale(systemLocale)
+
+        val systemContext = createConfigurationContext(config)
+        return systemContext.getString(resId)
+    }
 }

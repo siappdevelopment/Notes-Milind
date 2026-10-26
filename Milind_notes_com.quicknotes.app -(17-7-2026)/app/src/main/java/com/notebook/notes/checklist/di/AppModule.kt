@@ -17,6 +17,8 @@ import com.notebook.notes.checklist.data.TodoItemDao
 import com.notebook.notes.checklist.data.TodoListDao
 import com.notebook.notes.checklist.helper.PreferenceHelper
 import com.google.gson.Gson
+import com.notebook.notes.checklist.ads.AppSharedPref
+import com.notebook.notes.checklist.ads.AppSharedPreferencesApp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -70,4 +72,11 @@ object AppModule {
     fun providePreferenceHelper(@ApplicationContext context: Context): PreferenceHelper {
         return PreferenceHelper(context)
     }
+
+    @Singleton
+    @Provides
+    fun provideSharedPref(
+        @ApplicationContext context: Context
+    ): AppSharedPref = AppSharedPreferencesApp(context)
+
 }

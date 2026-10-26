@@ -625,4 +625,11 @@
     <string name="list_view">List View</string>
     <string name="your_notes_trash_will_be_deleted_after_7_days">Your notes trash will be deleted after 7 days</string>
     <string name="see_more">See more</string>
+
+
+
+    <string name="adjust_token" translatable="false">123456789</string>
+    <string name="facebook_app_id" translatable="false">123456789</string>
+    <string name="facebook_client_token" translatable="false">123456789</string>
+    <string name="event_token" translatable="false">12345</string>
 </resources>

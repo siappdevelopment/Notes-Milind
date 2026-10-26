@@ -55,8 +55,10 @@ android {
     }
 }
 
-dependencies {
+val moshi_version = "1.15.2"
 
+dependencies {
+    implementation(project(":ads"))
 
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
@@ -67,6 +69,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.process)
     implementation(libs.firebase.crashlytics)
     implementation(libs.material)
+    implementation(libs.review.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
@@ -129,4 +132,13 @@ dependencies {
     //mediation
     implementation ("com.google.ads.mediation:facebook:6.19.0.1")//*
 
+
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:$moshi_version")
+    implementation("com.squareup.moshi:moshi:$moshi_version")
+    implementation("com.squareup.moshi:moshi-kotlin:$moshi_version")
+    implementation("com.squareup.moshi:moshi-adapters:$moshi_version")
+
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
+    implementation("androidx.multidex:multidex:2.0.1")
 }

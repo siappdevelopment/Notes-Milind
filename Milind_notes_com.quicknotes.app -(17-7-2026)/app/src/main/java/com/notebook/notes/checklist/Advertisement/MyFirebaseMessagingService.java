@@ -10,7 +10,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.notebook.notes.checklist.Advertisement.CallendClass.CallEndLaunchHelper;
 import com.notebook.notes.checklist.R;
-import com.notebook.notes.checklist.di.MyApplication;
+import com.notebook.notes.checklist.di.GlobalApp;
 
 
 import java.util.Map;
@@ -35,7 +35,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage != null) {
             Log.d("MyFCMService", "handleIntent: RemoteMessage found");
             // 1. Check if App is in Foreground (Using ProcessLifecycleObserver)
-            if (MyApplication._isAppInForeground) {
+            if (GlobalApp._isAppInForeground) {
                 Log.d("MyFCMService", "handleIntent: App is in foreground, returning");
                 return;
             }

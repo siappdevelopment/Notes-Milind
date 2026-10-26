@@ -24,3 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Notes"
 include(":app")
+include(":ads")

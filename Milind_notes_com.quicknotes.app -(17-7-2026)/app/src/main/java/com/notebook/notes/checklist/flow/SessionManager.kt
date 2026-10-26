@@ -45,7 +45,7 @@ class SessionManager @Inject constructor(
     fun getLastPaywallSession(): Int =
         preferenceHelper.getInt(Constant.LAST_PAYWALL_SESSION, 0)
 
-    /** Called from [com.notebook.notes.checklist.di.MyApplication] on app foreground. */
+    /** Called from [com.notebook.notes.checklist.di.GlobalApp] on app foreground. */
     fun onAppForegrounded() {
         if (!isInBackground) return
         isInBackground = false
@@ -59,7 +59,7 @@ class SessionManager @Inject constructor(
         }
     }
 
-    /** Called from [com.notebook.notes.checklist.di.MyApplication] on app background. */
+    /** Called from [com.notebook.notes.checklist.di.GlobalApp] on app background. */
     fun onAppBackgrounded() {
         isInBackground = true
         startupHandledPaywallThisForeground = false
