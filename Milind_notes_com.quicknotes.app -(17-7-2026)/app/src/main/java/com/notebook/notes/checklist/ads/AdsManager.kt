@@ -290,70 +290,78 @@ object AdsManager {
         }
     }
 
-    private var interBottomNav: ApInterstitialAd? = null
-    private var bottomNavChangeCount = 0
+    /**
+     * A remote-config interstitial shown on every `clickCount`-th trigger (e.g. 3rd, 6th, 9th).
+     * Each instance has its own ad and its own counter, so every trigger type is controlled separately.
+     * A slot is skipped (not retried early) when no ad is ready; [onAction] always runs.
+     */
+    private class CountedInter(
+        private val tag: String,
+        private val config: () -> AdUnitConfig,
+    ) {
+        private var ad: ApInterstitialAd? = null
+        private var triggerCount = 0
 
-    /** Preloads the bottom-navigation interstitial (`inter_bottom_nav`). No-op while one is already loaded. */
-    fun loadInterBottomNav(context: Context) {
-        val config = AdRemoteConfig.inter_bottom_nav
-        if (!config.isEnable
-            || AppPurchase.getInstance().isPurchased(context)
-            || !NotesAd.getInstance().getShouldDisplayInterOnboarding(config.enableUaCheck)
-            || interBottomNav?.isReady == true
-        ) return
-        interBottomNav =
-            NotesAd.getInstance().getInterstitialAds(context, config.id, object : AdCallback() {})
+        /** Preloads the ad; no-op while one is already loaded. */
+        fun load(context: Context) {
+            val cfg = config()
+            if (!cfg.isEnable
+                || AppPurchase.getInstance().isPurchased(context)
+                || !NotesAd.getInstance().getShouldDisplayInterOnboarding(cfg.enableUaCheck)
+                || ad?.isReady == true
+            ) return
+            ad = NotesAd.getInstance().getInterstitialAds(context, cfg.id, object : AdCallback() {})
+        }
+
+        fun show(context: Context, onAction: () -> Unit) {
+            val cfg = config()
+            if (!cfg.isEnable
+                || AppPurchase.getInstance().isPurchased(context)
+                || !NotesAd.getInstance().getShouldDisplayInterOnboarding(cfg.enableUaCheck)
+            ) {
+                onAction()
+                return
+            }
+            triggerCount++
+            Timber.tag(tag).d("trigger=$triggerCount clickCount=${cfg.clickCount} ready=${ad?.isReady}")
+            if (triggerCount % cfg.clickCount != 0) {
+                onAction()
+                return
+            }
+            val interstitial = ad
+            if (interstitial == null || !interstitial.isReady) {
+                Timber.tag(tag).d("slot missed: ad not ready")
+                load(context)
+                onAction()
+                return
+            }
+            // shouldReloadAds = true: the SDK reloads this same wrapper after it closes.
+            NotesAd.getInstance().forceShowInterstitial(context, interstitial, object : AdCallback() {
+                override fun onNextAction() {
+                    super.onNextAction()
+                    onAction()
+                }
+            }, true)
+        }
     }
+
+    private val interBottomNav = CountedInter("InterBottomNav") { AdRemoteConfig.inter_bottom_nav }
+    private val interScreenOpen = CountedInter("InterScreenOpen") { AdRemoteConfig.inter_screen_open }
+
+    /** Bottom-navigation tab change (`inter_bottom_nav`). */
+    fun loadInterBottomNav(context: Context) = interBottomNav.load(context)
+
+    fun showInterBottomNav(context: Context, onAction: () -> Unit) =
+        interBottomNav.show(context, onAction)
 
     /**
-     * Call on every bottom-navigation tab change. The interstitial shows on every
-     * `clickCount`-th change (remote config), e.g. 3rd, 6th, 9th; otherwise, or when no ad is ready,
-     * [onAction] runs straight away.
+     * Screen changes: opening another screen AND back presses share this one control
+     * (`inter_screen_open`), so they use the same ad and the same counter.
      */
-    fun showInterBottomNav(context: Context, onAction: () -> Unit) {
-        val config = AdRemoteConfig.inter_bottom_nav
-        if (!config.isEnable
-            || AppPurchase.getInstance().isPurchased(context)
-            || !NotesAd.getInstance().getShouldDisplayInterOnboarding(config.enableUaCheck)
-        ) {
-            onAction()
-            return
-        }
-        // Fixed schedule: 3rd, 6th, 9th... change. A missed slot (ad not ready) is not retried early.
-        bottomNavChangeCount++
-        Timber.tag("BottomNavInter").d(
-            "change=$bottomNavChangeCount clickCount=${config.clickCount} ready=${interBottomNav?.isReady}"
-        )
-        if (bottomNavChangeCount % config.clickCount != 0) {
-            onAction()
-            return
-        }
-        val interstitial = interBottomNav
-        if (interstitial == null || !interstitial.isReady) {
-            Timber.tag("BottomNavInter").d("slot missed: ad not ready (ad=${interstitial != null})")
-            loadInterBottomNav(context)
-            onAction()
-            return
-        }
-        // shouldReloadAds = true: the SDK reloads this same wrapper after it closes.
-        NotesAd.getInstance().forceShowInterstitial(context, interstitial, object : AdCallback() {
-            override fun onNextAction() {
-                super.onNextAction()
-                Timber.tag("BottomNavInter").d("onNextAction")
-                onAction()
-            }
+    fun loadInterScreenOpen(context: Context) = interScreenOpen.load(context)
 
-            override fun onInterstitialLoad(interstitialAd: InterstitialAd?) {
-                super.onInterstitialLoad(interstitialAd)
-                Timber.tag("BottomNavInter").d("reloaded after close: ${interstitialAd != null}")
-            }
-
-            override fun onAdFailedToLoad(i: LoadAdError?) {
-                super.onAdFailedToLoad(i)
-                Timber.tag("BottomNavInter").d("reload failed: ${i?.message}")
-            }
-        }, true)
-    }
+    fun showInterScreenOpen(context: Context, onAction: () -> Unit) =
+        interScreenOpen.show(context, onAction)
 
     fun loadInterWelcome(context: Context, ignoreLimit: Boolean = false) {
         val cached = interWelcomeAdLive.value?.takeIf { it.isReady }

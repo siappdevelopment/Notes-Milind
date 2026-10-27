@@ -4,9 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
-import com.notebook.notes.checklist.Advertisement.ADSInterDisplayClick
-import com.notebook.notes.checklist.Advertisement.ADSMainClass
-import com.notebook.notes.checklist.Advertisement.ADSUtilitis
+import com.notebook.notes.checklist.ads.AdsManager
 
 
 
@@ -19,17 +17,7 @@ inline fun <reified T> Context.launchActivity(
 }
 
 fun Activity.openWithHomeInterAd(navigate: () -> Unit) {
-    if (ADSMainClass.getHomeInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSInterstitialShowing(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_FIRST_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                navigate()
-            }
-        )
-    } else {
-        navigate()
-    }
+    AdsManager.showInterScreenOpen(this, navigate)
 }
 
 fun Fragment.openWithHomeInterAd(navigate: () -> Unit) {
@@ -37,242 +25,71 @@ fun Fragment.openWithHomeInterAd(navigate: () -> Unit) {
 }
 
 fun Activity.openWithCreateNotesInterAd(navigate: () -> Unit) {
-    if (ADSMainClass.getCreateNotesInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSInterstitialShowing(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.CREATE_NOTES_SCREEN_INTER),
-            ADSInterDisplayClick.OnFinishAds {
-                navigate()
-
-            }
-        )
-    } else {
-        navigate()
-    }
+    AdsManager.showInterScreenOpen(this, navigate)
 }
 
 fun Activity.finishWithCreateNotesBackInterAd() {
-    if (ADSMainClass.getCreateNotesInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSBackDisplayInterstitial(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.CREATE_NOTES_SCREEN_INTER),
-            ADSInterDisplayClick.OnFinishAds {
-                finish()
-            }
-        )
-    } else {
-        finish()
-    }
+    AdsManager.showInterScreenOpen(this) { finish() }
 }
 
 fun Activity.openWithSetPasswordInterAd(navigate: () -> Unit) {
-    if (ADSMainClass.getSetPasswordInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSInterstitialShowing(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_FIRST_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                navigate()
-            }
-        )
-    } else {
-        navigate()
-    }
+    AdsManager.showInterScreenOpen(this, navigate)
 }
 
 fun Activity.finishWithSetPasswordBackInterAd() {
-    if (ADSMainClass.getSetPasswordInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSBackDisplayInterstitial(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_SECOND_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                finish()
-            }
-        )
-    } else {
-        finish()
-    }
+    AdsManager.showInterScreenOpen(this) { finish() }
 }
 
 fun Activity.openWithDrawingInterAd(navigate: () -> Unit) {
-    if (ADSMainClass.getDrawingInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSInterstitialShowing(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_FIRST_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                navigate()
-            }
-        )
-    } else {
-        navigate()
-    }
+    AdsManager.showInterScreenOpen(this, navigate)
 }
 
 fun Activity.finishWithDrawingBackInterAd() {
-    if (ADSMainClass.getDrawingInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSBackDisplayInterstitial(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_SECOND_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                finish()
-            }
-        )
-    } else {
-        finish()
-    }
+    AdsManager.showInterScreenOpen(this) { finish() }
 }
 
 fun Activity.openWithImageViewerInterAd(navigate: () -> Unit) {
-    if (ADSMainClass.getImageViewerInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSInterstitialShowing(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_FIRST_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                navigate()
-            }
-        )
-    } else {
-        navigate()
-    }
+    AdsManager.showInterScreenOpen(this, navigate)
 }
 
 fun Activity.finishWithImageViewerBackInterAd() {
-    if (ADSMainClass.getImageViewerInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSBackDisplayInterstitial(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_SECOND_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                finish()
-            }
-        )
-    } else {
-        finish()
-    }
+    AdsManager.showInterScreenOpen(this) { finish() }
 }
 
 fun Activity.openWithRecycleBinInterAd(navigate: () -> Unit) {
-    if (ADSMainClass.getRecycleBinInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSInterstitialShowing(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_FIRST_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                navigate()
-            }
-        )
-    } else {
-        navigate()
-    }
+    AdsManager.showInterScreenOpen(this, navigate)
 }
 
 fun Activity.finishWithRecycleBinBackInterAd() {
-    if (ADSMainClass.getRecycleBinInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSBackDisplayInterstitial(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_SECOND_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                finish()
-            }
-        )
-    } else {
-        finish()
-    }
+    AdsManager.showInterScreenOpen(this) { finish() }
 }
 
 fun Activity.openWithEditLabelInterAd(navigate: () -> Unit) {
-    if (ADSMainClass.getEditLabelInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSInterstitialShowing(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_FIRST_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                navigate()
-            }
-        )
-    } else {
-        navigate()
-    }
+    AdsManager.showInterScreenOpen(this, navigate)
 }
 
 fun Activity.finishWithEditLabelBackInterAd() {
-    if (ADSMainClass.getEditLabelInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSBackDisplayInterstitial(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_SECOND_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                finish()
-            }
-        )
-    } else {
-        finish()
-    }
+    AdsManager.showInterScreenOpen(this) { finish() }
 }
 
 fun Activity.openWithNoteBackgroundPickerInterAd(navigate: () -> Unit) {
-    if (ADSMainClass.getNoteBackgroundPickerInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSInterstitialShowing(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_FIRST_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                navigate()
-            }
-        )
-    } else {
-        navigate()
-    }
+    AdsManager.showInterScreenOpen(this, navigate)
 }
 
 fun Activity.finishWithNoteBackgroundPickerBackInterAd() {
-    if (ADSMainClass.getNoteBackgroundPickerInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSBackDisplayInterstitial(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_SECOND_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                finish()
-            }
-        )
-    } else {
-        finish()
-    }
+    AdsManager.showInterScreenOpen(this) { finish() }
 }
 
 fun Activity.openWithSettingInterAd(navigate: () -> Unit) {
-    if (ADSMainClass.getSettingInterShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSInterstitialShowing(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_FIRST_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                navigate()
-            }
-        )
-    } else {
-        navigate()
-    }
+    AdsManager.showInterScreenOpen(this, navigate)
 }
 
 fun Activity.finishWithSettingBackInterAd() {
-    if (ADSMainClass.getSettingInterShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSBackDisplayInterstitial(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_SECOND_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                finish()
-            }
-        )
-    } else {
-        finish()
-    }
+    AdsManager.showInterScreenOpen(this) { finish() }
 }
 
 
 fun Activity.finishWithVideoPlayerBackInterAd() {
-    if (ADSMainClass.getVideoPlayerInterAdsShow() && ADSUtilitis.IsNetworkConnected(this)) {
-        ADSInterDisplayClick.ADSBackDisplayInterstitial(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_SECOND_TIME),
-            ADSInterDisplayClick.OnFinishAds {
-                finish()
-            }
-        )
-    } else {
-        finish()
-    }
+    AdsManager.showInterScreenOpen(this) { finish() }
 }
 

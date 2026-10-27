@@ -142,6 +142,7 @@ class HomeActivity : BaseActivity() {
         drawerBinding = binding.navDrawer
         preloadInterAds()
         AdsManager.loadInterBottomNav(this)
+        AdsManager.loadInterScreenOpen(this)
         appUpdateManager = AppUpdateManagerFactory.create(this)
         if (ADSMainClass.shouldShowAppUpdate()) {
             checkForUpdates()

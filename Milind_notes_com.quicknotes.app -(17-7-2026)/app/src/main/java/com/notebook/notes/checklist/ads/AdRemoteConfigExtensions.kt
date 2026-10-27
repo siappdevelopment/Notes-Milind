@@ -65,6 +65,9 @@ val AdRemoteConfig.Companion.native_permission: AdUnitConfig
 val AdRemoteConfig.Companion.inter_bottom_nav: AdUnitConfig
     get() = getInstance().inter_bottom_nav
 
+val AdRemoteConfig.Companion.inter_screen_open: AdUnitConfig
+    get() = getInstance().inter_screen_open
+
 val AdRemoteConfig.Companion.inter_onboarding: AdUnitConfig
     get() = getInstance().inter_onboarding
 
