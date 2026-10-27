@@ -173,7 +173,7 @@ class GlobalApp : ADSAppManage() {
         adConfig.adjustConfig = AdjustConfig(true, resources.getString(R.string.adjust_token))
         adConfig.facebookClientToken = resources.getString(R.string.facebook_client_token)
         adConfig.adjustTokenTiktok = resources.getString(R.string.event_token)
-        adConfig.intervalInterstitialAd = 35
+        adConfig.intervalInterstitialAd = 0
         adConfig.idAdResume = ""
 
         NotesAd.getInstance().init(this, adConfig)

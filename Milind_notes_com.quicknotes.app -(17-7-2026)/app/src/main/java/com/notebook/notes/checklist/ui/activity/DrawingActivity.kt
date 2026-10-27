@@ -22,10 +22,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.notebook.notes.checklist.Advertisement.ADSBannerSmall
 import com.notebook.notes.checklist.Advertisement.ADSConsentManager
 import com.notebook.notes.checklist.Advertisement.ADSMainClass
-import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
+import com.notebook.notes.checklist.ads.AdRemoteConfig
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.native_drawing
+import com.notebook.notes.checklist.ads.populateNativeAdView
 import com.notebook.notes.checklist.Advertisement.ADSRewardedDisplay
 import com.notebook.notes.checklist.R
 import com.notebook.notes.checklist.databinding.ActivityDrawingBinding
@@ -146,35 +148,38 @@ class DrawingActivity : BaseActivity() {
         super.onDestroy()
     }
 
+    /**
+     * Drawing native, controlled by its own remote config key (`native_drawing`) through [AdsManager].
+     * Any "no ad" outcome (disabled, premium, offline, failed) collapses the slot.
+     */
     private fun loadOtherScreenAds() {
-        if (!ADSMainClass.getOtherAdsShow()) {
+        if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()
+            || !AdRemoteConfig.native_drawing.isEnable
+        ) {
             hideOtherScreenAdPlaceholders()
             return
         }
-
-        if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()) {
-            hideOtherScreenAdPlaceholders()
-            return
+        // Drop a previous screen's ad so it is never rendered twice; the first null is that reset.
+        AdsManager.nativeDrawingAdLive.value = null
+        var skippedInitialNull = true
+        AdsManager.nativeDrawingAdLive.observe(this) { ad ->
+            if (ad != null) {
+                populateNativeAdView(
+                    this,
+                    ad,
+                    findViewById(R.id.flNativeSmallPlaceholder),
+                    findViewById(R.id.shimmer_container_banner)
+                )
+            } else if (!skippedInitialNull) {
+                hideOtherScreenAdPlaceholders()
+            }
+            skippedInitialNull = false
         }
-        if (ADSMainClass.getOtherAdsType().equals("native")) {
-            ADSNativeDisplay.loadAdmobNativeAdBig(
-                ADSMainClass.getStringValue(ADSMainClass.OTHER_SCREEN_NATIVE),
-                findViewById(R.id.flNativeSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                "small",
-                this
-            )
-        } else {
-            ADSBannerSmall.loadAdMobBanner(
-                ADSMainClass.getStringValue(ADSMainClass.OTHER_SCREEN_BANNER),
-                findViewById(R.id.flBannerSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                this
-            )
-        }
+        AdsManager.loadNativeDrawing(this, R.layout.layout_native_ad_small)
     }
 
     private fun hideOtherScreenAdPlaceholders() {
+        findViewById<View>(R.id.llOtherScreenAds).visibility = View.GONE
         findViewById<View>(R.id.shimmer_container_banner).visibility = View.GONE
         findViewById<View>(R.id.flNativeSmallPlaceholder).visibility = View.GONE
         findViewById<View>(R.id.flBannerSmallPlaceholder).visibility = View.GONE

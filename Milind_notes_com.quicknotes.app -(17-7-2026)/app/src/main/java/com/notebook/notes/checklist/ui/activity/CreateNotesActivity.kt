@@ -6,9 +6,13 @@ import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import com.facebook.shimmer.ShimmerFrameLayout
 import android.view.inputmethod.EditorInfo
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -33,10 +37,12 @@ import android.text.InputFilter
 import android.text.InputType
 import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.notebook.notes.checklist.Advertisement.ADSBannerSmall
 import com.notebook.notes.checklist.Advertisement.ADSConsentManager
 import com.notebook.notes.checklist.Advertisement.ADSMainClass
-import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
+import com.notebook.notes.checklist.ads.AdRemoteConfig
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.create_note
+import com.notebook.notes.checklist.ads.populateNativeAdView
 import com.notebook.notes.checklist.Advertisement.ADSRewardedDisplay
 import com.notebook.notes.checklist.R
 import com.notebook.notes.checklist.databinding.ActivityCreateNotesBinding
@@ -353,32 +359,87 @@ class CreateNotesActivity : BaseActivity(), RichTextEditorHost {
         preloadRewardedAdIfNeeded()
     }
 
+    /**
+     * Create-note top ad, controlled from remote config (`create_note`) through [AdsManager]:
+     * `type` "banner" shows a banner, anything else the banner-style small native. Any "no ad"
+     * outcome (disabled, premium, offline, failed) collapses the slot.
+     */
     private fun loadOtherScreenAds() {
-        if (!ADSMainClass.getCreateNotesScreenBottomShow()) {
-            hideOtherScreenAdPlaceholders()
-            return
-        }
-
-        if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()) {
+        val config = AdRemoteConfig.create_note
+        val useBanner = config.type.equals("banner", ignoreCase = true)
+        if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free() || !config.isEnable) {
             hideOtherScreenAdPlaceholders()
             return
         }
         binding.llOtherScreenAds.root.visibility = View.VISIBLE
-        if (ADSMainClass.getCreateNotesScreenAdsType().equals("native")) {
-            ADSNativeDisplay.loadAdmobNativeAdBig(
-                ADSMainClass.getStringValue(ADSMainClass.CREATE_NOTES_SCREEN_NATIVE),
-                findViewById(R.id.flNativeSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                "small",
-                this
-            )
+        applyTopInsets()
+        if (useBanner) loadCreateNoteBanner() else loadCreateNoteNative()
+    }
+
+    private fun loadCreateNoteBanner() {
+        // The ads SDK resolves R.id.shimmer_container_banner with Activity.findViewById (first match),
+        // and the native card uses that id too, so detach it or the wrong shimmer gets hidden.
+        (findViewById<View>(R.id.flNativeSmallPlaceholder)?.parent as? View)?.let { nativeCard ->
+            (nativeCard.parent as? ViewGroup)?.removeView(nativeCard)
+        }
+        val bannerSlot = findViewById<FrameLayout>(R.id.flBannerSmallPlaceholder)
+        bannerSlot.visibility = View.VISIBLE
+        AdsManager.loadBanner(this, AdRemoteConfig.create_note.forBanner(), bannerSlot, isCollapse = false)
+    }
+
+    private fun loadCreateNoteNative() {
+        // Banner-style small native: use its own shimmer placeholder inside the shared slot.
+        findViewById<ShimmerFrameLayout>(R.id.shimmer_container_banner)?.let { shimmer ->
+            shimmer.removeAllViews()
+            shimmer.addView(layoutInflater.inflate(R.layout.fill_in_ad_unifiled_small, shimmer, false))
+        }
+        // Drop a previous screen's ad so it is never rendered twice; the first null is that reset.
+        AdsManager.nativeCreateNoteAdLive.value = null
+        var skippedInitialNull = true
+        var hasAd = false
+        AdsManager.nativeCreateNoteAdLive.observe(this) { ad ->
+            if (ad != null) {
+                hasAd = true
+                populateNativeAdView(
+                    this,
+                    ad,
+                    findViewById(R.id.flNativeSmallPlaceholder),
+                    findViewById(R.id.shimmer_container_banner)
+                )
+            } else if (!skippedInitialNull && !hasAd) {
+                // A failed periodic reload keeps the ad that is already showing.
+                hideOtherScreenAdPlaceholders()
+            }
+            skippedInitialNull = false
+        }
+        AdsManager.loadNativeCreateNote(this, R.layout.fill_in_admob_mid_native_ad)
+    }
+
+    private val adReloadHandler = Handler(Looper.getMainLooper())
+    private val adReloadRunnable = Runnable {
+        if (isFinishing || isDestroyed) return@Runnable
+        reloadCreateNoteAd()
+        scheduleAdReload()
+    }
+
+    /** Re-requests the top ad every `reloadIntervalSeconds` (remote config) while the screen is in front. */
+    private fun scheduleAdReload() {
+        adReloadHandler.removeCallbacks(adReloadRunnable)
+        val config = AdRemoteConfig.create_note
+        val intervalSeconds = config.reloadIntervalSeconds ?: 0
+        if (!config.isEnable || intervalSeconds <= 0 || !binding.llOtherScreenAds.root.isVisible) return
+        adReloadHandler.postDelayed(adReloadRunnable, intervalSeconds * 1000L)
+    }
+
+    private fun reloadCreateNoteAd() {
+        val config = AdRemoteConfig.create_note
+        if (ADSMainClass.getAds_Free() || !config.isEnable) return
+        if (config.type.equals("banner", ignoreCase = true)) {
+            findViewById<FrameLayout>(R.id.flBannerSmallPlaceholder)?.let { bannerSlot ->
+                AdsManager.loadBanner(this, config.forBanner(), bannerSlot, isCollapse = false)
+            }
         } else {
-            ADSBannerSmall.loadAdMobBanner(
-                ADSMainClass.getStringValue(ADSMainClass.CREATE_NOTES_SCREEN_BANNER),
-                findViewById(R.id.flBannerSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                this
-            )
+            AdsManager.loadNativeCreateNote(this, R.layout.fill_in_admob_mid_native_ad)
         }
     }
 
@@ -396,9 +457,11 @@ class CreateNotesActivity : BaseActivity(), RichTextEditorHost {
 
     private fun hideOtherScreenAdPlaceholders() {
         binding.llOtherScreenAds.root.visibility = View.GONE
-        findViewById<View>(R.id.shimmer_container_banner).visibility = View.GONE
-        findViewById<View>(R.id.flNativeSmallPlaceholder).visibility = View.GONE
-        findViewById<View>(R.id.flBannerSmallPlaceholder).visibility = View.GONE
+        applyTopInsets()
+        // Null-safe: the native card is detached when the banner type is used.
+        findViewById<View>(R.id.shimmer_container_banner)?.visibility = View.GONE
+        findViewById<View>(R.id.flNativeSmallPlaceholder)?.visibility = View.GONE
+        findViewById<View>(R.id.flBannerSmallPlaceholder)?.visibility = View.GONE
     }
 
     /**
@@ -571,11 +634,10 @@ class CreateNotesActivity : BaseActivity(), RichTextEditorHost {
             // Keep color + phone_image edge-to-edge (including under status bar).
             // Only pad the chrome / content so it clears the system bars.
             binding.main.updatePadding(left = 0, top = 0, right = 0, bottom = 0)
-            binding.noteHeader.root.updatePadding(
-                left = systemBars.left,
-                top = systemBars.top,
-                right = systemBars.right
-            )
+            statusBarInsetPx = systemBars.top
+            headerSideInsetLeft = systemBars.left
+            headerSideInsetRight = systemBars.right
+            applyTopInsets()
             if (!deferImeInsets) {
                 applyBottomEditorInsets(insets)
             } else {
@@ -639,21 +701,28 @@ class CreateNotesActivity : BaseActivity(), RichTextEditorHost {
             }
         }
 
-        binding.llOtherScreenAds.root.addOnLayoutChangeListener { _, _, top, _, bottom, _, oldTop, _, oldBottom ->
-            if (bottom - top != oldBottom - oldTop) {
-                reapplyImeOffsets()
-            }
-        }
     }
 
+    private var statusBarInsetPx = 0
+    private var headerSideInsetLeft = 0
+    private var headerSideInsetRight = 0
+
     /**
-     * Height already reserved at the bottom of the screen by the banner/native ad slot.
-     * The editor panel is anchored to the top of that slot, so the keyboard only has to
-     * lift the panel by the part of the IME that isn't covered by it — this keeps the ad
-     * itself pinned to the bottom of the screen (behind the keyboard) instead of moving.
+     * The native ad is pinned to the very top, so it takes the status-bar inset while it is
+     * visible; otherwise the header (which sits right below it) takes it.
      */
-    private fun bottomAdsHeight(): Int =
-        binding.llOtherScreenAds.root.let { if (it.isVisible) it.height else 0 }
+    private fun applyTopInsets() {
+        val adVisible = binding.llOtherScreenAds.root.isVisible
+        binding.llOtherScreenAds.root.updatePadding(top = if (adVisible) statusBarInsetPx else 0)
+        binding.noteHeader.root.updatePadding(
+            left = headerSideInsetLeft,
+            top = if (adVisible) 0 else statusBarInsetPx,
+            right = headerSideInsetRight
+        )
+    }
+
+    /** The ad slot is at the top now, so nothing at the bottom is reserved for the keyboard math. */
+    private fun bottomAdsHeight(): Int = 0
 
     private fun imeLift(imeBottom: Int, navBottom: Int): Int =
         (imeBottom - navBottom - bottomAdsHeight()).coerceAtLeast(0)
@@ -3444,6 +3513,7 @@ class CreateNotesActivity : BaseActivity(), RichTextEditorHost {
         super.onResume()
         DateTimeUtils.refresh(this)
         updateHeaderTimestamp()
+        scheduleAdReload()
         // Clear lock overlays immediately after Premium purchase from Paywall.
         if (noteBackgroundPanelRef?.isVisible == true) {
             noteBackgroundPanelRef?.refreshAccessState()
@@ -3452,6 +3522,7 @@ class CreateNotesActivity : BaseActivity(), RichTextEditorHost {
 
     override fun onPause() {
         super.onPause()
+        adReloadHandler.removeCallbacks(adReloadRunnable)
         voiceNoteViewModel.pausePlayback()
         attachmentViewModel.pausePlayback()
     }
@@ -3468,6 +3539,7 @@ class CreateNotesActivity : BaseActivity(), RichTextEditorHost {
     }
 
     override fun onDestroy() {
+        adReloadHandler.removeCallbacks(adReloadRunnable)
         if (::binding.isInitialized) {
             binding.rvBlocks.removeCallbacks(scrollEditorRunnable)
         }

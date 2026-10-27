@@ -152,6 +152,33 @@
     "components": ["icon_headline", "body", "media", "cta"],
     "enable_ua_check": false
   },
+  "create_note": {
+    "bannerId": "ca-app-pub-3940256099942544/9214589741",
+    "nativeId": "ca-app-pub-3940256099942544/2247696110",
+    "isEnable": true,
+    "type": "banner",
+    "colorCTA": "default",
+    "heightCTA": 45,
+    "positionCTA": "BOTTOM",
+    "components": ["icon_headline", "body", "media", "cta"],
+    "enable_ua_check": false,
+    "reloadIntervalSeconds": 30
+  },
+  "native_drawing": {
+    "id": "ca-app-pub-3940256099942544/2247696110",
+    "isEnable": true,
+    "colorCTA": "default",
+    "heightCTA": 45,
+    "positionCTA": "BOTTOM",
+    "components": ["icon_headline", "body", "media", "cta"],
+    "enable_ua_check": false
+  },
+  "inter_bottom_nav": {
+    "id": "ca-app-pub-3940256099942544/1033173712",
+    "isEnable": true,
+    "clickCount": 3,
+    "enable_ua_check": false
+  },
   "inter_onboarding": {
     "id": "ca-app-pub-3940256099942544/1033173712",
     "isEnable": true,

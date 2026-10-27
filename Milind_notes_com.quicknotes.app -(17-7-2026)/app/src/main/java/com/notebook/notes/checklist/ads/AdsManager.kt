@@ -20,6 +20,7 @@ import com.ads.module.funtion.RewardCallback
 import com.ads.module.util.AppConstant
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.notebook.notes.checklist.utils.ext.goneView
@@ -39,6 +40,8 @@ object AdsManager {
     val nativeWelcomeAdLive = MutableLiveData<ApNativeAd?>()
     val nativePermissionAdLive = MutableLiveData<ApNativeAd?>()
     val nativeHomeAdLive = MutableLiveData<ApNativeAd?>()
+    val nativeCreateNoteAdLive = MutableLiveData<ApNativeAd?>()
+    val nativeDrawingAdLive = MutableLiveData<ApNativeAd?>()
     var interWelcomeAdLive = MutableLiveData<ApInterstitialAd?>()
     // Auto-resolve config for each loaded native ad
     private val adConfigMap = mutableMapOf<ApNativeAd, AdUnitConfig>()
@@ -170,6 +173,28 @@ object AdsManager {
         )
     }
 
+    fun loadNativeCreateNote(activity: Activity, layoutRes: Int) {
+        val config = AdRemoteConfig.create_note.forNative()
+        loadNativeInternal(
+            activity,
+            config,
+            layoutRes,
+            nativeCreateNoteAdLive,
+            NotesAd.getInstance().getShouldDisplayNativeHome(config.enableUaCheck)
+        )
+    }
+
+    fun loadNativeDrawing(activity: Activity, layoutRes: Int) {
+        val config = AdRemoteConfig.native_drawing
+        loadNativeInternal(
+            activity,
+            config,
+            layoutRes,
+            nativeDrawingAdLive,
+            NotesAd.getInstance().getShouldDisplayNativeHome(config.enableUaCheck)
+        )
+    }
+
     fun loadNativeSurvey(activity: Activity, layoutRes: Int) {
         loadNativeInternal(
             activity, AdRemoteConfig.native_survey, layoutRes, nativeSurveyAdLive,
@@ -263,6 +288,71 @@ object AdsManager {
         } else {
             onAction()
         }
+    }
+
+    private var interBottomNav: ApInterstitialAd? = null
+    private var bottomNavChangeCount = 0
+
+    /** Preloads the bottom-navigation interstitial (`inter_bottom_nav`). No-op while one is already loaded. */
+    fun loadInterBottomNav(context: Context) {
+        val config = AdRemoteConfig.inter_bottom_nav
+        if (!config.isEnable
+            || AppPurchase.getInstance().isPurchased(context)
+            || !NotesAd.getInstance().getShouldDisplayInterOnboarding(config.enableUaCheck)
+            || interBottomNav?.isReady == true
+        ) return
+        interBottomNav =
+            NotesAd.getInstance().getInterstitialAds(context, config.id, object : AdCallback() {})
+    }
+
+    /**
+     * Call on every bottom-navigation tab change. The interstitial shows on every
+     * `clickCount`-th change (remote config), e.g. 3rd, 6th, 9th; otherwise, or when no ad is ready,
+     * [onAction] runs straight away.
+     */
+    fun showInterBottomNav(context: Context, onAction: () -> Unit) {
+        val config = AdRemoteConfig.inter_bottom_nav
+        if (!config.isEnable
+            || AppPurchase.getInstance().isPurchased(context)
+            || !NotesAd.getInstance().getShouldDisplayInterOnboarding(config.enableUaCheck)
+        ) {
+            onAction()
+            return
+        }
+        // Fixed schedule: 3rd, 6th, 9th... change. A missed slot (ad not ready) is not retried early.
+        bottomNavChangeCount++
+        Timber.tag("BottomNavInter").d(
+            "change=$bottomNavChangeCount clickCount=${config.clickCount} ready=${interBottomNav?.isReady}"
+        )
+        if (bottomNavChangeCount % config.clickCount != 0) {
+            onAction()
+            return
+        }
+        val interstitial = interBottomNav
+        if (interstitial == null || !interstitial.isReady) {
+            Timber.tag("BottomNavInter").d("slot missed: ad not ready (ad=${interstitial != null})")
+            loadInterBottomNav(context)
+            onAction()
+            return
+        }
+        // shouldReloadAds = true: the SDK reloads this same wrapper after it closes.
+        NotesAd.getInstance().forceShowInterstitial(context, interstitial, object : AdCallback() {
+            override fun onNextAction() {
+                super.onNextAction()
+                Timber.tag("BottomNavInter").d("onNextAction")
+                onAction()
+            }
+
+            override fun onInterstitialLoad(interstitialAd: InterstitialAd?) {
+                super.onInterstitialLoad(interstitialAd)
+                Timber.tag("BottomNavInter").d("reloaded after close: ${interstitialAd != null}")
+            }
+
+            override fun onAdFailedToLoad(i: LoadAdError?) {
+                super.onAdFailedToLoad(i)
+                Timber.tag("BottomNavInter").d("reload failed: ${i?.message}")
+            }
+        }, true)
     }
 
     fun loadInterWelcome(context: Context, ignoreLimit: Boolean = false) {

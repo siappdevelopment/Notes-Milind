@@ -15,7 +15,7 @@
         android:layout_height="0dp"
         android:background="#FFDAC7"
         android:importantForAccessibility="no"
-        app:layout_constraintBottom_toTopOf="@id/llOtherScreenAds"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,7 +52,7 @@
         android:clickable="false"
         android:focusable="false"
         android:importantForAccessibility="no"
-        app:layout_constraintBottom_toTopOf="@id/llOtherScreenAds"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/llOtherScreenAds" />
 
     <LinearLayout
         android:id="@+id/titleRow"
@@ -160,7 +160,7 @@
         android:layout_height="wrap_content"
         android:elevation="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/llOtherScreenAds"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -330,8 +330,8 @@
         android:layout_width="0dp"
         android:visibility="gone"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

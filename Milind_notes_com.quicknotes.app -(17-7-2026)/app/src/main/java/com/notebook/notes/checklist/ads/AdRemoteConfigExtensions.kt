@@ -53,8 +53,17 @@ val AdRemoteConfig.Companion.native_onboarding_fullscreen_2_4: AdUnitConfig
 val AdRemoteConfig.Companion.native_home: AdUnitConfig
     get() = getInstance().native_home
 
+val AdRemoteConfig.Companion.create_note: AdUnitConfig
+    get() = getInstance().create_note
+
+val AdRemoteConfig.Companion.native_drawing: AdUnitConfig
+    get() = getInstance().native_drawing
+
 val AdRemoteConfig.Companion.native_permission: AdUnitConfig
     get() = getInstance().native_permission
+
+val AdRemoteConfig.Companion.inter_bottom_nav: AdUnitConfig
+    get() = getInstance().inter_bottom_nav
 
 val AdRemoteConfig.Companion.inter_onboarding: AdUnitConfig
     get() = getInstance().inter_onboarding

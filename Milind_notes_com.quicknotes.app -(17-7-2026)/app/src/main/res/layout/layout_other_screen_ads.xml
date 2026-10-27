@@ -23,17 +23,11 @@
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
-            <com.facebook.shimmer.ShimmerFrameLayout
+            <include
                 android:id="@+id/shimmer_container_banner"
+                layout="@layout/layout_shimmer_native_small"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                app:shimmer_auto_start="true"
-                app:shimmer_base_color="#ccc">
-
-                <include layout="@layout/ad_unifiled_small" />
-
-            </com.facebook.shimmer.ShimmerFrameLayout>
+                android:layout_height="wrap_content" />
 
             <FrameLayout
                 android:id="@+id/flNativeSmallPlaceholder"

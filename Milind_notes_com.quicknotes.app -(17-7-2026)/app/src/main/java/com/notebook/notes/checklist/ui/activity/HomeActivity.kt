@@ -141,6 +141,7 @@ class HomeActivity : BaseActivity() {
         topBarBinding = binding.layoutTopBar
         drawerBinding = binding.navDrawer
         preloadInterAds()
+        AdsManager.loadInterBottomNav(this)
         appUpdateManager = AppUpdateManagerFactory.create(this)
         if (ADSMainClass.shouldShowAppUpdate()) {
             checkForUpdates()
@@ -915,13 +916,9 @@ class HomeActivity : BaseActivity() {
         }
 
 
-        ADSInterDisplayClick.ADSBottomNavDisplayInterstitial(
-            this,
-            ADSMainClass.getStringValue(ADSMainClass.INTER_FIRST_TIME),
-            {
-                performShowTab(tab)
-            }
-        )
+        AdsManager.showInterBottomNav(this) {
+            performShowTab(tab)
+        }
     }
 
     private fun performShowTab(tab: BottomTab) {

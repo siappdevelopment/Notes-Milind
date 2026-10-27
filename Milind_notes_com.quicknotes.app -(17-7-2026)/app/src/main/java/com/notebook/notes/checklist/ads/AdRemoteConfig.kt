@@ -183,6 +183,16 @@ data class AdRemoteConfig(
     val native_home: AdUnitConfig
         get() = getAdUnit("native_home")
 
+    /** Create-note top ad; `type` is "native" or "banner". */
+    val create_note: AdUnitConfig
+        get() = getAdUnit("create_note")
+
+    val native_drawing: AdUnitConfig
+        get() = getAdUnit("native_drawing")
+
+    val inter_bottom_nav: AdUnitConfig
+        get() = getAdUnit("inter_bottom_nav")
+
     val inter_onboarding: AdUnitConfig
         get() = getAdUnit("inter_onboarding")
 
