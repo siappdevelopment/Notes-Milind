@@ -1,27 +1,67 @@
 package com.notebook.notes.checklist.ui.activity
 
-import android.app.Activity
 import android.view.View
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.ads.module.ads.wrapper.ApNativeAd
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.notebook.notes.checklist.Advertisement.ADSBannerAdaptive
-import com.notebook.notes.checklist.Advertisement.ADSConsentManager
-import com.notebook.notes.checklist.Advertisement.ADSMainClass
-import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
+import com.notebook.notes.checklist.R
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.populateNativeAdView
 
 /**
- * Shared onboarding ads loader so page 1/2/3 all reset static native state
- * and avoid every-other-page empty ads from NativeByPage / AdmobNativeAd cache.
+ * Onboarding native ads, driven by remote config ([AdsManager]).
+ * Loads in the activity, renders from the LiveData, and falls back to a hidden ad band
+ * (never a crash or an empty card) when the ad is disabled, purchased, offline or failed.
  */
 object OnboardingAdsHelper {
 
-    fun showDefaultLayout(
+    /** Page 1 uses `native_onboarding_*_1`; later pages use `native_onboarding_*_4`. */
+    fun load(
+        activity: AppCompatActivity,
+        page: Int,
+        isFirst: Boolean,
         adsContainer: View,
         cardView: CardView,
         shimmer: ShimmerFrameLayout,
         nativePlaceholder: FrameLayout,
-        bannerPlaceholder: FrameLayout
+        bannerPlaceholder: FrameLayout,
+    ) {
+        showLoading(adsContainer, cardView, shimmer, nativePlaceholder, bannerPlaceholder)
+
+        val live: MutableLiveData<ApNativeAd?> =
+            if (page == 1) AdsManager.nativeOnboarding1AdLive else AdsManager.nativeOnboarding4AdLive
+        // Page 1 keeps the ad SplashActivity preloaded; later pages drop the previous ad so it is not shown twice.
+        if (page != 1) live.value = null
+
+        var skippedInitialNull = true
+        live.observe(activity, Observer { ad ->
+            if (ad != null) {
+                adsContainer.visibility = View.VISIBLE
+                cardView.visibility = View.VISIBLE
+                nativePlaceholder.visibility = View.VISIBLE
+                populateNativeAdView(activity, ad, nativePlaceholder, shimmer)
+            } else if (!skippedInitialNull) {
+                hide(adsContainer, cardView, shimmer, nativePlaceholder, bannerPlaceholder)
+            }
+            skippedInitialNull = false
+        })
+
+        // Page 1 was preloaded on splash, so only later pages request here.
+        if (page != 1) {
+            AdsManager.loadNativeOnboarding4(activity, isFirst, R.layout.layout_native_onboarding)
+        }
+    }
+
+    private fun showLoading(
+        adsContainer: View,
+        cardView: CardView,
+        shimmer: ShimmerFrameLayout,
+        nativePlaceholder: FrameLayout,
+        bannerPlaceholder: FrameLayout,
     ) {
         adsContainer.visibility = View.VISIBLE
         cardView.visibility = View.VISIBLE
@@ -33,110 +73,19 @@ object OnboardingAdsHelper {
         }
     }
 
-    fun hideAdsLayout(
+    private fun hide(
         adsContainer: View,
         cardView: CardView,
         shimmer: ShimmerFrameLayout,
         nativePlaceholder: FrameLayout,
-        bannerPlaceholder: FrameLayout
+        bannerPlaceholder: FrameLayout,
     ) {
-        // INVISIBLE (not GONE): reserved ads band stays so onboarding content does not reflow
+        // INVISIBLE (not GONE): the reserved ads band stays so onboarding content does not reflow.
         adsContainer.visibility = View.INVISIBLE
         cardView.visibility = View.GONE
+        shimmer.stopShimmer()
         shimmer.visibility = View.GONE
         nativePlaceholder.visibility = View.GONE
         bannerPlaceholder.visibility = View.GONE
-    }
-
-    fun resetNativeLoadState() {
-        ADSNativeDisplay.LoadingCheck = true
-        ADSNativeDisplay.NativeByPage = ADSMainClass.getNativeByPage()
-        ADSNativeDisplay.AdmobNativeAd = null
-    }
-
-    fun load(
-        activity: Activity,
-        adsContainer: View,
-        cardView: CardView,
-        shimmer: ShimmerFrameLayout,
-        nativePlaceholder: FrameLayout,
-        bannerPlaceholder: FrameLayout
-    ) {
-        showDefaultLayout(adsContainer, cardView, shimmer, nativePlaceholder, bannerPlaceholder)
-
-        if (!ADSMainClass.getOnboardingScreenBottomAdShow() || ADSMainClass.getAds_Free()) {
-            hideAdsLayout(adsContainer, cardView, shimmer, nativePlaceholder, bannerPlaceholder)
-            return
-        }
-
-        if (!ADSConsentManager.canRequestAds(activity)) {
-            return
-        }
-
-        if (ADSMainClass.getOnboardingType().equals("native", ignoreCase = true)) {
-            cardView.visibility = View.VISIBLE
-            nativePlaceholder.visibility = View.GONE
-            shimmer.visibility = View.VISIBLE
-            bannerPlaceholder.visibility = View.GONE
-
-            resetNativeLoadState()
-            ADSNativeDisplay.loadAdmobNativeAdBig(
-                ADSMainClass.getStringValue(ADSMainClass.ONBOARDING_SCREEN_NATIVE),
-                nativePlaceholder,
-                shimmer,
-                "big",
-                activity
-            )
-
-            // If NativeByPage / LoadingCheck hid shimmer without binding, restore it.
-            shimmer.post {
-                if (activity.isFinishing || activity.isDestroyed) return@post
-                ensureVisibleIfEmpty(
-                    adsContainer, cardView, shimmer, nativePlaceholder, bannerPlaceholder
-                )
-            }
-            // Preload race: ad may arrive just after the first post — check again.
-            shimmer.postDelayed({
-                if (activity.isFinishing || activity.isDestroyed) return@postDelayed
-                ensureVisibleIfEmpty(
-                    adsContainer, cardView, shimmer, nativePlaceholder, bannerPlaceholder
-                )
-            }, 600)
-        } else {
-            cardView.visibility = View.GONE
-            nativePlaceholder.visibility = View.GONE
-            shimmer.visibility = View.GONE
-            bannerPlaceholder.visibility = View.VISIBLE
-            ADSBannerAdaptive.loadAdMobBanner(
-                ADSMainClass.getStringValue(ADSMainClass.ONBOARDING_SCREEN_BANNER),
-                bannerPlaceholder,
-                shimmer,
-                activity
-            )
-        }
-    }
-
-    private fun ensureVisibleIfEmpty(
-        adsContainer: View,
-        cardView: CardView,
-        shimmer: ShimmerFrameLayout,
-        nativePlaceholder: FrameLayout,
-        bannerPlaceholder: FrameLayout
-    ) {
-        if (!ADSMainClass.getOnboardingScreenBottomAdShow() || ADSMainClass.getAds_Free()) {
-            return
-        }
-        adsContainer.visibility = View.VISIBLE
-        cardView.visibility = View.VISIBLE
-        val hasNativeAd = nativePlaceholder.childCount > 0
-        val hasBannerAd = bannerPlaceholder.childCount > 0
-        if (!hasNativeAd && !hasBannerAd) {
-            shimmer.visibility = View.VISIBLE
-            nativePlaceholder.visibility = View.GONE
-            bannerPlaceholder.visibility = View.GONE
-            if (!shimmer.isShimmerStarted) {
-                shimmer.startShimmer()
-            }
-        }
     }
 }

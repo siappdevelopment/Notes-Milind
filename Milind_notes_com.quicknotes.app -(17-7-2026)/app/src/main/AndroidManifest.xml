@@ -172,6 +172,10 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".ui.activity.OnboardingFullAdActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.Onboarding3Activity"
             android:screenOrientation="portrait"
             android:exported="false"

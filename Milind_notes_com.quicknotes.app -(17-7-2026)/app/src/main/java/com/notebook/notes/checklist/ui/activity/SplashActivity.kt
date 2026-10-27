@@ -32,6 +32,8 @@ import com.notebook.notes.checklist.iap.PremiumManager
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.lifecycle.lifecycleScope
 import com.notebook.notes.checklist.R
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.AppSharedPref
 import com.notebook.notes.checklist.iap.model.PurchaseEvent
 import com.revenuecat.purchases.Purchases
 import com.revenuecat.purchases.PurchasesConfiguration
@@ -68,6 +70,9 @@ class SplashActivity : BActivity() {
 
     @Inject
     lateinit var premiumManager: PremiumManager
+
+    @Inject
+    lateinit var appSharedPref: AppSharedPref
 
     private var pendingSplashPermissions: List<String> = emptyList()
     private var splashPermissionIndex = 0
@@ -119,6 +124,17 @@ class SplashActivity : BActivity() {
         ADSMainClass.initAppContext(this)
 
         bootstrapFlow()
+    }
+
+    /** Called once Remote Config is loaded: preload ads that later screens only render. Add new preloads here. */
+    override fun preloadAds() {
+        try {
+            AdsManager.loadNativeLanguage(this, appSharedPref.firstLanguage, R.layout.layout_native_language)
+            AdsManager.loadNativeOnboarding1(this, appSharedPref.firstOnBoarding, R.layout.layout_native_onboarding)
+            AdsManager.loadInterOnboarding(this)
+        } catch (e: Exception) {
+            Log.w("SplashActivity", "Onboarding ad preload failed", e)
+        }
     }
 
     override fun onResume() {

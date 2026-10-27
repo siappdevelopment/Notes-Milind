@@ -16,6 +16,10 @@ import com.notebook.notes.checklist.Advertisement.ADSMainClass
 import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
 import com.notebook.notes.checklist.Advertisement.ADSUtilitis
 import com.notebook.notes.checklist.R
+import com.ads.module.ads.wrapper.ApNativeAd
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.AppSharedPref
+import com.notebook.notes.checklist.ads.populateNativeAdView
 import com.notebook.notes.checklist.databinding.ActivityLanguageBinding
 import com.notebook.notes.checklist.flow.FlowManager
 import com.notebook.notes.checklist.helper.PreferenceHelper
@@ -38,6 +42,12 @@ class LanguageActivity : BaseActivity() {
 
     @Inject
     lateinit var flowManager: FlowManager
+
+    @Inject
+    lateinit var appSharedPref: AppSharedPref
+
+    private var languageClickRequested = false
+    private var hasClickAd = false
 
     private val languages = LanguageCatalog.languages.map { it.copy() }
 
@@ -133,6 +143,7 @@ class LanguageActivity : BaseActivity() {
     private fun setupRecyclerView() {
         adapter = LanguageAdapter(languages) {
             scheduleDoneIconVisible()
+            loadLanguageClickAd()
         }
         binding.rvLanguages.apply {
             layoutManager = LinearLayoutManager(this@LanguageActivity)
@@ -200,38 +211,52 @@ class LanguageActivity : BaseActivity() {
         }
     }
 
+    /**
+     * Language native, driven by remote config ([AdsManager]). SplashActivity preloads it; if it is not
+     * there yet we request it here. A second, "click" ad unit loads after the first language tap and
+     * replaces the first ad. No ad (disabled, premium, offline, failed) simply hides the ad band.
+     */
     private fun loadLanguageAds() {
-        if (!ADSMainClass.getLanguageScreenBottomAdShow()) {
-            hideLanguageAdPlaceholders()
-            return
-        }
-
         if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()) {
-            hideLanguageAdPlaceholders()
+            hideLanguageAds()
             return
         }
-        Log.e("Milind", "loadLanguageAds: ID ${ADSMainClass.getStringValue(ADSMainClass.LANGUAGE_SCREEN_NATIVE)} ", )
-        if (ADSMainClass.getLanguageAdsType().equals("native")) {
-            ADSNativeDisplay.loadAdmobNativeAdBig(
-                ADSMainClass.getStringValue(ADSMainClass.LANGUAGE_SCREEN_NATIVE),
-                findViewById(R.id.flNativeSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                "big",
-                this
-            )
-        } else {
-            ADSBannerAdaptive.loadAdMobBanner(
-                ADSMainClass.getStringValue(ADSMainClass.LANGUAGE_SCREEN_BANNER),
-                findViewById(R.id.flBannerSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                this
-            )
+        val isFirst = appSharedPref.firstLanguage
+        var skippedInitialNull = true
+        AdsManager.nativeLanguageAdLive.observe(this) { ad ->
+            if (ad != null) renderLanguageAd(ad)
+            else if (!skippedInitialNull && !hasClickAd) hideLanguageAds()
+            skippedInitialNull = false
+        }
+        AdsManager.nativeLanguageClickAdLive.observe(this) { ad ->
+            if (ad != null) {
+                hasClickAd = true
+                renderLanguageAd(ad)
+            }
+        }
+        if (AdsManager.nativeLanguageAdLive.value == null) {
+            AdsManager.loadNativeLanguage(this, isFirst, R.layout.layout_native_language)
         }
     }
-    private fun hideLanguageAdPlaceholders() {
-        findViewById<View>(R.id.shimmer_container_banner).visibility = View.GONE
-        findViewById<View>(R.id.flNativeSmallPlaceholder).visibility = View.GONE
-        findViewById<View>(R.id.flBannerSmallPlaceholder).visibility = View.GONE
+
+    /** Loads the "click" ad once, after the user first picks a language. */
+    private fun loadLanguageClickAd() {
+        if (languageClickRequested) return
+        languageClickRequested = true
+        AdsManager.nativeLanguageClickAdLive.value = null
+        AdsManager.loadNativeLanguageClick(this, appSharedPref.firstLanguage, R.layout.layout_native_language_click)
+    }
+
+    private fun renderLanguageAd(ad: ApNativeAd) {
+        binding.llAdsContainer.visibility = View.VISIBLE
+        binding.cardView.visibility = View.VISIBLE
+        binding.flBannerSmallPlaceholder.visibility = View.GONE
+        populateNativeAdView(this, ad, binding.flNativeSmallPlaceholder, binding.shimmerContainerBanner)
+    }
+
+    private fun hideLanguageAds() {
+        binding.shimmerContainerBanner.stopShimmer()
+        binding.llAdsContainer.visibility = View.GONE
     }
 
     companion object {

@@ -110,5 +110,9 @@
     <color name="shimmer_base">#E4E7EF</color>
     <color name="call_end_green">#23B146</color>
     <color name="black_color">#151515</color>
+    <color name="textPrimary">#1F1F1F</color>
+    <color name="color_9E9E9E">#9E9E9E</color>
+    <color name="color_3346F1">#3346f1</color>
+    <color name="color_FFA510">#FFA510</color>
 
 </resources>

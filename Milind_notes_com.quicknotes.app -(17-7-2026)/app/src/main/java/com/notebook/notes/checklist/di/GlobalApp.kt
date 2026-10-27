@@ -33,6 +33,7 @@ import com.notebook.notes.checklist.ui.activity.LanguageActivity
 import com.notebook.notes.checklist.ui.activity.Onboarding1Activity
 import com.notebook.notes.checklist.ui.activity.Onboarding2Activity
 import com.notebook.notes.checklist.ui.activity.Onboarding3Activity
+import com.notebook.notes.checklist.ui.activity.OnboardingFullAdActivity
 import com.notebook.notes.checklist.ui.activity.SplashActivity
 import com.notebook.notes.checklist.ui.richtext.RichTextFormats
 import com.notebook.notes.checklist.util.DateTimeUtils
@@ -184,6 +185,7 @@ class GlobalApp : ADSAppManage() {
         AppOpenManager.getInstance().disableAppResumeWithActivity(Onboarding1Activity::class.java)
         AppOpenManager.getInstance().disableAppResumeWithActivity(Onboarding2Activity::class.java)
         AppOpenManager.getInstance().disableAppResumeWithActivity(Onboarding3Activity::class.java)
+        AppOpenManager.getInstance().disableAppResumeWithActivity(OnboardingFullAdActivity::class.java)
     }
 
     fun Context.getSystemLocaleString(@StringRes resId: Int): String {

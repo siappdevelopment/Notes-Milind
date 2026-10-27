@@ -13,6 +13,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.notebook.notes.checklist.R
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.AppSharedPref
 import com.notebook.notes.checklist.databinding.ActivityOnboarding3Binding
 import com.notebook.notes.checklist.flow.FlowManager
 import com.notebook.notes.checklist.flow.RemoteConfigManager
@@ -26,6 +28,9 @@ class Onboarding3Activity : BaseActivity() {
 
     @Inject
     lateinit var flowManager: FlowManager
+
+    @Inject
+    lateinit var appSharedPref: AppSharedPref
 
     @Inject
     lateinit var remoteConfigManager: RemoteConfigManager
@@ -61,6 +66,8 @@ class Onboarding3Activity : BaseActivity() {
     private fun loadOnboardingAds() {
         OnboardingAdsHelper.load(
             this,
+            3,
+            appSharedPref.firstOnBoarding,
             binding.llAdsContainer,
             binding.cardView,
             binding.shimmerContainerBanner,
@@ -69,10 +76,6 @@ class Onboarding3Activity : BaseActivity() {
         )
     }
 
-    override fun onDestroy() {
-        OnboardingAdsHelper.resetNativeLoadState()
-        super.onDestroy()
-    }
 
     private fun bindPageContent() {
         val prefix = getString(R.string.onboarding_title_3_prefix)
@@ -150,7 +153,10 @@ class Onboarding3Activity : BaseActivity() {
     }
 
     private fun finishOnboarding() {
-        flowManager.markOnboardingCompleted()
-        flowManager.next(this)
+        appSharedPref.firstOnBoarding = false
+        AdsManager.showInterOnboarding(this) {
+            flowManager.markOnboardingCompleted()
+            flowManager.next(this)
+        }
     }
 }

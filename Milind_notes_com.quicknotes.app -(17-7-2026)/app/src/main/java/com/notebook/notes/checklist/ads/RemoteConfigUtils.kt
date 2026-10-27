@@ -54,9 +54,9 @@ object RemoteConfigUtils {
     private val adUnitConfigAdapter = moshi.adapter(AdUnitConfig::class.java)
     private val forceUpdateAdapter = moshi.adapter(ForceUpdateConfig::class.java)
 
-    fun init(context: Context, mListener: Listener) {
+    fun init(context: Context, mListener: Listener, extraDefaults: Map<String, Any> = emptyMap()) {
         listener = mListener
-        remoteConfig = getFirebaseRemoteConfig(context)
+        remoteConfig = getFirebaseRemoteConfig(context, extraDefaults)
     }
 
     private fun getDefaultsFromAdConfig(context: Context): Map<String, Any> {
@@ -76,7 +76,7 @@ object RemoteConfigUtils {
         return defaults
     }
 
-    private fun getFirebaseRemoteConfig(context: Context): FirebaseRemoteConfig {
+    private fun getFirebaseRemoteConfig(context: Context, extraDefaults: Map<String, Any> = emptyMap()): FirebaseRemoteConfig {
         remoteConfig = Firebase.remoteConfig
 
         val configSettings = remoteConfigSettings {
@@ -86,7 +86,7 @@ object RemoteConfigUtils {
                 60 * 60
             }
         }
-        val defaults = getDefaultsFromAdConfig(context).toMutableMap()
+        val defaults = extraDefaults.toMutableMap().apply { putAll(getDefaultsFromAdConfig(context)) }
         remoteConfig.apply {
             setConfigSettingsAsync(configSettings)
             mapConditionForAd.forEach { (key, value) ->

@@ -13,9 +13,9 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.notebook.notes.checklist.Advertisement.ADSInterDisplay
-import com.notebook.notes.checklist.Advertisement.ADSMainClass
 import com.notebook.notes.checklist.R
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.AppSharedPref
 import com.notebook.notes.checklist.databinding.ActivityOnboarding1Binding
 import com.notebook.notes.checklist.flow.FlowManager
 import com.notebook.notes.checklist.flow.RemoteConfigManager
@@ -29,6 +29,9 @@ class Onboarding1Activity : BaseActivity() {
 
     @Inject
     lateinit var flowManager: FlowManager
+
+    @Inject
+    lateinit var appSharedPref: AppSharedPref
 
     @Inject
     lateinit var remoteConfigManager: RemoteConfigManager
@@ -64,6 +67,8 @@ class Onboarding1Activity : BaseActivity() {
     private fun loadOnboardingAds() {
         OnboardingAdsHelper.load(
             this,
+            1,
+            appSharedPref.firstOnBoarding,
             binding.llAdsContainer,
             binding.cardView,
             binding.shimmerContainerBanner,
@@ -72,10 +77,6 @@ class Onboarding1Activity : BaseActivity() {
         )
     }
 
-    override fun onDestroy() {
-        OnboardingAdsHelper.resetNativeLoadState()
-        super.onDestroy()
-    }
 
     private fun bindPageContent() {
         val prefix = getString(R.string.onboarding_title_prefix)
@@ -147,20 +148,7 @@ class Onboarding1Activity : BaseActivity() {
     }
 
     private fun setupContinue() {
-        binding.btnContinue.setOnClickListener {
-            if (ADSMainClass.getOnboardingInterAdsShow()) {
-                ADSInterDisplay.ADSInterstitialShowing(
-                    this,
-                    ADSMainClass.getStringValue(ADSMainClass.ONBOARDING_SCREEN_INTER),
-                    ADSInterDisplay.OnFinishAds {
-                        goNext()
-                    },
-
-                )
-            } else {
-                goNext()
-            }
-        }
+        binding.btnContinue.setOnClickListener { goNext() }
     }
 
     private fun goNext() {
@@ -173,7 +161,10 @@ class Onboarding1Activity : BaseActivity() {
     }
 
     private fun finishOnboarding() {
-        flowManager.markOnboardingCompleted()
-        flowManager.next(this)
+        appSharedPref.firstOnBoarding = false
+        AdsManager.showInterOnboarding(this) {
+            flowManager.markOnboardingCompleted()
+            flowManager.next(this)
+        }
     }
 }

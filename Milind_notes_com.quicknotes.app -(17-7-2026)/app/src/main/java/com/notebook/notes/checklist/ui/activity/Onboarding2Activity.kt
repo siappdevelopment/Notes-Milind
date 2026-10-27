@@ -14,6 +14,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.notebook.notes.checklist.R
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.AppSharedPref
 import com.notebook.notes.checklist.databinding.ActivityOnboarding2Binding
 import com.notebook.notes.checklist.flow.FlowManager
 import com.notebook.notes.checklist.flow.RemoteConfigManager
@@ -27,6 +29,9 @@ class Onboarding2Activity : BaseActivity() {
 
     @Inject
     lateinit var flowManager: FlowManager
+
+    @Inject
+    lateinit var appSharedPref: AppSharedPref
 
     @Inject
     lateinit var remoteConfigManager: RemoteConfigManager
@@ -57,11 +62,24 @@ class Onboarding2Activity : BaseActivity() {
         updateIndicators(1)
         setupContinue()
         loadOnboardingAds()
+        // Preload the full-screen native shown between page 2 and 3.
+        AdsManager.nativeAdOnBoardingFullLive.value = null
+        // Track whether that load has finished (loaded or failed) so a quick Continue tap does not skip it.
+        var skippedInitialNull = true
+        AdsManager.nativeAdOnBoardingFullLive.observe(this) { ad ->
+            if (ad != null || !skippedInitialNull) fullAdLoadFinished = true
+            skippedInitialNull = false
+        }
+        AdsManager.loadNativeOnboardingFull(this, appSharedPref.firstOnBoarding, R.layout.layout_native_onboarding_full)
     }
+
+    private var fullAdLoadFinished = false
 
     private fun loadOnboardingAds() {
         OnboardingAdsHelper.load(
             this,
+            2,
+            appSharedPref.firstOnBoarding,
             binding.llAdsContainer,
             binding.cardView,
             binding.shimmerContainerBanner,
@@ -70,10 +88,6 @@ class Onboarding2Activity : BaseActivity() {
         )
     }
 
-    override fun onDestroy() {
-        OnboardingAdsHelper.resetNativeLoadState()
-        super.onDestroy()
-    }
 
     private fun bindPageContent() {
         val prefix = getString(R.string.onboarding_title_2_prefix)
@@ -147,7 +161,10 @@ class Onboarding2Activity : BaseActivity() {
     private fun setupContinue() {
         binding.btnContinue.setOnClickListener {
             if (onboardingCount > 2) {
-                startActivity(Intent(this, Onboarding3Activity::class.java))
+                // Still loading counts too: OnboardingFullAdActivity waits for it (with a timeout).
+                val fullAdPossible = AdsManager.nativeAdOnBoardingFullLive.value != null || !fullAdLoadFinished
+                val next = if (fullAdPossible) OnboardingFullAdActivity::class.java else Onboarding3Activity::class.java
+                startActivity(Intent(this, next))
                 finish()
             } else {
                 finishOnboarding()
@@ -156,7 +173,10 @@ class Onboarding2Activity : BaseActivity() {
     }
 
     private fun finishOnboarding() {
-        flowManager.markOnboardingCompleted()
-        flowManager.next(this)
+        appSharedPref.firstOnBoarding = false
+        AdsManager.showInterOnboarding(this) {
+            flowManager.markOnboardingCompleted()
+            flowManager.next(this)
+        }
     }
 }

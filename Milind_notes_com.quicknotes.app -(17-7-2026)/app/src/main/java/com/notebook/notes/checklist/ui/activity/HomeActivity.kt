@@ -51,6 +51,10 @@ import com.notebook.notes.checklist.Advertisement.ADSMainClass
 import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
 import com.notebook.notes.checklist.Advertisement.ADSUtilitis
 import com.notebook.notes.checklist.R
+import com.notebook.notes.checklist.ads.AdRemoteConfig
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.banner_home
+import com.notebook.notes.checklist.ads.populateNativeAdView
 import com.notebook.notes.checklist.ui.activity.SettingActivity
 import com.notebook.notes.checklist.viewmodel.utils.launchActivity
 import com.notebook.notes.checklist.viewmodel.utils.openWithHomeInterAd
@@ -187,33 +191,50 @@ class HomeActivity : BaseActivity() {
 
     }
 
+    /**
+     * Home native, driven by remote config ([AdsManager], key `native_home`). Loaded here, rendered from
+     * [AdsManager.nativeHomeAdLive]; any "no ad" outcome (disabled, premium, offline, failed) hides the slot.
+     */
     private fun loadAds() {
-        if (!ADSMainClass.getHomeScreenBottomShow()) {
-            hideOtherScreenAdPlaceholders()
-            return
-        }
-
         if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()) {
             hideOtherScreenAdPlaceholders()
             return
         }
-
-        if (ADSMainClass.getHomeScreenAdsType().equals("native")) {
-            ADSNativeDisplay.loadAdmobNativeAdBig(
-                ADSMainClass.getStringValue(ADSMainClass.HOME_SCREEN_NATIVE),
-                findViewById(R.id.flNativeSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                "small",
-                this
-            )
-        } else {
-            ADSBannerSmall.loadAdMobBanner(
-                ADSMainClass.getStringValue(ADSMainClass.HOME_SCREEN_BANNER),
-                findViewById(R.id.flBannerSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                this
-            )
+        if (AdRemoteConfig.banner_home.isEnable) {
+            loadHomeBanner()
+            return
         }
+        // Drop a previous screen's ad so it is never rendered twice; the first null is that reset.
+        AdsManager.nativeHomeAdLive.value = null
+        var skippedInitialNull = true
+        AdsManager.nativeHomeAdLive.observe(this) { ad ->
+            if (ad != null) {
+                populateNativeAdView(
+                    this,
+                    ad,
+                    findViewById(R.id.flNativeSmallPlaceholder),
+                    findViewById(R.id.shimmer_container_banner)
+                )
+            } else if (!skippedInitialNull) {
+                hideOtherScreenAdPlaceholders()
+            }
+            skippedInitialNull = false
+        }
+        AdsManager.loadNativeHome(this, R.layout.layout_native_ad_small)
+    }
+
+    /** Home banner (`banner_home`) in the bottom slot; takes the place of the native when enabled. */
+    private fun loadHomeBanner() {
+        // fr_banner already contains layout_banner_control (see activity_home.xml).
+        val bannerSlot = findViewById<FrameLayout>(R.id.fr_banner)
+        // The ads SDK resolves R.id.shimmer_container_banner with Activity.findViewById (first match).
+        // The native card also uses that id, so detach it or the SDK hides the wrong shimmer and the
+        // banner's own shimmer stays visible on top of the loaded ad.
+        (findViewById<View>(R.id.flNativeSmallPlaceholder).parent as? View)?.let { nativeCard ->
+            (nativeCard.parent as? ViewGroup)?.removeView(nativeCard)
+        }
+        bannerSlot.visibility = View.VISIBLE
+        AdsManager.loadBanner(this, AdRemoteConfig.banner_home, bannerSlot, isCollapse = false)
     }
 
     private fun hideOtherScreenAdPlaceholders() {
@@ -226,6 +247,7 @@ class HomeActivity : BaseActivity() {
             removeAllViews()
             visibility = View.GONE
         }
+        findViewById<View>(R.id.fr_banner)?.visibility = View.GONE
     }
 
     /** Hides home banner/native ads once the derived ads-free flag follows premium. */

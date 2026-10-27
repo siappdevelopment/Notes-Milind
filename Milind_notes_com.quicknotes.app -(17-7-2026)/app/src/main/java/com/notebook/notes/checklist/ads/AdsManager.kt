@@ -251,7 +251,7 @@ object AdsManager {
     fun showInterOnboarding(context: Context, ignoreLimit: Boolean = false, onAction: () -> Unit) {
         val interstitial = interOnboarding
         if (interstitial != null && interstitial.isReady && !AppPurchase.getInstance()
-                .isPurchased(context) && (ignoreLimit)
+                .isPurchased(context) && (ignoreLimit || NotesAd.getInstance().getShouldDisplayInterOnboarding(AdRemoteConfig.inter_onboarding.enableUaCheck))
         ) {
             NotesAd.getInstance()
                 .forceShowInterstitial(context, interstitial, object : AdCallback() {
