@@ -1,6 +1,7 @@
 package com.notebook.notes.checklist.ui.activity
 
 import android.Manifest
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -30,6 +31,7 @@ import com.notebook.notes.checklist.helper.NotePasswordManager
 import com.notebook.notes.checklist.helper.PreferenceHelper
 import com.notebook.notes.checklist.iap.BillingConstants
 import com.notebook.notes.checklist.iap.PremiumManager
+import com.notebook.notes.checklist.ui.uninstall.ConfirmUninstallActivity
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.lifecycle.lifecycleScope
 import com.notebook.notes.checklist.R
@@ -178,6 +180,12 @@ class SplashActivity : BActivity() {
     private fun continueBootstrapFlow() {
         // BActivity already fetched RC and cached flow keys — never fetch again here.
         remoteConfigManager.ensureCached()
+        if (isFromUninstallShortcut) {
+            // Shortcut entry: ads/config are ready, so route to the uninstall flow instead of the normal screen flow.
+            startActivity(Intent(this, ConfirmUninstallActivity::class.java))
+            finish()
+            return
+        }
         // Session count is incremented in MyApplication on foreground (before Splash reaches here).
         try {
             ADSUtilitis.trackScreen(this, "Session_Increment")

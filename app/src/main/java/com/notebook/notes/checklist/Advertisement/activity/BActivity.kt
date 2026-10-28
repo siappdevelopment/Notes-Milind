@@ -26,6 +26,7 @@ import com.ads.module.ads.NotesAd
 import com.ads.module.billing.AppPurchase
 import com.ads.module.funtion.AdCallback
 import com.notebook.notes.checklist.ads.inter_splash
+import com.notebook.notes.checklist.ads.inter_splash_uninstall
 import com.notebook.notes.checklist.ads.AdRemoteConfig
 import com.notebook.notes.checklist.ads.AppConstants
 import com.notebook.notes.checklist.ads.AppLinksConfigApplier
@@ -45,6 +46,10 @@ open class BActivity : AppCompatActivity() {
 
     /** Called after ads remote-config / consent / splash app-open finish. */
     open fun initActivity() {}
+
+    /** True when launched from the long-press uninstall shortcut (see UninstallShortcutManager). */
+    protected val isFromUninstallShortcut: Boolean
+        get() = intent?.getStringExtra(AppConstants.FROM_SHORTCUT) == AppConstants.ACTION_OPEN_UNINSTALL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ADSMainClass.initAppContext(applicationContext)
@@ -162,7 +167,7 @@ open class BActivity : AppCompatActivity() {
         }
         preloadAds()
 
-        val splashInter = AdRemoteConfig.inter_splash
+        val splashInter = if (isFromUninstallShortcut) AdRemoteConfig.inter_splash_uninstall else AdRemoteConfig.inter_splash
         if (splashInter.isEnable && ADSConsentManager.canRequestAds(this) && ADSUtilitis.IsNetworkConnected(this) &&
             !AppPurchase.getInstance().isPurchased(this)
         ) {

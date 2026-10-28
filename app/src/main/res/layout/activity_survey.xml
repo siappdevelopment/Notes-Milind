@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/survey_title"
+        android:textColor="@color/text_black_2"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/survey_subtitle"
+        android:textColor="@color/grey_1"
+        android:textSize="14sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="1">
+
+        <RadioGroup
+            android:id="@+id/rgReasons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:buttonTint="@color/app_primary_color"
+                android:text="@string/survey_reason_bugs"
+                android:textColor="@color/text_black_2" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:buttonTint="@color/app_primary_color"
+                android:text="@string/survey_reason_features"
+                android:textColor="@color/text_black_2" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:buttonTint="@color/app_primary_color"
+                android:text="@string/survey_reason_ads"
+                android:textColor="@color/text_black_2" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:buttonTint="@color/app_primary_color"
+                android:text="@string/survey_reason_other_app"
+                android:textColor="@color/text_black_2" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:buttonTint="@color/app_primary_color"
+                android:text="@string/survey_reason_other"
+                android:textColor="@color/text_black_2" />
+        </RadioGroup>
+    </ScrollView>
+
+    <include
+        android:id="@+id/adContainer"
+        layout="@layout/include_uninstall_native_ad" />
+
+    <TextView
+        android:id="@+id/btnUninstall"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_button"
+        android:gravity="center"
+        android:text="@string/survey_uninstall"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="@string/survey_cancel"
+        android:textColor="@color/grey_1"
+        android:textSize="15sp" />
+
+</LinearLayout>

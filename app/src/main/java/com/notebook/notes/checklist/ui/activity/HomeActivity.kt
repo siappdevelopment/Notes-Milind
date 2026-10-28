@@ -133,6 +133,13 @@ class HomeActivity : BaseActivity() {
     private val APP_UPDATE_REQUEST_CODE = 1001
 
 
+    /** Long-press "Uninstall" shortcut, gated by the remote flag on_enable_uninstall_widget. */
+    private fun registerUninstallShortcutIfEnabled() {
+        val enabled = com.ads.module.ads.NotesAd.getInstance()
+            .getShouldDisplayWidgetUninstall(com.notebook.notes.checklist.ads.RemoteConfigUtils.getOnEnableUninstallWidget())
+        if (enabled) com.notebook.notes.checklist.ui.uninstall.UninstallShortcutManager.initShortcut(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -140,6 +147,7 @@ class HomeActivity : BaseActivity() {
         setContentView(binding.root)
         topBarBinding = binding.layoutTopBar
         drawerBinding = binding.navDrawer
+        registerUninstallShortcutIfEnabled()
         preloadInterAds()
         AdsManager.loadInterBottomNav(this)
         AdsManager.loadInterScreenOpen(this)
