@@ -1,0 +1,30 @@
+<svg width="595" height="842" viewBox="0 0 595 842" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_404_7240)">
+<rect width="595" height="842" fill="white"/>
+<rect width="595" height="842" fill="#FFFBF9"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M63 120H595V0H63V120Z" fill="#FEF0FF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M63 240H595V120H63V240Z" fill="#FDE7EA"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M63 360H595V240H63V360Z" fill="#FFF3E7"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M63 480H595V360H63V480Z" fill="#FBFFDE"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M63 600H595V480H63V600Z" fill="#E5FDE7"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M63 721H595V600H63V721Z" fill="#E7FAFF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M63 842H595V721H63V842Z" fill="#EEEDFF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 844H63V-2H0V844Z" fill="#EEF0EF"/>
+<path d="M63 0V842" stroke="#BAC3CE"/>
+<path d="M169.229 -0.0839844V841.916" stroke="#BAC3CE"/>
+<path d="M490.229 -0.0839844V841.916" stroke="#BAC3CE"/>
+<path d="M277.229 -0.0839844V841.916" stroke="#BAC3CE"/>
+<path d="M383.229 -0.0839844V841.916" stroke="#BAC3CE"/>
+<path d="M0 239.998H595" stroke="#BAC3CE"/>
+<path d="M0 119.998H595" stroke="#BAC3CE"/>
+<path d="M0 360H595" stroke="#BAC3CE"/>
+<path d="M0 600H595" stroke="#BAC3CE"/>
+<path d="M0 480H595" stroke="#BAC3CE"/>
+<path d="M0 721H595" stroke="#BAC3CE"/>
+</g>
+<defs>
+<clipPath id="clip0_404_7240">
+<rect width="595" height="842" fill="white"/>
+</clipPath>
+</defs>
+</svg>

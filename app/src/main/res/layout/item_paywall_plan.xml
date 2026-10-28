@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Outer FrameLayout reserves top space for the HOT badge so it can sit on the
+  card edge without drawing outside the item’s bounds (ScrollView would clip it).
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingTop="11dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/planRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_paywall_plan_unselected"
+        android:clipToOutline="true">
+
+        <LinearLayout
+            android:id="@+id/planContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvPlanName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:textColor="@color/grey_2"
+                android:textSize="12sp"
+                tools:text="Monthly" />
+
+            <TextView
+                android:id="@+id/tvPlanPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:textColor="@color/text_black_2"
+                android:textSize="16sp"
+                tools:text="₹59.00" />
+
+            <TextView
+                android:id="@+id/tvOldPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:minHeight="16dp"
+                android:textColor="@color/view_color"
+                android:textSize="12sp"
+                android:visibility="invisible"
+                tools:text="₹79.00"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <!--
+          Bottom price strip. Parent clipToOutline + matching bottom radii make
+          this follow the card corner curve (see design: lavender /Week footer).
+          Pinned to the card bottom so equal-height siblings keep footers aligned.
+        -->
+        <TextView
+            android:id="@+id/tvPlanHint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_paywall_plan_footer_unselected"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:gravity="center"
+            android:minHeight="32dp"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/app_primary_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/planContent"
+            app:layout_constraintVertical_bias="1"
+            tools:text="₹14.75/Week" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvHotBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="-11dp"
+        android:background="@drawable/bg_paywall_hot_badge"
+        android:fontFamily="@font/plus_jakarta_sans_bold"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:text="HOT"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</FrameLayout>

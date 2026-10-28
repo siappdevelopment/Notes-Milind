@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_popup_category"
+    android:elevation="12dp"
+    android:minWidth="220dp"
+    android:orientation="vertical"
+    android:paddingVertical="8dp">
+
+    <!-- Color -->
+    <LinearLayout
+        android:id="@+id/optionSortColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="48dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_op_color"
+          />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/sort_by_color"
+            android:textColor="@color/text_black_2"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- Modified time -->
+    <LinearLayout
+        android:id="@+id/optionSortModified"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="48dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_op_modifcation"
+            app:tint="@color/app_txt_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/sort_by_modified_time"
+            android:textColor="@color/text_black_2"
+
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- Created time -->
+    <LinearLayout
+        android:id="@+id/optionSortCreated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="48dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_op_create_notes"
+      />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/sort_by_created_time"
+            android:textColor="@color/text_black_2"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- Reminder time -->
+    <LinearLayout
+        android:id="@+id/optionSortReminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="48dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_sr_reminder"
+  />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/sort_by_reminder_time"
+            android:textColor="@color/text_black_2"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- Alphabetical -->
+    <LinearLayout
+        android:id="@+id/optionSortAlphabetical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="48dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_sr_alphabetical"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/sort_by_alphabetical"
+            android:textColor="@color/text_black_2"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- Custom order -->
+    <LinearLayout
+        android:id="@+id/optionSortCustom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:minHeight="48dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_sr_custom_order"
+       />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/sort_by_custom_order"
+            android:textColor="@color/text_black_2"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

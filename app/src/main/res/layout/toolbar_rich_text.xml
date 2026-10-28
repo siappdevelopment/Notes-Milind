@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/richTextToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorSurface"
+    android:elevation="2dp"
+    android:paddingHorizontal="5dp"
+    android:orientation="vertical"
+    android:visibility="invisible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/rich_text_toolbar_height"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/rich_text_toolbar_padding_vertical"
+        android:paddingBottom="@dimen/rich_text_toolbar_padding_vertical">
+
+        <ImageView
+            android:id="@+id/btnfontFormating"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rich_text_toolbar_item"
+            android:clickable="true"
+            android:contentDescription="@string/text_formatting"
+            android:focusable="false"
+            android:padding="11dp"
+            android:src="@drawable/ic_a"
+            app:tint="@color/color_rich_text_toolbar_icon" />
+
+        <ImageView
+            android:id="@+id/btnFontFamily"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rich_text_toolbar_item"
+            android:clickable="true"
+            android:contentDescription="@string/font_size"
+            android:focusable="false"
+            android:padding="11dp"
+            android:src="@drawable/ic_tt"
+            app:tint="@color/color_rich_text_toolbar_icon" />
+
+        <ImageView
+            android:id="@+id/btnTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rich_text_toolbar_item"
+            android:clickable="true"
+            android:contentDescription="@string/font_style"
+            android:focusable="false"
+            android:padding="11dp"
+            android:src="@drawable/ic_aa"
+            app:tint="@color/color_rich_text_toolbar_icon" />
+
+        <!-- Fixed-width divider (No weight) -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@color/editor_divider" />
+
+        <ImageView
+            android:id="@+id/btnUndo"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rich_text_toolbar_item"
+            android:clickable="true"
+            android:contentDescription="@string/undo"
+            android:focusable="false"
+            android:padding="11dp"            android:src="@drawable/ic_undo"
+            app:tint="@color/color_rich_text_toolbar_icon" />
+
+        <ImageView
+            android:id="@+id/btnRedo"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rich_text_toolbar_item"
+            android:clickable="true"
+            android:contentDescription="@string/redo"
+            android:focusable="false"
+            android:padding="11dp"
+            android:src="@drawable/ic_redu"
+            app:tint="@color/color_rich_text_toolbar_icon" />
+
+        <!-- Fixed-width divider (No weight) -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:layout_marginHorizontal="4dp"
+            android:background="@color/editor_divider" />
+
+        <ImageView
+            android:id="@+id/btnChecklist"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rich_text_toolbar_item"
+            android:clickable="true"
+            android:contentDescription="@string/insert_checklist"
+            android:focusable="false"
+            android:padding="11dp"
+            android:src="@drawable/ic_checklist_op"
+            app:tint="@color/color_rich_text_toolbar_icon" />
+
+        <ImageView
+            android:id="@+id/btnEmoji"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rich_text_toolbar_item"
+            android:clickable="true"
+            android:contentDescription="@string/insert_emoji"
+            android:focusable="false"
+            android:padding="11dp"
+            android:src="@drawable/ic_menu_emoticons"
+            app:tint="@color/color_rich_text_toolbar_icon" />
+
+        <ImageView
+            android:id="@+id/btnInsertBackground"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rich_text_toolbar_item"
+            android:clickable="true"
+            android:contentDescription="@string/insert_background"
+            android:focusable="false"
+            android:padding="11dp"
+            android:src="@drawable/ic_drawing_op"
+            app:tint="@color/color_rich_text_toolbar_icon" />
+
+    </LinearLayout>
+
+</LinearLayout>

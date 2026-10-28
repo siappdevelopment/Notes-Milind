@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_rounded"
+    android:orientation="vertical"
+    android:paddingBottom="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:fontFamily="@font/plus_jakarta_sans_semi_bold"
+        android:text="@string/repeat"
+        android:textColor="@color/app_txt_black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F0F0" />
+
+    <RadioGroup
+        android:id="@+id/rgRepeat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="12dp">
+
+        <RadioButton
+            android:id="@+id/rbNever"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:button="@null"
+            android:checked="true"
+            android:drawableEnd="@drawable/sl_radio_button"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:paddingHorizontal="16dp"
+            android:text="@string/never"
+            android:textColor="@color/app_txt_black"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/rbDaily"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:button="@null"
+            android:drawableEnd="@drawable/sl_radio_button"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:paddingHorizontal="16dp"
+            android:text="@string/daily"
+            android:textColor="@color/app_txt_black"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/rbWeekly"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:button="@null"
+            android:drawableEnd="@drawable/sl_radio_button"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:paddingHorizontal="16dp"
+            android:text="@string/weekly"
+            android:textColor="@color/app_txt_black"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/rbMonthly"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:button="@null"
+            android:drawableEnd="@drawable/sl_radio_button"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:paddingHorizontal="16dp"
+            android:text="@string/monthly"
+            android:textColor="@color/app_txt_black"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:layout_marginTop="8dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#F0EDFF"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/app_primary_color"
+            android:textSize="16sp"
+            app:cornerRadius="20dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSet"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/app_primary_color"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/set"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="20dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

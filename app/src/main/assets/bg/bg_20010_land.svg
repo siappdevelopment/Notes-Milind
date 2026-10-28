@@ -1,0 +1,36 @@
+<svg width="842" height="595" viewBox="0 0 842 595" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_404_7519)">
+<rect width="842" height="595" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M842 3.6805e-05L842 595L-2.60083e-05 595L0 0L842 3.6805e-05Z" fill="#F4ECE1"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20 77C20 68.1634 27.1634 61 36 61H806C814.836 61 822 68.1634 822 77V567C822 575.837 814.837 583 806 583H36C27.1635 583 20 575.837 20 567V77Z" fill="#ECE1D3"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20 77C20 68.1634 27.1634 61 36 61H806C814.836 61 822 68.1634 822 77V559C822 567.837 814.837 575 806 575H36C27.1635 575 20 567.837 20 559V77Z" fill="white"/>
+<path d="M231.778 173V575" stroke="#DB926F" stroke-width="1.5" stroke-dasharray="3 4"/>
+<path d="M608.778 173V575" stroke="#DB926F" stroke-width="1.5" stroke-dasharray="3 4"/>
+<path d="M232.039 113V169" stroke="#DB926F" stroke-width="1.5"/>
+<path d="M608.518 113V169" stroke="#DB926F" stroke-width="1.5"/>
+<path d="M20 169.223H822" stroke="#DB926F" stroke-width="1.5"/>
+<path d="M20 222.723H822" stroke="#D0CFC1" stroke-dasharray="3 4"/>
+<path d="M20 276.223H822" stroke="#D0CFC1" stroke-dasharray="3 4"/>
+<path d="M20 330.223H822" stroke="#D0CFC1" stroke-dasharray="3 4"/>
+<path d="M20 384.223H822" stroke="#D0CFC1" stroke-dasharray="3 4"/>
+<path d="M20 438.223H822" stroke="#D0CFC1" stroke-dasharray="3 4"/>
+<path d="M20 491.723H822" stroke="#D0CFC1" stroke-dasharray="3 4"/>
+<path d="M20 545.223H822" stroke="#D0CFC1" stroke-dasharray="3 4"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M271.47 112.9C271.47 112.9 278.568 121.35 273.51 125.207C268.451 129.065 280.212 132.72 276.861 135.269C273.51 137.817 263.953 137.522 263.953 141.656C263.953 145.79 276.861 143.598 276.861 147.565C276.861 151.533 270.713 153.1 270.713 153.1H577.153C577.153 153.1 580.741 129.12 569.911 127.164C559.08 125.207 559.218 112.9 559.218 112.9H271.47Z" fill="#FFEEB3" stroke="#FFEEB3" stroke-width="2" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M38.5299 112.9C38.5299 112.9 42.4064 121.35 39.6437 125.207C36.881 129.065 43.3043 132.72 41.474 135.269C39.6437 137.817 34.4243 137.522 34.4243 141.656C34.4243 145.79 41.474 143.598 41.474 147.565C41.474 151.533 38.116 153.1 38.116 153.1H205.48C205.48 153.1 207.439 129.12 201.524 127.164C195.609 125.207 195.684 112.9 195.684 112.9H38.5299Z" fill="#EAF3DF" stroke="#EAF3DF" stroke-width="2" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M640.138 112.9C640.138 112.9 644.014 121.35 641.252 125.207C638.489 129.065 644.912 132.72 643.082 135.269C641.252 137.817 636.032 137.522 636.032 141.656C636.032 145.79 643.082 143.598 643.082 147.565C643.082 151.533 639.724 153.1 639.724 153.1H807.088C807.088 153.1 809.047 129.12 803.132 127.164C797.217 125.207 797.292 112.9 797.292 112.9H640.138Z" fill="#E8DFF3" stroke="#E8DFF3" stroke-width="2" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M455.545 47.9911C455.545 50.7072 457.747 52.9091 460.463 52.9091H499.696C509.203 52.9091 516.909 60.6157 516.909 70.1222V87H326V70.1222C326 60.6157 333.707 52.9091 343.213 52.9091H382.446C385.162 52.9091 387.364 50.7072 387.364 47.9911V26.7541C387.364 18.6056 393.969 12 402.118 12H440.791C448.94 12 455.545 18.6056 455.545 26.7541V47.9911Z" fill="#FFCCC3"/>
+<mask id="mask0_404_7519" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="326" y="12" width="191" height="75">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M455.545 47.9911C455.545 50.7072 457.747 52.9091 460.463 52.9091H499.696C509.203 52.9091 516.909 60.6157 516.909 70.1222V87H326V70.1222C326 60.6157 333.707 52.9091 343.213 52.9091H382.446C385.162 52.9091 387.364 50.7072 387.364 47.9911V26.7541C387.364 18.6056 393.969 12 402.118 12H440.791C448.94 12 455.545 18.6056 455.545 26.7541V47.9911Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_404_7519)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M320.886 76.7734H522.023V92.1143H320.886V76.7734Z" fill="#FBB2A5"/>
+</g>
+<circle cx="421.455" cy="35.8629" r="12.4069" fill="#F4ECE1" stroke="#FBB2A5" stroke-width="2.45902"/>
+</g>
+<defs>
+<clipPath id="clip0_404_7519">
+<rect width="842" height="595" fill="white"/>
+</clipPath>
+</defs>
+</svg>

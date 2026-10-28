@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <!-- Key Is Your Parameter Name that you created in Remote Config-->
+        <key>activityChange</key>
+        <value>com.ads.example.activities.MainActivity</value>
+    </entry>
+</defaultsMap>

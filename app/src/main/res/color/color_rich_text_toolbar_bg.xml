@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:color="@color/label_sheet_cancel_bg"
+        android:state_selected="true" />
+    <item android:color="@color/toolbar_unselected_bg" />
+</selector>
