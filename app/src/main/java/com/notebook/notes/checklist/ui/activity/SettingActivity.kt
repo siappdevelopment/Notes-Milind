@@ -19,11 +19,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.notebook.notes.checklist.Advertisement.ADSBannerAdaptive
-import com.notebook.notes.checklist.Advertisement.ADSBannerSmall
+import com.notebook.notes.checklist.ads.AdRemoteConfig
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.loadScreenAd
+import com.notebook.notes.checklist.ads.setting_screen
 import com.notebook.notes.checklist.Advertisement.ADSConsentManager
 import com.notebook.notes.checklist.Advertisement.ADSMainClass
-import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
 import com.notebook.notes.checklist.R
 import com.notebook.notes.checklist.databinding.ActivitySettingBinding
 import com.notebook.notes.checklist.ui.home.NotesSelectionDialogs
@@ -619,36 +620,6 @@ class SettingActivity : BaseActivity() {
     }
 
     private fun loadLanguageAds() {
-        if (!ADSMainClass.getSettingBottomAdsShow()) {
-            hideLanguageAdPlaceholders()
-            return
-        }
-
-        if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()) {
-            hideLanguageAdPlaceholders()
-            return
-        }
-
-        if (ADSMainClass.getSettingAdsType().equals("native")) {
-            ADSNativeDisplay.loadAdmobNativeAdBig(
-                ADSMainClass.getStringValue(ADSMainClass.SETTING_SCREEN_NATIVE),
-                findViewById(R.id.flNativeSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                "small",
-                this
-            )
-        } else {
-            ADSBannerSmall.loadAdMobBanner(
-                ADSMainClass.getStringValue(ADSMainClass.SETTING_SCREEN_BANNER),
-                findViewById(R.id.flBannerSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                this
-            )
-        }
-    }
-    private fun hideLanguageAdPlaceholders() {
-        findViewById<View>(R.id.shimmer_container_banner).visibility = View.GONE
-        findViewById<View>(R.id.flNativeSmallPlaceholder).visibility = View.GONE
-        findViewById<View>(R.id.flBannerSmallPlaceholder).visibility = View.GONE
+        AdsManager.loadScreenAd(this, AdRemoteConfig.setting_screen)
     }
 }

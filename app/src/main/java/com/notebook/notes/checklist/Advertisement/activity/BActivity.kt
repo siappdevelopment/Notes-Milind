@@ -28,6 +28,7 @@ import com.ads.module.funtion.AdCallback
 import com.notebook.notes.checklist.ads.inter_splash
 import com.notebook.notes.checklist.ads.AdRemoteConfig
 import com.notebook.notes.checklist.ads.AppConstants
+import com.notebook.notes.checklist.ads.AppLinksConfigApplier
 import com.notebook.notes.checklist.ads.CallEndConfigApplier
 import com.notebook.notes.checklist.ads.RemoteConfigUtils
 import org.json.JSONObject
@@ -148,6 +149,10 @@ open class BActivity : AppCompatActivity() {
         val adsJson = RemoteConfigUtils.getAdRemoteConfig()
         AdRemoteConfig.initialize(this, adsJson)
         CallEndConfigApplier.apply(this, adsJson)
+        AppLinksConfigApplier.apply(this, adsJson)
+        // Same master switch for the legacy ads, which gate on getAds_Free() rather than AdUnitConfig.
+        ADSMainClass.initAppContext(this)
+        ADSMainClass.setRemoteAdsBlocker(!AdRemoteConfig.getInstance().adsEnabled)
         try {
             // Flow keys (e.g. onboarding_repeat_count) may sit inside the ads JSON; this also falls
             // back to separate Remote Config parameters and then the XML defaults per key.

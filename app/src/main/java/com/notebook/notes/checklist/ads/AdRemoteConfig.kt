@@ -8,9 +8,12 @@ import timber.log.Timber
 import java.io.InputStream
 
 data class AdRemoteConfig(
-    val ads: Map<String, AdUnitConfig> = emptyMap()
+    val ads: Map<String, AdUnitConfig> = emptyMap(),
+    /** Master switch from the top-level `ads_enabled`; false disables every ad in the app. */
+    val adsEnabled: Boolean = true
 ) {
     companion object {
+        const val KEY_ADS_ENABLED = "ads_enabled"
         private const val RELEASE_FILE_NAME = "ad_config.json"
         private const val DEBUG_FILE_NAME = "ad_config_debug.json"
 
@@ -217,4 +220,16 @@ data class AdRemoteConfig(
 
     val reward_example: AdUnitConfig
         get() = getAdUnit("reward_example")
+
+    /** Bottom ad of the Settings screen; `type` is "native" or "banner". */
+    val setting_screen: AdUnitConfig
+        get() = getAdUnit("setting_screen")
+
+    /** Bottom ad of the Set Password screen; `type` is "native" or "banner". */
+    val set_password_screen: AdUnitConfig
+        get() = getAdUnit("set_password_screen")
+
+    /** Bottom ad shared by the other secondary screens; `type` is "native" or "banner". */
+    val other_screen: AdUnitConfig
+        get() = getAdUnit("other_screen")
 }

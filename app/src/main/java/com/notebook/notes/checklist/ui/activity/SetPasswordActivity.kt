@@ -12,10 +12,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import com.notebook.notes.checklist.Advertisement.ADSBannerSmall
+import com.notebook.notes.checklist.ads.AdRemoteConfig
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.loadScreenAd
+import com.notebook.notes.checklist.ads.set_password_screen
 import com.notebook.notes.checklist.Advertisement.ADSConsentManager
 import com.notebook.notes.checklist.Advertisement.ADSMainClass
-import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
 import com.notebook.notes.checklist.R
 import com.notebook.notes.checklist.databinding.ActivitySetPasswordBinding
 import com.notebook.notes.checklist.helper.BiometricAuthHelper
@@ -116,38 +118,9 @@ class SetPasswordActivity : BaseActivity() {
     }
 
     private fun loadOtherScreenAds() {
-        if (!ADSMainClass.getOtherAdsShow()) {
-            hideOtherScreenAdPlaceholders()
-            return
-        }
-
-        if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()) {
-            hideOtherScreenAdPlaceholders()
-            return
-        }
-        if (ADSMainClass.getOtherAdsType().equals("native")) {
-            ADSNativeDisplay.loadAdmobNativeAdBig(
-                ADSMainClass.getStringValue(ADSMainClass.OTHER_SCREEN_NATIVE),
-                findViewById(R.id.flNativeSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                "small",
-                this
-            )
-        } else {
-            ADSBannerSmall.loadAdMobBanner(
-                ADSMainClass.getStringValue(ADSMainClass.OTHER_SCREEN_BANNER),
-                findViewById(R.id.flBannerSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                this
-            )
-        }
+        AdsManager.loadScreenAd(this, AdRemoteConfig.set_password_screen)
     }
 
-    private fun hideOtherScreenAdPlaceholders() {
-        findViewById<android.view.View>(R.id.shimmer_container_banner).visibility = android.view.View.GONE
-        findViewById<android.view.View>(R.id.flNativeSmallPlaceholder).visibility = android.view.View.GONE
-        findViewById<android.view.View>(R.id.flBannerSmallPlaceholder).visibility = android.view.View.GONE
-    }
 
     private fun maybeStartFingerprintPrompt() {
         if (!passwordManager.isFingerprintEnabled()) return

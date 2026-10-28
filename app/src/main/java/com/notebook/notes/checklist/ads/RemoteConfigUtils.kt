@@ -1,6 +1,7 @@
 package com.notebook.notes.checklist.ads
 
 import android.content.Context
+import android.util.Log
 import com.google.firebase.Firebase
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
@@ -16,6 +17,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlin.collections.set
 
 object RemoteConfigUtils {
+    private const val TAG = "RemoteConfigUtils"
     var completed = false
     private const val ON_SHOW_NAVIGATION_BUTTON = "on_show_navigation_button"
     private const val ON_SHOW_DIALOG_CONSENT = "on_show_dialog_consent"
@@ -93,7 +95,15 @@ object RemoteConfigUtils {
                 defaults[key] = value
             }
             setDefaultsAsync(defaults)
-            fetchAndActivate().addOnCompleteListener {
+            Log.d(TAG, "Fetching Firebase Remote Config (minFetchInterval=${configSettings.minimumFetchIntervalInSeconds}s)")
+            fetchAndActivate().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val source = remoteConfig.getValue(AD_REMOTE_CONFIG).source
+                    Log.d(TAG, "Fetch complete: activated=${task.result}, $AD_REMOTE_CONFIG source=${sourceName(source)}")
+                    logFetchedData()
+                } else {
+                    Log.w(TAG, "Fetch failed; using defaults/cached values", task.exception)
+                }
                 listener.loadSuccess()
                 completed = true
             }
@@ -126,11 +136,39 @@ object RemoteConfigUtils {
     fun getAdRemoteConfig(): String {
         val defaultValue = loadDefaultAdRemoteConfig()
         if (!completed) {
+            Log.d(TAG, "$AD_REMOTE_CONFIG: fetch not completed, using bundled asset (${defaultValue.length} chars)")
             return defaultValue
         } else {
             val configValue = remoteConfig.getString(AD_REMOTE_CONFIG)
-            return configValue.ifBlank { defaultValue }
+            val result = configValue.ifBlank { defaultValue }
+            val origin = if (configValue.isBlank()) "bundled asset (Firebase value blank)" else "Firebase"
+            Log.d(TAG, "$AD_REMOTE_CONFIG: using $origin (${result.length} chars)")
+            return result
         }
+    }
+
+    /** Logs every fetched key with its source, then the full `ad_remote_config` JSON (chunked: logcat cuts long lines). */
+    private fun logFetchedData() {
+        try {
+            remoteConfig.all.forEach { (key, value) ->
+                if (key == AD_REMOTE_CONFIG) {
+                    Log.d(TAG, "[${sourceName(value.source)}] $key = (${value.asString().length} chars, printed below)")
+                } else {
+                    Log.d(TAG, "[${sourceName(value.source)}] $key = ${value.asString().take(200)}")
+                }
+            }
+            val json = remoteConfig.getString(AD_REMOTE_CONFIG)
+            Log.d(TAG, "$AD_REMOTE_CONFIG json (${json.length} chars):")
+            json.chunked(3000).forEachIndexed { i, part -> Log.d(TAG, "json[$i]: $part") }
+        } catch (e: Exception) {
+            Log.w(TAG, "Could not log fetched data", e)
+        }
+    }
+
+    private fun sourceName(source: Int): String = when (source) {
+        FirebaseRemoteConfig.VALUE_SOURCE_REMOTE -> "REMOTE"
+        FirebaseRemoteConfig.VALUE_SOURCE_DEFAULT -> "DEFAULT"
+        else -> "STATIC"
     }
 
 

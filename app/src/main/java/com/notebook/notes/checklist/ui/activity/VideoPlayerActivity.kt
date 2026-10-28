@@ -15,10 +15,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.updatePadding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.notebook.notes.checklist.Advertisement.ADSBannerSmall
+import com.notebook.notes.checklist.ads.AdRemoteConfig
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.loadScreenAd
+import com.notebook.notes.checklist.ads.other_screen
 import com.notebook.notes.checklist.Advertisement.ADSConsentManager
 import com.notebook.notes.checklist.Advertisement.ADSMainClass
-import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
 import com.notebook.notes.checklist.R
 import com.notebook.notes.checklist.attachment.AttachmentIntentHelper
 import com.notebook.notes.checklist.databinding.ActivityVideoPlayerBinding
@@ -82,38 +84,9 @@ class VideoPlayerActivity : BaseActivity() {
     }
 
     private fun loadOtherScreenAds() {
-        if (!ADSMainClass.getOtherAdsShow()) {
-            hideOtherScreenAdPlaceholders()
-            return
-        }
-
-        if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()) {
-            hideOtherScreenAdPlaceholders()
-            return
-        }
-        if (ADSMainClass.getOtherAdsType().equals("native")) {
-            ADSNativeDisplay.loadAdmobNativeAdBig(
-                ADSMainClass.getStringValue(ADSMainClass.OTHER_SCREEN_NATIVE),
-                findViewById(R.id.flNativeSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                "small",
-                this
-            )
-        } else {
-            ADSBannerSmall.loadAdMobBanner(
-                ADSMainClass.getStringValue(ADSMainClass.OTHER_SCREEN_BANNER),
-                findViewById(R.id.flBannerSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                this
-            )
-        }
+        AdsManager.loadScreenAd(this, AdRemoteConfig.other_screen)
     }
 
-    private fun hideOtherScreenAdPlaceholders() {
-        findViewById<View>(R.id.shimmer_container_banner).visibility = View.GONE
-        findViewById<View>(R.id.flNativeSmallPlaceholder).visibility = View.GONE
-        findViewById<View>(R.id.flBannerSmallPlaceholder).visibility = View.GONE
-    }
 
     private fun setupWindowInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->

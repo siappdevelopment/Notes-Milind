@@ -28,6 +28,7 @@ class AdRemoteConfigJsonAdapterFactory : JsonAdapter.Factory {
                     return AdRemoteConfig()
                 }
                 val adsMap = mutableMapOf<String, AdUnitConfig>()
+                var adsEnabled = true
                 reader.beginObject()
                 while (reader.hasNext()) {
                     val key = reader.nextName()
@@ -35,12 +36,16 @@ class AdRemoteConfigJsonAdapterFactory : JsonAdapter.Factory {
                     // values; only objects are ad units, so skip the rest instead of failing the parse.
                     if (reader.peek() == JsonReader.Token.BEGIN_OBJECT) {
                         adsMap[key] = readAdUnitConfig(reader)
+                    } else if (key == AdRemoteConfig.KEY_ADS_ENABLED && reader.peek() == JsonReader.Token.BOOLEAN) {
+                        adsEnabled = reader.nextBoolean()
                     } else {
                         reader.skipValue()
                     }
                 }
                 reader.endObject()
-                return AdRemoteConfig(ads = adsMap)
+                // Master switch: every unit is forced off, so no ad can load whatever its own isEnable says.
+                val units = if (adsEnabled) adsMap else adsMap.mapValues { it.value.copy(isEnable = false) }
+                return AdRemoteConfig(ads = units, adsEnabled = adsEnabled)
             }
 
             override fun toJson(writer: JsonWriter, value: AdRemoteConfig?) {

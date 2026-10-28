@@ -47,6 +47,11 @@ object AdsManager {
     private val adConfigMap = mutableMapOf<ApNativeAd, AdUnitConfig>()
     fun getAdConfig(ad: ApNativeAd): AdUnitConfig? = adConfigMap[ad]
 
+    /** Lets [loadScreenAd] register the config a natively loaded ad belongs to, so its CTA/components apply. */
+    internal fun rememberConfig(ad: ApNativeAd, config: AdUnitConfig) {
+        adConfigMap[ad] = config
+    }
+
     private var interSplashAd: ApInterstitialAd? = null
     private var interOnboarding: ApInterstitialAd? = null
 

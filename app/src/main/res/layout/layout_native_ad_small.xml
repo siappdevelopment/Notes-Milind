@@ -95,7 +95,7 @@
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_btn_native_cta"
+            android:background="@drawable/bg_btn_native_cta_small"
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="16dp"

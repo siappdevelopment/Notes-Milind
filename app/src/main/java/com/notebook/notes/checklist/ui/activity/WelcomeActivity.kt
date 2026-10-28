@@ -6,10 +6,12 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.notebook.notes.checklist.Advertisement.ADSBannerSmall
+import com.notebook.notes.checklist.ads.AdRemoteConfig
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.loadScreenAd
+import com.notebook.notes.checklist.ads.other_screen
 import com.notebook.notes.checklist.Advertisement.ADSConsentManager
 import com.notebook.notes.checklist.Advertisement.ADSMainClass
-import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
 import com.notebook.notes.checklist.R
 import com.notebook.notes.checklist.databinding.ActivityWelcomeBinding
 import com.notebook.notes.checklist.flow.FlowPermissionHost
@@ -53,38 +55,9 @@ class WelcomeActivity : BaseActivity(), FlowPermissionHost {
     }
 
     private fun loadOtherScreenAds() {
-        if (!ADSMainClass.getOtherAdsShow()) {
-            hideOtherScreenAdPlaceholders()
-            return
-        }
-
-        if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()) {
-            hideOtherScreenAdPlaceholders()
-            return
-        }
-        if (ADSMainClass.getOtherAdsType().equals("native")) {
-            ADSNativeDisplay.loadAdmobNativeAdBig(
-                ADSMainClass.getStringValue(ADSMainClass.OTHER_SCREEN_NATIVE),
-                findViewById(R.id.flNativeSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                "small",
-                this
-            )
-        } else {
-            ADSBannerSmall.loadAdMobBanner(
-                ADSMainClass.getStringValue(ADSMainClass.OTHER_SCREEN_BANNER),
-                findViewById(R.id.flBannerSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                this
-            )
-        }
+        AdsManager.loadScreenAd(this, AdRemoteConfig.other_screen)
     }
 
-    private fun hideOtherScreenAdPlaceholders() {
-        findViewById<android.view.View>(R.id.shimmer_container_banner).visibility = android.view.View.GONE
-        findViewById<android.view.View>(R.id.flNativeSmallPlaceholder).visibility = android.view.View.GONE
-        findViewById<android.view.View>(R.id.flBannerSmallPlaceholder).visibility = android.view.View.GONE
-    }
 
     private fun initClick() {
         binding.btnGetstart.setOnClickListener {

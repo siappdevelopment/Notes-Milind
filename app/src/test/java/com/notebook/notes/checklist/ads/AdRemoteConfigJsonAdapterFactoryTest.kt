@@ -34,6 +34,31 @@ class AdRemoteConfigJsonAdapterFactoryTest {
     }
 
     @Test
+    fun `ads_enabled false forces every ad unit off`() {
+        val json = """
+            {
+              "ads_enabled": false,
+              "native_home": { "id": "home-id", "isEnable": true },
+              "inter_splash": { "id": "splash-id", "isEnable": true }
+            }
+        """.trimIndent()
+
+        val config = adapter.fromJson(json)!!
+
+        assertFalse(config.adsEnabled)
+        assertTrue(config.ads.values.none { it.isEnable })
+    }
+
+    @Test
+    fun `ads_enabled missing or true leaves ad units as configured`() {
+        val missing = adapter.fromJson("""{ "native_home": { "id": "a", "isEnable": true } }""")!!
+        val explicit = adapter.fromJson("""{ "ads_enabled": true, "native_home": { "id": "a", "isEnable": true } }""")!!
+
+        assertTrue(missing.adsEnabled && missing.ads.getValue("native_home").isEnable)
+        assertTrue(explicit.adsEnabled && explicit.ads.getValue("native_home").isEnable)
+    }
+
+    @Test
     fun `callend_screen block does not break parsing of other ad units`() {
         val json = """
             {

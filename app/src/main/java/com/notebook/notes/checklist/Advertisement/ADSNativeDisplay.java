@@ -120,7 +120,7 @@ public class ADSNativeDisplay {
     private static void bindNativeAdToContainer(Context context, FrameLayout linearLayout,
                                                 ShimmerFrameLayout shimmerFrameLayout, NativeAd nativeAd) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        NativeAdView adView = (NativeAdView) inflater.inflate(R.layout.admob_mid_native_ad, null);
+        NativeAdView adView = (NativeAdView) inflater.inflate(R.layout.layout_native_ad_small, null);
         hideNativeShimmer(shimmerFrameLayout);
         linearLayout.setVisibility(View.VISIBLE);
         populateUnifiedNativeSmallAdView(nativeAd, adView, context);
@@ -226,7 +226,7 @@ public class ADSNativeDisplay {
             if (AdsDisplayType.equals("big")) {
                 adView = (NativeAdView) inflater.inflate(R.layout.admob_big_native_ad, null);
             } else {
-                adView = (NativeAdView) inflater.inflate(R.layout.admob_mid_native_ad, null);
+                adView = (NativeAdView) inflater.inflate(R.layout.layout_native_ad_small, null);
             }
 
             if (shimmerFrameLayout != null) {
@@ -272,7 +272,7 @@ public class ADSNativeDisplay {
         if (AdmobNativeAd != null) {
             LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            NativeAdView adView = (NativeAdView) inflater.inflate(R.layout.admob_mid_native_ad, null);
+            NativeAdView adView = (NativeAdView) inflater.inflate(R.layout.layout_native_ad_small, null);
             if (shimmerFrameLayout != null) {
                 shimmerFrameLayout.setVisibility(View.GONE);
                 shimmerFrameLayout.stopShimmer();
@@ -316,7 +316,7 @@ public class ADSNativeDisplay {
                             if (AdsDisplayType.equals("big")) {
                                 adView = (NativeAdView) inflater.inflate(R.layout.admob_big_native_ad, null);
                             } else {
-                                adView = (NativeAdView) inflater.inflate(R.layout.admob_mid_native_ad, null);
+                                adView = (NativeAdView) inflater.inflate(R.layout.layout_native_ad_small, null);
                             }
 
                             if (shimmerFrameLayout != null) {
@@ -858,36 +858,44 @@ public class ADSNativeDisplay {
             adView.getIconView().setVisibility(View.VISIBLE);
         }
 
-        if (nativeAd.getPrice() == null) {
-            Objects.requireNonNull(adView.getPriceView()).setVisibility(View.INVISIBLE);
-        } else {
-            Objects.requireNonNull(adView.getPriceView()).setVisibility(View.VISIBLE);
-            ((TextView) adView.getPriceView()).setText(nativeAd.getPrice());
+        // Price, store and stars are optional: layout_native_ad_small does not have them.
+        if (adView.getPriceView() != null) {
+            if (nativeAd.getPrice() == null) {
+                adView.getPriceView().setVisibility(View.INVISIBLE);
+            } else {
+                adView.getPriceView().setVisibility(View.VISIBLE);
+                ((TextView) adView.getPriceView()).setText(nativeAd.getPrice());
+            }
         }
 
-
-        if (nativeAd.getStore() == null) {
-            Objects.requireNonNull(adView.getStoreView()).setVisibility(View.INVISIBLE);
-        } else {
-            Objects.requireNonNull(adView.getStoreView()).setVisibility(View.VISIBLE);
-            ((TextView) adView.getStoreView()).setText(nativeAd.getStore());
+        if (adView.getStoreView() != null) {
+            if (nativeAd.getStore() == null) {
+                adView.getStoreView().setVisibility(View.INVISIBLE);
+            } else {
+                adView.getStoreView().setVisibility(View.VISIBLE);
+                ((TextView) adView.getStoreView()).setText(nativeAd.getStore());
+            }
         }
 
-        if (nativeAd.getStarRating() == null) {
-            Objects.requireNonNull(adView.getStarRatingView()).setVisibility(View.INVISIBLE);
-        } else {
-            ((RatingBar) Objects.requireNonNull(adView.getStarRatingView())).setRating(nativeAd.getStarRating().floatValue());
-            adView.getStarRatingView().setVisibility(View.VISIBLE);
+        if (adView.getStarRatingView() != null) {
+            if (nativeAd.getStarRating() == null) {
+                adView.getStarRatingView().setVisibility(View.INVISIBLE);
+            } else {
+                ((RatingBar) adView.getStarRatingView()).setRating(nativeAd.getStarRating().floatValue());
+                adView.getStarRatingView().setVisibility(View.VISIBLE);
+            }
         }
 
-        if (nativeAd.getAdvertiser() == null) {
-            Objects.requireNonNull(adView.getAdvertiserView()).setVisibility(View.INVISIBLE);
-        } else {
-            ((TextView) Objects.requireNonNull(adView.getAdvertiserView())).setText(nativeAd.getAdvertiser());
-            adView.getAdvertiserView().setVisibility(View.VISIBLE);
+        if (adView.getAdvertiserView() != null) {
+            if (nativeAd.getAdvertiser() == null) {
+                adView.getAdvertiserView().setVisibility(View.INVISIBLE);
+            } else {
+                ((TextView) adView.getAdvertiserView()).setText(nativeAd.getAdvertiser());
+                adView.getAdvertiserView().setVisibility(View.VISIBLE);
+            }
         }
-        adView.getStoreView().setVisibility(View.GONE);
-        adView.getPriceView().setVisibility(View.GONE);
+        if (adView.getStoreView() != null) adView.getStoreView().setVisibility(View.GONE);
+        if (adView.getPriceView() != null) adView.getPriceView().setVisibility(View.GONE);
         adView.setNativeAd(nativeAd);
     }
 }

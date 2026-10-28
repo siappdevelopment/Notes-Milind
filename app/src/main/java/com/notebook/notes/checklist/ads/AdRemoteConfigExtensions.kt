@@ -88,3 +88,11 @@ val AdRemoteConfig.Companion.inter_welcome: AdUnitConfig
 
 val AdRemoteConfig.Companion.reward_example: AdUnitConfig
     get() = getInstance().reward_example
+val AdRemoteConfig.Companion.setting_screen: AdUnitConfig
+    get() = getInstance().setting_screen
+
+val AdRemoteConfig.Companion.set_password_screen: AdUnitConfig
+    get() = getInstance().set_password_screen
+
+val AdRemoteConfig.Companion.other_screen: AdUnitConfig
+    get() = getInstance().other_screen

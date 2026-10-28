@@ -556,7 +556,6 @@ public class ADSMainClass {
     public static boolean getSetPasswordInterAdsShow() {
         return ADSPrefManage().getBoolean(SetPasswordInterAdsShow, false);
     }
-
     public static void setSetPasswordInterAdsShow(boolean value) {
         ADSPrefManage().edit().putBoolean(SetPasswordInterAdsShow, value).apply();
     }

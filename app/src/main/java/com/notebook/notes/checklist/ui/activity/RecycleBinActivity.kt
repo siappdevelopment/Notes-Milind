@@ -23,10 +23,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.notebook.notes.checklist.Advertisement.ADSBannerSmall
+import com.notebook.notes.checklist.ads.AdRemoteConfig
+import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.loadScreenAd
+import com.notebook.notes.checklist.ads.other_screen
 import com.notebook.notes.checklist.Advertisement.ADSConsentManager
 import com.notebook.notes.checklist.Advertisement.ADSMainClass
-import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
 import com.notebook.notes.checklist.R
 import com.notebook.notes.checklist.databinding.ActivityRecycleBinBinding
 import com.notebook.notes.checklist.databinding.PopupRecycleBinToolbarBinding
@@ -74,44 +76,7 @@ class RecycleBinActivity : BaseActivity() {
     }
 
     private fun loadOtherScreenAds() {
-        if (!ADSMainClass.getOtherAdsShow()) {
-            hideOtherScreenAdPlaceholders()
-            return
-        }
-
-        if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()) {
-            hideOtherScreenAdPlaceholders()
-            return
-        }
-        if (ADSMainClass.getOtherAdsType().equals("native")) {
-            findViewById<View>(R.id.flBannerSmallPlaceholder).visibility = View.GONE
-            ADSNativeDisplay.loadAdmobNativeAdBig(
-                ADSMainClass.getStringValue(ADSMainClass.OTHER_SCREEN_NATIVE),
-                findViewById(R.id.flNativeSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                "small",
-                this
-            )
-        } else {
-            // The card only ever hosts the native ad; in banner mode its vertical
-            // margins would remain as an empty white strip.
-            ADSBannerSmall.loadAdMobBanner(
-                ADSMainClass.getStringValue(ADSMainClass.OTHER_SCREEN_BANNER),
-                findViewById(R.id.flBannerSmallPlaceholder),
-                findViewById(R.id.shimmer_container_banner),
-                this
-            )
-        }
-    }
-
-    /**
-     * The ad loader hides the shimmer and the native slot when a load fails, but leaves the
-     * card behind, so its margins show as a white strip. Collapse it once the load resolves.
-     */
-
-
-    private fun hideOtherScreenAdPlaceholders() {
-        findViewById<View>(R.id.llOtherScreenAds).visibility = View.GONE
+        AdsManager.loadScreenAd(this, AdRemoteConfig.other_screen)
     }
 
     override fun onResume() {
