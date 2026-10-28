@@ -515,7 +515,11 @@ public class CallEndActivity extends BaseActivity {
         linearBannerShimmer.setVisibility(View.VISIBLE);
         adView = new AdView(this);
         adView.setAdUnitId(ADSMainClass.getStringValue(ADSMainClass.CALL_END_BANNER));
-        AdSize adSize = getAdaptiveAdSize();
+        // "big_banner" / "mrec" in callend_bottom_ads_type shows the 300x250 medium rectangle;
+        // plain "banner" keeps the adaptive banner.
+        String bottomType = ADSMainClass.getCallEndBottomAdsType();
+        boolean bigBanner = "big_banner".equalsIgnoreCase(bottomType) || "mrec".equalsIgnoreCase(bottomType);
+        AdSize adSize = bigBanner ? AdSize.MEDIUM_RECTANGLE : getAdaptiveAdSize();
         adView.setAdSize(adSize);
         adView.setDescendantFocusability(android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS);
         adContainer.clearFocus();

@@ -237,7 +237,7 @@
     "is_call_end_show": true,
     "app_logo_show": false,
     "is_callend_bottom_ad_show": true,
-    "callend_bottom_ads_type": "banner",
+    "callend_bottom_ads_type": "native",
     "callend_banner_ad_id": "ca-app-pub-3940256099942544/6300978111",
     "callend_native_ad_id": "ca-app-pub-3940256099942544/2247696110",
     "notification_install_days": 1,
@@ -250,12 +250,12 @@
     "notification_call_country": [],
     "notification_call_overlay_country": [],
     "call_end_bacK_inter": {
-      "call_end_inter_ads_show": false,
+      "call_end_inter_ads_show": true,
       "notification_screen_back_ads_show": false,
       "callend_again_open_count": 2,
       "call_end_inter_ads_type": "inter",
       "callend_inter_ad_id": "ca-app-pub-3940256099942544/1033173712",
-      "call_end_inter_day_count": 25,
+      "call_end_inter_day_count": 1,
       "call_end_inter_active_total_show_count": 3,
       "call_end_inter_ads_show_country": []
     }

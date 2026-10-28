@@ -6,6 +6,7 @@ import com.ads.module.admob.AppOpenManager
 import com.ads.module.ads.NotesAd
 import com.ads.module.billing.AppPurchase
 
+import com.notebook.notes.checklist.CallFunction.Activity.CallEndActivity
 import com.notebook.notes.checklist.ads.AdRemoteConfig
 import com.notebook.notes.checklist.ads.inter_welcome
 import com.notebook.notes.checklist.ui.activity.LanguageActivity
@@ -26,6 +27,8 @@ class AppLifecycleObserver : DefaultLifecycleObserver {
         Onboarding2Activity::class.java,
         Onboarding3Activity::class.java,
         OnboardingFullAdActivity::class.java,
+        // Opened from a finished call while the app is in the background; resuming must not push Home on top.
+        CallEndActivity::class.java,
     )
 
     override fun onStart(owner: LifecycleOwner) {

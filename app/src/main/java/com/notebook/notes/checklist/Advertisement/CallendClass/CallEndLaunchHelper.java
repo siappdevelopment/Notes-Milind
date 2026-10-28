@@ -4,6 +4,7 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 
 
 import com.notebook.notes.checklist.Advertisement.ADSMainClass;
@@ -210,30 +211,37 @@ public final class CallEndLaunchHelper {
         KeyguardManager km = (KeyguardManager) app.getSystemService(Context.KEYGUARD_SERVICE);
         boolean keyguardLocked = km != null && km.isKeyguardLocked();
 
-        if (!keyguardLocked) {
+        // The overlay trick in CallEndViewManager needs "draw over other apps". Without it addView()
+        // throws, and a plain startActivity() from the background is blocked on Android 10+, so the
+        // screen would silently never open. Use the full-screen notification path instead.
+        boolean canUseOverlay = ADSMainClass.isOverlayGranted(app);
+
+        if (!keyguardLocked && canUseOverlay) {
             try {
 //                app.startActivity(intent);
                 new CallEndViewManager().showCallEnd(context, intent);
                 CallEndPendingLaunch.clear(app);
+                return;
             } catch (Exception e) {
-                CallEndPendingLaunch.clear(app);
+                Log.w(TAG, "Overlay launch failed; falling back to notification", e);
             }
-        } else {
-            CallEndPendingLaunch.save(
-                    app,
-                    intent.getStringExtra("mobile_number"),
-                    intent.getLongExtra("StartTime", 0L),
-                    intent.getLongExtra("EndTime", 0L),
-                    intent.getStringExtra("CallType"),
-                    formattedDuration
-            );
-            CallEndFullscreenNotificationHelper.notifyCallEndStyle(
-                    app,
-                    intent,
-                    formattedDuration,
-                    CallEndPendingLaunch.NOTIFICATION_ID
-            );
         }
+
+        CallEndPendingLaunch.save(
+                app,
+                intent.getStringExtra("mobile_number"),
+                intent.getLongExtra("StartTime", 0L),
+                intent.getLongExtra("EndTime", 0L),
+                intent.getStringExtra("CallType"),
+                formattedDuration
+        );
+        CallEndFullscreenNotificationHelper.notifyCallEndStyle(
+                app,
+                intent,
+                formattedDuration,
+                CallEndPendingLaunch.NOTIFICATION_ID
+        );
+
     }
 
     private static long parseLongSafe(String s, long defaultValue) {
