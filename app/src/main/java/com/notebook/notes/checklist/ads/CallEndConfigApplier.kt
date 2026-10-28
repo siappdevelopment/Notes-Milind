@@ -59,6 +59,7 @@ object CallEndConfigApplier {
         o.int("call_end_inter_day_count")?.let(ADSMainClass::setCallEndInterDayCount)
         o.int("call_end_inter_active_total_show_count")?.let(ADSMainClass::setCallEndInterShowCount)
         o.list("call_end_inter_ads_show_country")?.let(ADSMainClass::setCallEndAdCountries)
+        o.list("call_end_inter_ads_exclude_country")?.let(ADSMainClass::setCallEndAdExcludeCountries)
     }
 
     private fun JSONObject.bool(key: String): Boolean? =

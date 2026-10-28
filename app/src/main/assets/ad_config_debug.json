@@ -257,7 +257,8 @@
       "callend_inter_ad_id": "ca-app-pub-3940256099942544/1033173712",
       "call_end_inter_day_count": 1,
       "call_end_inter_active_total_show_count": 3,
-      "call_end_inter_ads_show_country": []
+        "call_end_inter_ads_show_country": [],
+        "call_end_inter_ads_exclude_country": []
     }
   }
 }

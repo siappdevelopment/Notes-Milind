@@ -231,6 +231,7 @@ public class ADSMainClass {
     public static String RewardedAdsLoadType = "RewardedAdsLoadType";
 
     public static String CALL_END_INTER_ADS_SHOW_COUNTRIES = "call_end_inter_ads_show_country";
+    public static String CALL_END_INTER_ADS_EXCLUDE_COUNTRIES = "call_end_inter_ads_exclude_country";
     public static String CALL_END_INTER_ADS_TYPE = "call_end_inter_ads_type";
     public static String NOTIFICATION_SCREEN_BACK_ADS_SHOW = "notification_screen_back_ads_show";
     public static String IP_COUNTRY_NAME = "ip_country_name";
@@ -1069,12 +1070,32 @@ public class ADSMainClass {
         }
     }
 
+    public static void setCallEndAdExcludeCountries(List<String> countries) {
+        String json = new Gson().toJson(countries);
+        ADSPrefManage().edit().putString(CALL_END_INTER_ADS_EXCLUDE_COUNTRIES, json).apply();
+    }
+
+    public static List<String> getCallEndAdExcludeCountries() {
+        String json = ADSPrefManage().getString(CALL_END_INTER_ADS_EXCLUDE_COUNTRIES, "[]");
+        Type type = new TypeToken<ArrayList<String>>() {
+        }.getType();
+        return new Gson().fromJson(json, type);
+    }
+
     public static boolean isCountryAllowedForCallEnd(Context context) {
+        String currentCountry = getDeviceCountry(context);
+        List<String> excludedCountries = getCallEndAdExcludeCountries();
+        if (excludedCountries != null) {
+            for (String country : excludedCountries) {
+                if (country.equalsIgnoreCase(currentCountry)) {
+                    return false; // Exclude list always wins
+                }
+            }
+        }
         List<String> allowedCountries = getCallEndAdCountries();
         if (allowedCountries == null || allowedCountries.isEmpty()) {
             return true; // Default to show if no countries are specified
         }
-        String currentCountry = getDeviceCountry(context);
         for (String country : allowedCountries) {
             if (country.equalsIgnoreCase(currentCountry)) {
                 return true;
