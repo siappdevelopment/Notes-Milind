@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:background="@drawable/bg_nav_drawer_item_selector"
+    android:minHeight="54dp"
+    android:paddingEnd="16dp">
+
+    <View
+        android:id="@+id/viewSelectedIndicator"
+        android:layout_width="4dp"
+        android:layout_height="24dp"
+        android:background="@drawable/bg_nav_drawer_selected_indicator"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/viewIconBg"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/bg_nav_drawer_icon_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="@id/viewIconBg"
+        app:layout_constraintEnd_toEndOf="@id/viewIconBg"
+        app:layout_constraintStart_toStartOf="@id/viewIconBg"
+        app:layout_constraintTop_toTopOf="@id/viewIconBg"
+        app:tint="@color/app_primary_color"
+        tools:src="@drawable/ic_category_all" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/plus_jakarta_sans_medium"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvCount"
+        app:layout_constraintStart_toEndOf="@id/viewIconBg"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="All Categories" />
+
+    <TextView
+        android:id="@+id/tvCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_nav_drawer_count_badge"
+        android:fontFamily="@font/plus_jakarta_sans_bold"
+        android:minWidth="28dp"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="2dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="128"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

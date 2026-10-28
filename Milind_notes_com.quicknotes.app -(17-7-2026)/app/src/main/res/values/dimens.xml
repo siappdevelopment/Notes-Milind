@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="editor_horizontal_margin">20dp</dimen>
+    <dimen name="editor_bottom_panel_radius">20dp</dimen>
+    <dimen name="drawing_tool_options_top_radius">50dp</dimen>
+    <dimen name="insert_action_min_width">68dp</dimen>
+    <dimen name="insert_action_icon_size">22dp</dimen>
+
+    <dimen name="note_card_corner_radius">24dp</dimen>
+    <dimen name="note_card_elevation">2dp</dimen>
+    <dimen name="note_card_padding">10dp</dimen>
+    <dimen name="note_card_margin">6dp</dimen>
+    <dimen name="note_card_grid_padding">10dp</dimen>
+    <dimen name="note_card_selection_stroke_width">2dp</dimen>
+    <dimen name="note_card_category_pill_radius">999dp</dimen>
+    <dimen name="bottom_nav_padding">8dp</dimen>
+    <dimen name="bottom_nav_shadow_padding">4dp</dimen>
+    <dimen name="bottom_nav_bar_height">56dp</dimen>
+    <dimen name="bottom_nav_item_height">52dp</dimen>
+    <dimen name="bottom_nav_selected_pill_height">44dp</dimen>
+    <dimen name="nav_drawer_width">300dp</dimen>
+    <dimen name="nav_drawer_category_fade_height">28dp</dimen>
+    <dimen name="nav_drawer_category_margin_top">8dp</dimen>
+    <dimen name="nav_drawer_category_shadow_padding">12dp</dimen>
+
+    <dimen name="rich_text_toolbar_height">56dp</dimen>
+    <dimen name="rich_text_toolbar_item_size">40dp</dimen>
+    <dimen name="rich_text_toolbar_item_spacing">12dp</dimen>
+    <dimen name="rich_text_toolbar_padding_horizontal">16dp</dimen>
+    <dimen name="rich_text_toolbar_padding_vertical">8dp</dimen>
+    <dimen name="label_suggestion_chip_stroke">1dp</dimen>
+    <dimen name="label_suggestion_chip_spacing_horizontal">8dp</dimen>
+    <dimen name="label_suggestion_chip_spacing_vertical">8dp</dimen>
+    <dimen name="rich_text_toolbar_divider_width">1dp</dimen>
+    <dimen name="rich_text_toolbar_divider_height">24dp</dimen>
+    <dimen name="rich_text_toolbar_divider_margin_horizontal">8dp</dimen>
+
+    <dimen name="note_header_action_size">48dp</dimen>
+    <dimen name="note_header_search_height">40dp</dimen>
+    <dimen name="note_header_bottom_row_margin_top">12dp</dimen>
+
+    <dimen name="doodle_preview_card_width">120dp</dimen>
+    <dimen name="doodle_preview_card_height">160dp</dimen>
+    <dimen name="doodle_preview_outer_padding">20dp</dimen>
+
+    <dimen name="onboarding_dot_size">8dp</dimen>
+    <dimen name="onboarding_dot_active_width">28dp</dimen>
+    <dimen name="onboarding_dot_spacing">8dp</dimen>
+    <!-- Fixed bottom band for native/banner so onboarding content never reflows -->
+    <dimen name="onboarding_ads_area_height">340dp</dimen>
+
+    <dimen name="paywall_dot_size">4dp</dimen>
+    <dimen name="paywall_dot_active_width">20dp</dimen>
+    <dimen name="paywall_dot_spacing">4dp</dimen>
+
+    <dimen name="material_dialog_corner_radius">28dp</dimen>
+    <dimen name="material_button_corner_radius">24dp</dimen>
+</resources>

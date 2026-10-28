@@ -1,0 +1,2016 @@
+{
+  "version": 10005,
+  "appCode": [
+    10000
+  ],
+  "newReleaseVersion": 10005,
+  "showList": [
+    {
+      "id": "free",
+      "cover": "sticker_11002.webp",
+      "list": [
+        11001,
+        11002,
+        11003,
+        11004,
+        11005,
+        11006,
+        11007,
+        11008,
+        11009,
+        11010,
+        11011,
+        11012,
+        11013,
+        11014,
+        11015,
+        11016,
+        11017,
+        11018,
+        11019,
+        11020,
+        11021,
+        11022,
+        11023,
+        11024
+      ]
+    },
+    {
+      "id": "travel",
+      "cover": "sticker_19024.webp",
+      "isVip": true,
+      "isNew": true,
+      "list": [
+        19024,
+        19001,
+        19002,
+        19003,
+        19004,
+        19005,
+        19006,
+        19007,
+        19008,
+        19009,
+        19010,
+        19011,
+        19012,
+        19013,
+        19014,
+        19015,
+        19016,
+        19017,
+        19018,
+        19019,
+        19020,
+        19021,
+        19022,
+        19023,
+        19025,
+        19026,
+        19027,
+        19028,
+        19029,
+        19030,
+        19031,
+        19032,
+        19033,
+        19034,
+        19035,
+        19036
+      ]
+    },
+    {
+      "id": "plant",
+      "cover": "sticker_18013.webp",
+      "isVip": true,
+      "list": [
+        18013,
+        18001,
+        18002,
+        18003,
+        18004,
+        18005,
+        18006,
+        18007,
+        18008,
+        18009,
+        18010,
+        18011,
+        18012,
+        18014,
+        18015,
+        18016,
+        18017,
+        18018,
+        18019,
+        18020,
+        18021,
+        18022,
+        18023,
+        18024,
+        18025,
+        18026,
+        18027,
+        18028,
+        18029,
+        18030,
+        18031,
+        18032,
+        18033,
+        18034,
+        18035,
+        18036
+      ]
+    },
+    {
+      "id": "girly",
+      "cover": "sticker_17007.webp",
+      "isVip": true,
+      "list": [
+        17001,
+        17002,
+        17003,
+        17004,
+        17005,
+        17006,
+        17007,
+        17008,
+        17009,
+        17010,
+        17011,
+        17012,
+        17013,
+        17014,
+        17015,
+        17016,
+        17017,
+        17018,
+        17019,
+        17020,
+        17021,
+        17022,
+        17023,
+        17024,
+        17025,
+        17026,
+        17027,
+        17028,
+        17029,
+        17030,
+        17031,
+        17032,
+        17033,
+        17034,
+        17035,
+        17036
+      ]
+    },
+    {
+      "id": "animal",
+      "cover": "sticker_16017.webp",
+      "isVip": true,
+      "list": [
+        16001,
+        16002,
+        16003,
+        16004,
+        16005,
+        16006,
+        16007,
+        16008,
+        16009,
+        16010,
+        16011,
+        16012,
+        16013,
+        16014,
+        16015,
+        16016,
+        16017,
+        16018,
+        16019,
+        16020,
+        16021,
+        16022,
+        16023,
+        16024,
+        16025,
+        16026,
+        16027,
+        16028,
+        16029,
+        16030,
+        16031,
+        16032,
+        16033,
+        16034,
+        16035,
+        16036
+      ]
+    },
+    {
+      "id": "food",
+      "cover": "sticker_15013.webp",
+      "isVip": true,
+      "list": [
+        15001,
+        15002,
+        15003,
+        15004,
+        15005,
+        15006,
+        15007,
+        15008,
+        15009,
+        15010,
+        15011,
+        15012,
+        15013,
+        15014,
+        15015,
+        15016,
+        15017,
+        15018,
+        15019,
+        15020,
+        15021,
+        15022,
+        15023,
+        15024,
+        15025,
+        15026,
+        15027,
+        15028,
+        15029,
+        15030,
+        15031,
+        15032,
+        15033,
+        15034,
+        15035,
+        15036
+      ]
+    },
+    {
+      "id": "memo",
+      "cover": "sticker_12000.webp",
+      "isVip": true,
+      "list": [
+        12001,
+        12002,
+        12003,
+        12004,
+        12005,
+        12006,
+        12007,
+        12008,
+        12009,
+        12010,
+        12011,
+        12012,
+        12013,
+        12014,
+        12015,
+        12016,
+        12017,
+        12018,
+        12019,
+        12020,
+        12021,
+        12022,
+        12023,
+        12024,
+        12025,
+        12026,
+        12027,
+        12028,
+        12029,
+        12030,
+        12031,
+        12032,
+        12033,
+        12034,
+        12035,
+        12036
+      ]
+    },
+    {
+      "id": "life",
+      "cover": "sticker_13003.webp",
+      "isVip": true,
+      "list": [
+        13001,
+        13002,
+        13003,
+        13004,
+        13005,
+        13006,
+        13007,
+        13008,
+        13009,
+        13010,
+        13011,
+        13012,
+        13013,
+        13014,
+        13015,
+        13016,
+        13017,
+        13018,
+        13019,
+        13020,
+        13021,
+        13022,
+        13023,
+        13024,
+        13025,
+        13026,
+        13027,
+        13028,
+        13029,
+        13030,
+        13031,
+        13032,
+        13033,
+        13034,
+        13035,
+        13036
+      ]
+    },
+    {
+      "id": "mood",
+      "cover": "sticker_14013.webp",
+      "isVip": true,
+      "list": [
+        14001,
+        14002,
+        14003,
+        14004,
+        14005,
+        14006,
+        14007,
+        14008,
+        14009,
+        14010,
+        14011,
+        14012,
+        14013,
+        14014,
+        14015,
+        14016,
+        14017,
+        14018,
+        14019,
+        14020,
+        14021,
+        14022,
+        14023,
+        14024,
+        14025,
+        14026,
+        14027,
+        14028,
+        14029,
+        14030,
+        14031,
+        14032,
+        14033,
+        14034,
+        14035,
+        14036
+      ]
+    }
+  ],
+  "resList": [
+    {
+      "id": 11001,
+      "thumb": "sticker_11001.webp",
+      "res": "sticker_11001.webp"
+    },
+    {
+      "id": 11002,
+      "thumb": "sticker_11002.webp",
+      "res": "sticker_11002.webp"
+    },
+    {
+      "id": 11003,
+      "thumb": "sticker_11003.webp",
+      "res": "sticker_11003.webp"
+    },
+    {
+      "id": 11004,
+      "thumb": "sticker_11004.webp",
+      "res": "sticker_11004.webp"
+    },
+    {
+      "id": 11005,
+      "thumb": "sticker_11005.webp",
+      "res": "sticker_11005.webp"
+    },
+    {
+      "id": 11006,
+      "thumb": "sticker_11006.webp",
+      "res": "sticker_11006.webp"
+    },
+    {
+      "id": 11007,
+      "thumb": "sticker_11007.webp",
+      "res": "sticker_11007.webp"
+    },
+    {
+      "id": 11008,
+      "thumb": "sticker_11008.webp",
+      "res": "sticker_11008.webp"
+    },
+    {
+      "id": 11009,
+      "thumb": "sticker_11009.webp",
+      "res": "sticker_11009.webp"
+    },
+    {
+      "id": 11010,
+      "thumb": "sticker_11010.webp",
+      "res": "sticker_11010.webp"
+    },
+    {
+      "id": 11011,
+      "thumb": "sticker_11011.webp",
+      "res": "sticker_11011.webp"
+    },
+    {
+      "id": 11012,
+      "thumb": "sticker_11012.webp",
+      "res": "sticker_11012.webp"
+    },
+    {
+      "id": 11013,
+      "thumb": "sticker_11013.webp",
+      "res": "sticker_11013.webp"
+    },
+    {
+      "id": 11014,
+      "thumb": "sticker_11014.webp",
+      "res": "sticker_11014.webp"
+    },
+    {
+      "id": 11015,
+      "thumb": "sticker_11015.webp",
+      "res": "sticker_11015.webp"
+    },
+    {
+      "id": 11016,
+      "thumb": "sticker_11016.webp",
+      "res": "sticker_11016.webp"
+    },
+    {
+      "id": 11017,
+      "thumb": "sticker_11017.webp",
+      "res": "sticker_11017.webp"
+    },
+    {
+      "id": 11018,
+      "thumb": "sticker_11018.webp",
+      "res": "sticker_11018.webp"
+    },
+    {
+      "id": 11019,
+      "thumb": "sticker_11019.webp",
+      "res": "sticker_11019.webp"
+    },
+    {
+      "id": 11020,
+      "thumb": "sticker_11020.webp",
+      "res": "sticker_11020.webp"
+    },
+    {
+      "id": 11021,
+      "thumb": "sticker_11021.webp",
+      "res": "sticker_11021.webp"
+    },
+    {
+      "id": 11022,
+      "thumb": "sticker_11022.webp",
+      "res": "sticker_11022.webp"
+    },
+    {
+      "id": 11023,
+      "thumb": "sticker_11023.webp",
+      "res": "sticker_11023.webp"
+    },
+    {
+      "id": 11024,
+      "thumb": "sticker_11024.webp",
+      "res": "sticker_11024.webp"
+    },
+    {
+      "id": 12001,
+      "type": 1,
+      "thumb": "sticker_12001_thumb.webp",
+      "res": "sticker_12001.svg",
+      "zip": "sticker_12001.zip"
+    },
+    {
+      "id": 12002,
+      "type": 1,
+      "thumb": "sticker_12002_thumb.webp",
+      "res": "sticker_12002.svg",
+      "zip": "sticker_12002.zip"
+    },
+    {
+      "id": 12003,
+      "type": 1,
+      "thumb": "sticker_12003_thumb.webp",
+      "res": "sticker_12003.svg",
+      "zip": "sticker_12003.zip"
+    },
+    {
+      "id": 12004,
+      "type": 1,
+      "thumb": "sticker_12004_thumb.webp",
+      "res": "sticker_12004.svg",
+      "zip": "sticker_12004.zip"
+    },
+    {
+      "id": 12005,
+      "type": 1,
+      "thumb": "sticker_12005_thumb.webp",
+      "res": "sticker_12005.svg",
+      "zip": "sticker_12005.zip"
+    },
+    {
+      "id": 12006,
+      "type": 1,
+      "thumb": "sticker_12006_thumb.webp",
+      "res": "sticker_12006.svg",
+      "zip": "sticker_12006.zip"
+    },
+    {
+      "id": 12007,
+      "type": 1,
+      "thumb": "sticker_12007_thumb.webp",
+      "res": "sticker_12007.svg",
+      "zip": "sticker_12007.zip"
+    },
+    {
+      "id": 12008,
+      "type": 1,
+      "thumb": "sticker_12008_thumb.webp",
+      "res": "sticker_12008.svg",
+      "zip": "sticker_12008.zip"
+    },
+    {
+      "id": 12009,
+      "type": 1,
+      "thumb": "sticker_12009_thumb.webp",
+      "res": "sticker_12009.svg",
+      "zip": "sticker_12009.zip"
+    },
+    {
+      "id": 12010,
+      "thumb": "sticker_12010.webp",
+      "res": "sticker_12010.webp"
+    },
+    {
+      "id": 12011,
+      "type": 1,
+      "thumb": "sticker_12011_thumb.webp",
+      "res": "sticker_12011.svg",
+      "zip": "sticker_12011.zip"
+    },
+    {
+      "id": 12012,
+      "type": 1,
+      "thumb": "sticker_12012_thumb.webp",
+      "res": "sticker_12012.svg",
+      "zip": "sticker_12012.zip"
+    },
+    {
+      "id": 12013,
+      "type": 1,
+      "thumb": "sticker_12013_thumb.webp",
+      "res": "sticker_12013.svg",
+      "zip": "sticker_12013.zip"
+    },
+    {
+      "id": 12014,
+      "type": 1,
+      "thumb": "sticker_12014_thumb.webp",
+      "res": "sticker_12014.svg",
+      "zip": "sticker_12014.zip"
+    },
+    {
+      "id": 12015,
+      "type": 1,
+      "thumb": "sticker_12015_thumb.webp",
+      "res": "sticker_12015.svg",
+      "zip": "sticker_12015.zip"
+    },
+    {
+      "id": 12016,
+      "type": 1,
+      "thumb": "sticker_12016_thumb.webp",
+      "res": "sticker_12016.svg",
+      "zip": "sticker_12016.zip"
+    },
+    {
+      "id": 12017,
+      "type": 1,
+      "thumb": "sticker_12017_thumb.webp",
+      "res": "sticker_12017.svg",
+      "zip": "sticker_12017.zip"
+    },
+    {
+      "id": 12018,
+      "type": 1,
+      "thumb": "sticker_12018_thumb.webp",
+      "res": "sticker_12018.svg",
+      "zip": "sticker_12018.zip"
+    },
+    {
+      "id": 12019,
+      "type": 1,
+      "thumb": "sticker_12019_thumb.webp",
+      "res": "sticker_12019.svg",
+      "zip": "sticker_12019.zip"
+    },
+    {
+      "id": 12020,
+      "type": 1,
+      "thumb": "sticker_12020_thumb.webp",
+      "res": "sticker_12020.svg",
+      "zip": "sticker_12020.zip"
+    },
+    {
+      "id": 12021,
+      "type": 1,
+      "thumb": "sticker_12021_thumb.webp",
+      "res": "sticker_12021.svg",
+      "zip": "sticker_12021.zip"
+    },
+    {
+      "id": 12022,
+      "type": 1,
+      "thumb": "sticker_12022_thumb.webp",
+      "res": "sticker_12022.svg",
+      "zip": "sticker_12022.zip"
+    },
+    {
+      "id": 12023,
+      "type": 1,
+      "thumb": "sticker_12023_thumb.webp",
+      "res": "sticker_12023.svg",
+      "zip": "sticker_12023.zip"
+    },
+    {
+      "id": 12024,
+      "type": 1,
+      "thumb": "sticker_12024_thumb.webp",
+      "res": "sticker_12024.svg",
+      "zip": "sticker_12024.zip"
+    },
+    {
+      "id": 12025,
+      "type": 1,
+      "thumb": "sticker_12025_thumb.webp",
+      "res": "sticker_12025.svg",
+      "zip": "sticker_12025.zip"
+    },
+    {
+      "id": 12026,
+      "type": 1,
+      "thumb": "sticker_12026_thumb.webp",
+      "res": "sticker_12026.svg",
+      "zip": "sticker_12026.zip"
+    },
+    {
+      "id": 12027,
+      "type": 1,
+      "thumb": "sticker_12027_thumb.webp",
+      "res": "sticker_12027.svg",
+      "zip": "sticker_12027.zip"
+    },
+    {
+      "id": 12028,
+      "type": 1,
+      "thumb": "sticker_12028_thumb.webp",
+      "res": "sticker_12028.svg",
+      "zip": "sticker_12028.zip"
+    },
+    {
+      "id": 12029,
+      "type": 1,
+      "thumb": "sticker_12029_thumb.webp",
+      "res": "sticker_12029.svg",
+      "zip": "sticker_12029.zip"
+    },
+    {
+      "id": 12030,
+      "type": 1,
+      "thumb": "sticker_12030_thumb.webp",
+      "res": "sticker_12030.svg",
+      "zip": "sticker_12030.zip"
+    },
+    {
+      "id": 12031,
+      "type": 1,
+      "thumb": "sticker_12031_thumb.webp",
+      "res": "sticker_12031.svg",
+      "zip": "sticker_12031.zip"
+    },
+    {
+      "id": 12032,
+      "type": 1,
+      "thumb": "sticker_12032_thumb.webp",
+      "res": "sticker_12032.svg",
+      "zip": "sticker_12032.zip"
+    },
+    {
+      "id": 12033,
+      "type": 1,
+      "thumb": "sticker_12033_thumb.webp",
+      "res": "sticker_12033.svg",
+      "zip": "sticker_12033.zip"
+    },
+    {
+      "id": 12034,
+      "type": 1,
+      "thumb": "sticker_12034_thumb.webp",
+      "res": "sticker_12034.svg",
+      "zip": "sticker_12034.zip"
+    },
+    {
+      "id": 12035,
+      "type": 1,
+      "thumb": "sticker_12035_thumb.webp",
+      "res": "sticker_12035.svg",
+      "zip": "sticker_12035.zip"
+    },
+    {
+      "id": 12036,
+      "type": 1,
+      "thumb": "sticker_12036_thumb.webp",
+      "res": "sticker_12036.svg",
+      "zip": "sticker_12036.zip"
+    },
+    {
+      "id": 13001,
+      "thumb": "sticker_13001.webp",
+      "res": "sticker_13001.webp"
+    },
+    {
+      "id": 13002,
+      "thumb": "sticker_13002.webp",
+      "res": "sticker_13002.webp"
+    },
+    {
+      "id": 13003,
+      "thumb": "sticker_13003.webp",
+      "res": "sticker_13003.webp"
+    },
+    {
+      "id": 13004,
+      "thumb": "sticker_13004.webp",
+      "res": "sticker_13004.webp"
+    },
+    {
+      "id": 13005,
+      "thumb": "sticker_13005.webp",
+      "res": "sticker_13005.webp"
+    },
+    {
+      "id": 13006,
+      "thumb": "sticker_13006.webp",
+      "res": "sticker_13006.webp"
+    },
+    {
+      "id": 13007,
+      "thumb": "sticker_13007.webp",
+      "res": "sticker_13007.webp"
+    },
+    {
+      "id": 13008,
+      "thumb": "sticker_13008.webp",
+      "res": "sticker_13008.webp"
+    },
+    {
+      "id": 13009,
+      "thumb": "sticker_13009.webp",
+      "res": "sticker_13009.webp"
+    },
+    {
+      "id": 13010,
+      "thumb": "sticker_13010.webp",
+      "res": "sticker_13010.webp"
+    },
+    {
+      "id": 13011,
+      "thumb": "sticker_13011.webp",
+      "res": "sticker_13011.webp"
+    },
+    {
+      "id": 13012,
+      "thumb": "sticker_13012.webp",
+      "res": "sticker_13012.webp"
+    },
+    {
+      "id": 13013,
+      "thumb": "sticker_13013.webp",
+      "res": "sticker_13013.webp"
+    },
+    {
+      "id": 13014,
+      "thumb": "sticker_13014.webp",
+      "res": "sticker_13014.webp"
+    },
+    {
+      "id": 13015,
+      "thumb": "sticker_13015.webp",
+      "res": "sticker_13015.webp"
+    },
+    {
+      "id": 13016,
+      "thumb": "sticker_13016.webp",
+      "res": "sticker_13016.webp"
+    },
+    {
+      "id": 13017,
+      "thumb": "sticker_13017.webp",
+      "res": "sticker_13017.webp"
+    },
+    {
+      "id": 13018,
+      "thumb": "sticker_13018.webp",
+      "res": "sticker_13018.webp"
+    },
+    {
+      "id": 13019,
+      "thumb": "sticker_13019.webp",
+      "res": "sticker_13019.webp"
+    },
+    {
+      "id": 13020,
+      "thumb": "sticker_13020.webp",
+      "res": "sticker_13020.webp"
+    },
+    {
+      "id": 13021,
+      "thumb": "sticker_13021.webp",
+      "res": "sticker_13021.webp"
+    },
+    {
+      "id": 13022,
+      "thumb": "sticker_13022.webp",
+      "res": "sticker_13022.webp"
+    },
+    {
+      "id": 13023,
+      "thumb": "sticker_13023.webp",
+      "res": "sticker_13023.webp"
+    },
+    {
+      "id": 13024,
+      "thumb": "sticker_13024.webp",
+      "res": "sticker_13024.webp"
+    },
+    {
+      "id": 13025,
+      "thumb": "sticker_13025.webp",
+      "res": "sticker_13025.webp"
+    },
+    {
+      "id": 13026,
+      "thumb": "sticker_13026.webp",
+      "res": "sticker_13026.webp"
+    },
+    {
+      "id": 13027,
+      "thumb": "sticker_13027.webp",
+      "res": "sticker_13027.webp"
+    },
+    {
+      "id": 13028,
+      "thumb": "sticker_13028.webp",
+      "res": "sticker_13028.webp"
+    },
+    {
+      "id": 13029,
+      "thumb": "sticker_13029.webp",
+      "res": "sticker_13029.webp"
+    },
+    {
+      "id": 13030,
+      "thumb": "sticker_13030.webp",
+      "res": "sticker_13030.webp"
+    },
+    {
+      "id": 13031,
+      "thumb": "sticker_13031.webp",
+      "res": "sticker_13031.webp"
+    },
+    {
+      "id": 13032,
+      "thumb": "sticker_13032.webp",
+      "res": "sticker_13032.webp"
+    },
+    {
+      "id": 13033,
+      "thumb": "sticker_13033.webp",
+      "res": "sticker_13033.webp"
+    },
+    {
+      "id": 13034,
+      "thumb": "sticker_13034.webp",
+      "res": "sticker_13034.webp"
+    },
+    {
+      "id": 13035,
+      "thumb": "sticker_13035.webp",
+      "res": "sticker_13035.webp"
+    },
+    {
+      "id": 13036,
+      "thumb": "sticker_13036.webp",
+      "res": "sticker_13036.webp"
+    },
+    {
+      "id": 14001,
+      "thumb": "sticker_14001.webp",
+      "res": "sticker_14001.webp"
+    },
+    {
+      "id": 14002,
+      "thumb": "sticker_14002.webp",
+      "res": "sticker_14002.webp"
+    },
+    {
+      "id": 14003,
+      "thumb": "sticker_14003.webp",
+      "res": "sticker_14003.webp"
+    },
+    {
+      "id": 14004,
+      "thumb": "sticker_14004.webp",
+      "res": "sticker_14004.webp"
+    },
+    {
+      "id": 14005,
+      "thumb": "sticker_14005.webp",
+      "res": "sticker_14005.webp"
+    },
+    {
+      "id": 14006,
+      "thumb": "sticker_14006.webp",
+      "res": "sticker_14006.webp"
+    },
+    {
+      "id": 14007,
+      "thumb": "sticker_14007.webp",
+      "res": "sticker_14007.webp"
+    },
+    {
+      "id": 14008,
+      "thumb": "sticker_14008.webp",
+      "res": "sticker_14008.webp"
+    },
+    {
+      "id": 14009,
+      "thumb": "sticker_14009.webp",
+      "res": "sticker_14009.webp"
+    },
+    {
+      "id": 14010,
+      "thumb": "sticker_14010.webp",
+      "res": "sticker_14010.webp"
+    },
+    {
+      "id": 14011,
+      "thumb": "sticker_14011.webp",
+      "res": "sticker_14011.webp"
+    },
+    {
+      "id": 14012,
+      "thumb": "sticker_14012.webp",
+      "res": "sticker_14012.webp"
+    },
+    {
+      "id": 14013,
+      "thumb": "sticker_14013.webp",
+      "res": "sticker_14013.webp"
+    },
+    {
+      "id": 14014,
+      "thumb": "sticker_14014.webp",
+      "res": "sticker_14014.webp"
+    },
+    {
+      "id": 14015,
+      "thumb": "sticker_14015.webp",
+      "res": "sticker_14015.webp"
+    },
+    {
+      "id": 14016,
+      "thumb": "sticker_14016.webp",
+      "res": "sticker_14016.webp"
+    },
+    {
+      "id": 14017,
+      "thumb": "sticker_14017.webp",
+      "res": "sticker_14017.webp"
+    },
+    {
+      "id": 14018,
+      "thumb": "sticker_14018.webp",
+      "res": "sticker_14018.webp"
+    },
+    {
+      "id": 14019,
+      "thumb": "sticker_14019.webp",
+      "res": "sticker_14019.webp"
+    },
+    {
+      "id": 14020,
+      "thumb": "sticker_14020.webp",
+      "res": "sticker_14020.webp"
+    },
+    {
+      "id": 14021,
+      "thumb": "sticker_14021.webp",
+      "res": "sticker_14021.webp"
+    },
+    {
+      "id": 14022,
+      "thumb": "sticker_14022.webp",
+      "res": "sticker_14022.webp"
+    },
+    {
+      "id": 14023,
+      "thumb": "sticker_14023.webp",
+      "res": "sticker_14023.webp"
+    },
+    {
+      "id": 14024,
+      "thumb": "sticker_14024.webp",
+      "res": "sticker_14024.webp"
+    },
+    {
+      "id": 14025,
+      "thumb": "sticker_14025.webp",
+      "res": "sticker_14025.webp"
+    },
+    {
+      "id": 14026,
+      "thumb": "sticker_14026.webp",
+      "res": "sticker_14026.webp"
+    },
+    {
+      "id": 14027,
+      "thumb": "sticker_14027.webp",
+      "res": "sticker_14027.webp"
+    },
+    {
+      "id": 14028,
+      "thumb": "sticker_14028.webp",
+      "res": "sticker_14028.webp"
+    },
+    {
+      "id": 14029,
+      "thumb": "sticker_14029.webp",
+      "res": "sticker_14029.webp"
+    },
+    {
+      "id": 14030,
+      "thumb": "sticker_14030.webp",
+      "res": "sticker_14030.webp"
+    },
+    {
+      "id": 14031,
+      "thumb": "sticker_14031.webp",
+      "res": "sticker_14031.webp"
+    },
+    {
+      "id": 14032,
+      "thumb": "sticker_14032.webp",
+      "res": "sticker_14032.webp"
+    },
+    {
+      "id": 14033,
+      "thumb": "sticker_14033.webp",
+      "res": "sticker_14033.webp"
+    },
+    {
+      "id": 14034,
+      "thumb": "sticker_14034.webp",
+      "res": "sticker_14034.webp"
+    },
+    {
+      "id": 14035,
+      "thumb": "sticker_14035.webp",
+      "res": "sticker_14035.webp"
+    },
+    {
+      "id": 14036,
+      "thumb": "sticker_14036.webp",
+      "res": "sticker_14036.webp"
+    },
+    {
+      "id": 15001,
+      "thumb": "sticker_15001.webp",
+      "res": "sticker_15001.webp"
+    },
+    {
+      "id": 15002,
+      "thumb": "sticker_15002.webp",
+      "res": "sticker_15002.webp"
+    },
+    {
+      "id": 15003,
+      "thumb": "sticker_15003.webp",
+      "res": "sticker_15003.webp"
+    },
+    {
+      "id": 15004,
+      "thumb": "sticker_15004.webp",
+      "res": "sticker_15004.webp"
+    },
+    {
+      "id": 15005,
+      "thumb": "sticker_15005.webp",
+      "res": "sticker_15005.webp"
+    },
+    {
+      "id": 15006,
+      "thumb": "sticker_15006.webp",
+      "res": "sticker_15006.webp"
+    },
+    {
+      "id": 15007,
+      "thumb": "sticker_15007.webp",
+      "res": "sticker_15007.webp"
+    },
+    {
+      "id": 15008,
+      "thumb": "sticker_15008.webp",
+      "res": "sticker_15008.webp"
+    },
+    {
+      "id": 15009,
+      "thumb": "sticker_15009.webp",
+      "res": "sticker_15009.webp"
+    },
+    {
+      "id": 15010,
+      "thumb": "sticker_15010.webp",
+      "res": "sticker_15010.webp"
+    },
+    {
+      "id": 15011,
+      "thumb": "sticker_15011.webp",
+      "res": "sticker_15011.webp"
+    },
+    {
+      "id": 15012,
+      "thumb": "sticker_15012.webp",
+      "res": "sticker_15012.webp"
+    },
+    {
+      "id": 15013,
+      "thumb": "sticker_15013.webp",
+      "res": "sticker_15013.webp"
+    },
+    {
+      "id": 15014,
+      "thumb": "sticker_15014.webp",
+      "res": "sticker_15014.webp"
+    },
+    {
+      "id": 15015,
+      "thumb": "sticker_15015.webp",
+      "res": "sticker_15015.webp"
+    },
+    {
+      "id": 15016,
+      "thumb": "sticker_15016.webp",
+      "res": "sticker_15016.webp"
+    },
+    {
+      "id": 15017,
+      "thumb": "sticker_15017.webp",
+      "res": "sticker_15017.webp"
+    },
+    {
+      "id": 15018,
+      "thumb": "sticker_15018.webp",
+      "res": "sticker_15018.webp"
+    },
+    {
+      "id": 15019,
+      "thumb": "sticker_15019.webp",
+      "res": "sticker_15019.webp"
+    },
+    {
+      "id": 15020,
+      "thumb": "sticker_15020.webp",
+      "res": "sticker_15020.webp"
+    },
+    {
+      "id": 15021,
+      "thumb": "sticker_15021.webp",
+      "res": "sticker_15021.webp"
+    },
+    {
+      "id": 15022,
+      "thumb": "sticker_15022.webp",
+      "res": "sticker_15022.webp"
+    },
+    {
+      "id": 15023,
+      "thumb": "sticker_15023.webp",
+      "res": "sticker_15023.webp"
+    },
+    {
+      "id": 15024,
+      "thumb": "sticker_15024.webp",
+      "res": "sticker_15024.webp"
+    },
+    {
+      "id": 15025,
+      "thumb": "sticker_15025.webp",
+      "res": "sticker_15025.webp"
+    },
+    {
+      "id": 15026,
+      "thumb": "sticker_15026.webp",
+      "res": "sticker_15026.webp"
+    },
+    {
+      "id": 15027,
+      "thumb": "sticker_15027.webp",
+      "res": "sticker_15027.webp"
+    },
+    {
+      "id": 15028,
+      "thumb": "sticker_15028.webp",
+      "res": "sticker_15028.webp"
+    },
+    {
+      "id": 15029,
+      "thumb": "sticker_15029.webp",
+      "res": "sticker_15029.webp"
+    },
+    {
+      "id": 15030,
+      "thumb": "sticker_15030.webp",
+      "res": "sticker_15030.webp"
+    },
+    {
+      "id": 15031,
+      "thumb": "sticker_15031.webp",
+      "res": "sticker_15031.webp"
+    },
+    {
+      "id": 15032,
+      "thumb": "sticker_15032.webp",
+      "res": "sticker_15032.webp"
+    },
+    {
+      "id": 15033,
+      "thumb": "sticker_15033.webp",
+      "res": "sticker_15033.webp"
+    },
+    {
+      "id": 15034,
+      "thumb": "sticker_15034.webp",
+      "res": "sticker_15034.webp"
+    },
+    {
+      "id": 15035,
+      "thumb": "sticker_15035.webp",
+      "res": "sticker_15035.webp"
+    },
+    {
+      "id": 15036,
+      "thumb": "sticker_15036.webp",
+      "res": "sticker_15036.webp"
+    },
+    {
+      "id": 16001,
+      "thumb": "sticker_16001.webp",
+      "res": "sticker_16001.webp"
+    },
+    {
+      "id": 16002,
+      "thumb": "sticker_16002.webp",
+      "res": "sticker_16002.webp"
+    },
+    {
+      "id": 16003,
+      "thumb": "sticker_16003.webp",
+      "res": "sticker_16003.webp"
+    },
+    {
+      "id": 16004,
+      "thumb": "sticker_16004.webp",
+      "res": "sticker_16004.webp"
+    },
+    {
+      "id": 16005,
+      "thumb": "sticker_16005.webp",
+      "res": "sticker_16005.webp"
+    },
+    {
+      "id": 16006,
+      "thumb": "sticker_16006.webp",
+      "res": "sticker_16006.webp"
+    },
+    {
+      "id": 16007,
+      "thumb": "sticker_16007.webp",
+      "res": "sticker_16007.webp"
+    },
+    {
+      "id": 16008,
+      "thumb": "sticker_16008.webp",
+      "res": "sticker_16008.webp"
+    },
+    {
+      "id": 16009,
+      "thumb": "sticker_16009.webp",
+      "res": "sticker_16009.webp"
+    },
+    {
+      "id": 16010,
+      "thumb": "sticker_16010.webp",
+      "res": "sticker_16010.webp"
+    },
+    {
+      "id": 16011,
+      "thumb": "sticker_16011.webp",
+      "res": "sticker_16011.webp"
+    },
+    {
+      "id": 16012,
+      "thumb": "sticker_16012.webp",
+      "res": "sticker_16012.webp"
+    },
+    {
+      "id": 16013,
+      "thumb": "sticker_16013.webp",
+      "res": "sticker_16013.webp"
+    },
+    {
+      "id": 16014,
+      "thumb": "sticker_16014.webp",
+      "res": "sticker_16014.webp"
+    },
+    {
+      "id": 16015,
+      "thumb": "sticker_16015.webp",
+      "res": "sticker_16015.webp"
+    },
+    {
+      "id": 16016,
+      "thumb": "sticker_16016.webp",
+      "res": "sticker_16016.webp"
+    },
+    {
+      "id": 16017,
+      "thumb": "sticker_16017.webp",
+      "res": "sticker_16017.webp"
+    },
+    {
+      "id": 16018,
+      "thumb": "sticker_16018.webp",
+      "res": "sticker_16018.webp"
+    },
+    {
+      "id": 16019,
+      "thumb": "sticker_16019.webp",
+      "res": "sticker_16019.webp"
+    },
+    {
+      "id": 16020,
+      "thumb": "sticker_16020.webp",
+      "res": "sticker_16020.webp"
+    },
+    {
+      "id": 16021,
+      "thumb": "sticker_16021.webp",
+      "res": "sticker_16021.webp"
+    },
+    {
+      "id": 16022,
+      "thumb": "sticker_16022.webp",
+      "res": "sticker_16022.webp"
+    },
+    {
+      "id": 16023,
+      "thumb": "sticker_16023.webp",
+      "res": "sticker_16023.webp"
+    },
+    {
+      "id": 16024,
+      "thumb": "sticker_16024.webp",
+      "res": "sticker_16024.webp"
+    },
+    {
+      "id": 16025,
+      "thumb": "sticker_16025.webp",
+      "res": "sticker_16025.webp"
+    },
+    {
+      "id": 16026,
+      "thumb": "sticker_16026.webp",
+      "res": "sticker_16026.webp"
+    },
+    {
+      "id": 16027,
+      "thumb": "sticker_16027.webp",
+      "res": "sticker_16027.webp"
+    },
+    {
+      "id": 16028,
+      "thumb": "sticker_16028.webp",
+      "res": "sticker_16028.webp"
+    },
+    {
+      "id": 16029,
+      "thumb": "sticker_16029.webp",
+      "res": "sticker_16029.webp"
+    },
+    {
+      "id": 16030,
+      "thumb": "sticker_16030.webp",
+      "res": "sticker_16030.webp"
+    },
+    {
+      "id": 16031,
+      "thumb": "sticker_16031.webp",
+      "res": "sticker_16031.webp"
+    },
+    {
+      "id": 16032,
+      "thumb": "sticker_16032.webp",
+      "res": "sticker_16032.webp"
+    },
+    {
+      "id": 16033,
+      "thumb": "sticker_16033.webp",
+      "res": "sticker_16033.webp"
+    },
+    {
+      "id": 16034,
+      "thumb": "sticker_16034.webp",
+      "res": "sticker_16034.webp"
+    },
+    {
+      "id": 16035,
+      "thumb": "sticker_16035.webp",
+      "res": "sticker_16035.webp"
+    },
+    {
+      "id": 16036,
+      "thumb": "sticker_16036.webp",
+      "res": "sticker_16036.webp"
+    },
+    {
+      "id": 17001,
+      "thumb": "sticker_17001.webp",
+      "res": "sticker_17001.webp"
+    },
+    {
+      "id": 17002,
+      "thumb": "sticker_17002.webp",
+      "res": "sticker_17002.webp"
+    },
+    {
+      "id": 17003,
+      "thumb": "sticker_17003.webp",
+      "res": "sticker_17003.webp"
+    },
+    {
+      "id": 17004,
+      "thumb": "sticker_17004.webp",
+      "res": "sticker_17004.webp"
+    },
+    {
+      "id": 17005,
+      "thumb": "sticker_17005.webp",
+      "res": "sticker_17005.webp"
+    },
+    {
+      "id": 17006,
+      "thumb": "sticker_17006.webp",
+      "res": "sticker_17006.webp"
+    },
+    {
+      "id": 17007,
+      "thumb": "sticker_17007.webp",
+      "res": "sticker_17007.webp"
+    },
+    {
+      "id": 17008,
+      "thumb": "sticker_17008.webp",
+      "res": "sticker_17008.webp"
+    },
+    {
+      "id": 17009,
+      "thumb": "sticker_17009.webp",
+      "res": "sticker_17009.webp"
+    },
+    {
+      "id": 17010,
+      "thumb": "sticker_17010.webp",
+      "res": "sticker_17010.webp"
+    },
+    {
+      "id": 17011,
+      "thumb": "sticker_17011.webp",
+      "res": "sticker_17011.webp"
+    },
+    {
+      "id": 17012,
+      "thumb": "sticker_17012.webp",
+      "res": "sticker_17012.webp"
+    },
+    {
+      "id": 17013,
+      "thumb": "sticker_17013.webp",
+      "res": "sticker_17013.webp"
+    },
+    {
+      "id": 17014,
+      "thumb": "sticker_17014.webp",
+      "res": "sticker_17014.webp"
+    },
+    {
+      "id": 17015,
+      "thumb": "sticker_17015.webp",
+      "res": "sticker_17015.webp"
+    },
+    {
+      "id": 17016,
+      "thumb": "sticker_17016.webp",
+      "res": "sticker_17016.webp"
+    },
+    {
+      "id": 17017,
+      "thumb": "sticker_17017.webp",
+      "res": "sticker_17017.webp"
+    },
+    {
+      "id": 17018,
+      "thumb": "sticker_17018.webp",
+      "res": "sticker_17018.webp"
+    },
+    {
+      "id": 17019,
+      "thumb": "sticker_17019.webp",
+      "res": "sticker_17019.webp"
+    },
+    {
+      "id": 17020,
+      "thumb": "sticker_17020.webp",
+      "res": "sticker_17020.webp"
+    },
+    {
+      "id": 17021,
+      "thumb": "sticker_17021.webp",
+      "res": "sticker_17021.webp"
+    },
+    {
+      "id": 17022,
+      "thumb": "sticker_17022.webp",
+      "res": "sticker_17022.webp"
+    },
+    {
+      "id": 17023,
+      "thumb": "sticker_17023.webp",
+      "res": "sticker_17023.webp"
+    },
+    {
+      "id": 17024,
+      "thumb": "sticker_17024.webp",
+      "res": "sticker_17024.webp"
+    },
+    {
+      "id": 17025,
+      "thumb": "sticker_17025.webp",
+      "res": "sticker_17025.webp"
+    },
+    {
+      "id": 17026,
+      "thumb": "sticker_17026.webp",
+      "res": "sticker_17026.webp"
+    },
+    {
+      "id": 17027,
+      "thumb": "sticker_17027.webp",
+      "res": "sticker_17027.webp"
+    },
+    {
+      "id": 17028,
+      "thumb": "sticker_17028.webp",
+      "res": "sticker_17028.webp"
+    },
+    {
+      "id": 17029,
+      "thumb": "sticker_17029.webp",
+      "res": "sticker_17029.webp"
+    },
+    {
+      "id": 17030,
+      "thumb": "sticker_17030.webp",
+      "res": "sticker_17030.webp"
+    },
+    {
+      "id": 17031,
+      "thumb": "sticker_17031.webp",
+      "res": "sticker_17031.webp"
+    },
+    {
+      "id": 17032,
+      "thumb": "sticker_17032.webp",
+      "res": "sticker_17032.webp"
+    },
+    {
+      "id": 17033,
+      "thumb": "sticker_17033.webp",
+      "res": "sticker_17033.webp"
+    },
+    {
+      "id": 17034,
+      "thumb": "sticker_17034.webp",
+      "res": "sticker_17034.webp"
+    },
+    {
+      "id": 17035,
+      "thumb": "sticker_17035.webp",
+      "res": "sticker_17035.webp"
+    },
+    {
+      "id": 17036,
+      "thumb": "sticker_17036.webp",
+      "res": "sticker_17036.webp"
+    },
+    {
+      "id": 18001,
+      "thumb": "sticker_18001.webp",
+      "res": "sticker_18001.webp"
+    },
+    {
+      "id": 18002,
+      "thumb": "sticker_18002.webp",
+      "res": "sticker_18002.webp"
+    },
+    {
+      "id": 18003,
+      "thumb": "sticker_18003.webp",
+      "res": "sticker_18003.webp"
+    },
+    {
+      "id": 18004,
+      "thumb": "sticker_18004.webp",
+      "res": "sticker_18004.webp"
+    },
+    {
+      "id": 18005,
+      "thumb": "sticker_18005.webp",
+      "res": "sticker_18005.webp"
+    },
+    {
+      "id": 18006,
+      "thumb": "sticker_18006.webp",
+      "res": "sticker_18006.webp"
+    },
+    {
+      "id": 18007,
+      "thumb": "sticker_18007.webp",
+      "res": "sticker_18007.webp"
+    },
+    {
+      "id": 18008,
+      "thumb": "sticker_18008.webp",
+      "res": "sticker_18008.webp"
+    },
+    {
+      "id": 18009,
+      "thumb": "sticker_18009.webp",
+      "res": "sticker_18009.webp"
+    },
+    {
+      "id": 18010,
+      "thumb": "sticker_18010.webp",
+      "res": "sticker_18010.webp"
+    },
+    {
+      "id": 18011,
+      "thumb": "sticker_18011.webp",
+      "res": "sticker_18011.webp"
+    },
+    {
+      "id": 18012,
+      "thumb": "sticker_18012.webp",
+      "res": "sticker_18012.webp"
+    },
+    {
+      "id": 18013,
+      "thumb": "sticker_18013.webp",
+      "res": "sticker_18013.webp"
+    },
+    {
+      "id": 18014,
+      "thumb": "sticker_18014.webp",
+      "res": "sticker_18014.webp"
+    },
+    {
+      "id": 18015,
+      "thumb": "sticker_18015.webp",
+      "res": "sticker_18015.webp"
+    },
+    {
+      "id": 18016,
+      "thumb": "sticker_18016.webp",
+      "res": "sticker_18016.webp"
+    },
+    {
+      "id": 18017,
+      "thumb": "sticker_18017.webp",
+      "res": "sticker_18017.webp"
+    },
+    {
+      "id": 18018,
+      "thumb": "sticker_18018.webp",
+      "res": "sticker_18018.webp"
+    },
+    {
+      "id": 18019,
+      "thumb": "sticker_18019.webp",
+      "res": "sticker_18019.webp"
+    },
+    {
+      "id": 18020,
+      "thumb": "sticker_18020.webp",
+      "res": "sticker_18020.webp"
+    },
+    {
+      "id": 18021,
+      "thumb": "sticker_18021.webp",
+      "res": "sticker_18021.webp"
+    },
+    {
+      "id": 18022,
+      "thumb": "sticker_18022.webp",
+      "res": "sticker_18022.webp"
+    },
+    {
+      "id": 18023,
+      "thumb": "sticker_18023.webp",
+      "res": "sticker_18023.webp"
+    },
+    {
+      "id": 18024,
+      "thumb": "sticker_18024.webp",
+      "res": "sticker_18024.webp"
+    },
+    {
+      "id": 18025,
+      "thumb": "sticker_18025.webp",
+      "res": "sticker_18025.webp"
+    },
+    {
+      "id": 18026,
+      "thumb": "sticker_18026.webp",
+      "res": "sticker_18026.webp"
+    },
+    {
+      "id": 18027,
+      "thumb": "sticker_18027.webp",
+      "res": "sticker_18027.webp"
+    },
+    {
+      "id": 18028,
+      "thumb": "sticker_18028.webp",
+      "res": "sticker_18028.webp"
+    },
+    {
+      "id": 18029,
+      "thumb": "sticker_18029.webp",
+      "res": "sticker_18029.webp"
+    },
+    {
+      "id": 18030,
+      "thumb": "sticker_18030.webp",
+      "res": "sticker_18030.webp"
+    },
+    {
+      "id": 18031,
+      "thumb": "sticker_18031.webp",
+      "res": "sticker_18031.webp"
+    },
+    {
+      "id": 18032,
+      "thumb": "sticker_18032.webp",
+      "res": "sticker_18032.webp"
+    },
+    {
+      "id": 18033,
+      "thumb": "sticker_18033.webp",
+      "res": "sticker_18033.webp"
+    },
+    {
+      "id": 18034,
+      "thumb": "sticker_18034.webp",
+      "res": "sticker_18034.webp"
+    },
+    {
+      "id": 18035,
+      "thumb": "sticker_18035.webp",
+      "res": "sticker_18035.webp"
+    },
+    {
+      "id": 18036,
+      "thumb": "sticker_18036.webp",
+      "res": "sticker_18036.webp"
+    },
+    {
+      "id": 19001,
+      "thumb": "sticker_19001.webp",
+      "res": "sticker_19001.webp"
+    },
+    {
+      "id": 19002,
+      "thumb": "sticker_19002.webp",
+      "res": "sticker_19002.webp"
+    },
+    {
+      "id": 19003,
+      "thumb": "sticker_19003.webp",
+      "res": "sticker_19003.webp"
+    },
+    {
+      "id": 19004,
+      "thumb": "sticker_19004.webp",
+      "res": "sticker_19004.webp"
+    },
+    {
+      "id": 19005,
+      "thumb": "sticker_19005.webp",
+      "res": "sticker_19005.webp"
+    },
+    {
+      "id": 19006,
+      "thumb": "sticker_19006.webp",
+      "res": "sticker_19006.webp"
+    },
+    {
+      "id": 19007,
+      "thumb": "sticker_19007.webp",
+      "res": "sticker_19007.webp"
+    },
+    {
+      "id": 19008,
+      "thumb": "sticker_19008.webp",
+      "res": "sticker_19008.webp"
+    },
+    {
+      "id": 19009,
+      "thumb": "sticker_19009.webp",
+      "res": "sticker_19009.webp"
+    },
+    {
+      "id": 19010,
+      "thumb": "sticker_19010.webp",
+      "res": "sticker_19010.webp"
+    },
+    {
+      "id": 19011,
+      "thumb": "sticker_19011.webp",
+      "res": "sticker_19011.webp"
+    },
+    {
+      "id": 19012,
+      "thumb": "sticker_19012.webp",
+      "res": "sticker_19012.webp"
+    },
+    {
+      "id": 19013,
+      "thumb": "sticker_19013.webp",
+      "res": "sticker_19013.webp"
+    },
+    {
+      "id": 19014,
+      "thumb": "sticker_19014.webp",
+      "res": "sticker_19014.webp"
+    },
+    {
+      "id": 19015,
+      "thumb": "sticker_19015.webp",
+      "res": "sticker_19015.webp"
+    },
+    {
+      "id": 19016,
+      "thumb": "sticker_19016.webp",
+      "res": "sticker_19016.webp"
+    },
+    {
+      "id": 19017,
+      "thumb": "sticker_19017.webp",
+      "res": "sticker_19017.webp"
+    },
+    {
+      "id": 19018,
+      "thumb": "sticker_19018.webp",
+      "res": "sticker_19018.webp"
+    },
+    {
+      "id": 19019,
+      "thumb": "sticker_19019.webp",
+      "res": "sticker_19019.webp"
+    },
+    {
+      "id": 19020,
+      "thumb": "sticker_19020.webp",
+      "res": "sticker_19020.webp"
+    },
+    {
+      "id": 19021,
+      "thumb": "sticker_19021.webp",
+      "res": "sticker_19021.webp"
+    },
+    {
+      "id": 19022,
+      "thumb": "sticker_19022.webp",
+      "res": "sticker_19022.webp"
+    },
+    {
+      "id": 19023,
+      "thumb": "sticker_19023.webp",
+      "res": "sticker_19023.webp"
+    },
+    {
+      "id": 19024,
+      "thumb": "sticker_19024.webp",
+      "res": "sticker_19024.webp"
+    },
+    {
+      "id": 19025,
+      "thumb": "sticker_19025.webp",
+      "res": "sticker_19025.webp"
+    },
+    {
+      "id": 19026,
+      "thumb": "sticker_19026.webp",
+      "res": "sticker_19026.webp"
+    },
+    {
+      "id": 19027,
+      "thumb": "sticker_19027.webp",
+      "res": "sticker_19027.webp"
+    },
+    {
+      "id": 19028,
+      "thumb": "sticker_19028.webp",
+      "res": "sticker_19028.webp"
+    },
+    {
+      "id": 19029,
+      "thumb": "sticker_19029.webp",
+      "res": "sticker_19029.webp"
+    },
+    {
+      "id": 19030,
+      "thumb": "sticker_19030.webp",
+      "res": "sticker_19030.webp"
+    },
+    {
+      "id": 19031,
+      "thumb": "sticker_19031.webp",
+      "res": "sticker_19031.webp"
+    },
+    {
+      "id": 19032,
+      "thumb": "sticker_19032.webp",
+      "res": "sticker_19032.webp"
+    },
+    {
+      "id": 19033,
+      "thumb": "sticker_19033.webp",
+      "res": "sticker_19033.webp"
+    },
+    {
+      "id": 19034,
+      "thumb": "sticker_19034.webp",
+      "res": "sticker_19034.webp"
+    },
+    {
+      "id": 19035,
+      "thumb": "sticker_19035.webp",
+      "res": "sticker_19035.webp"
+    },
+    {
+      "id": 19036,
+      "thumb": "sticker_19036.webp",
+      "res": "sticker_19036.webp"
+    }
+  ]
+}

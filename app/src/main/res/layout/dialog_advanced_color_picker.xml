@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="20dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FDFDFD"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
+
+            <!-- Header -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="18dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:text="@string/color_picker_title"
+                    android:textColor="#1A1A1A"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnClose"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/btnClose"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/close"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#1A1A1A" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="#F0F0F0" />
+
+            <!-- Saturation / Value square -->
+            <com.notebook.notes.checklist.ui.colorpicker.SaturationValueView
+                android:id="@+id/svPicker"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/color_picker_sv_area" />
+
+            <!-- Eyedropper + sliders -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btnEyedropper"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/color_picker_eyedropper"
+                    android:enabled="false"
+                    android:alpha="0.38"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_eyedropper"
+                    app:tint="@color/text_black_2" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.notebook.notes.checklist.ui.colorpicker.HueSliderView
+                        android:id="@+id/hueSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/color_picker_hue" />
+
+                    <com.notebook.notes.checklist.ui.colorpicker.AlphaSliderView
+                        android:id="@+id/alphaSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:contentDescription="@string/color_picker_alpha" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- RGB row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnColorMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+
+                    android:background="@drawable/bg_color_picker_input"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="8dp"
+                    android:text="@string/color_mode_rgb"
+                    android:textColor="@color/text_black_2"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etRed"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_color_picker_input"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center"
+                    android:hint="R"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/text_black_2"
+                    android:textSize="13sp"
+                    tools:text="128" />
+
+                <EditText
+                    android:id="@+id/etGreen"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_color_picker_input"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center"
+                    android:hint="G"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/text_black_2"
+                    android:textSize="13sp"
+                    tools:text="64" />
+
+                <EditText
+                    android:id="@+id/etBlue"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_color_picker_input"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center"
+                    android:hint="B"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/text_black_2"
+                    android:textSize="13sp"
+                    tools:text="255" />
+
+                <TextView
+                    android:id="@+id/tvAlphaPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1.1"
+                    android:background="@drawable/bg_color_picker_input"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center"
+                    android:textColor="@color/text_black_2"
+                    android:textSize="13sp"
+                    tools:text="100%" />
+
+            </LinearLayout>
+
+            <!-- Apply -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnApply"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:text="@string/color_picker_apply"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                app:backgroundTint="@color/app_primary_color"
+                app:cornerRadius="14dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

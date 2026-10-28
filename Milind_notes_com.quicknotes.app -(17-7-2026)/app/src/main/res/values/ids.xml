@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tag_empty_delete_watcher" type="id" />
+    <item name="tag_sticker_path" type="id" />
+    <item name="tag_bg_path" type="id" />
+    <item name="tag_svg_path" type="id" />
+    <item name="tag_tape_path" type="id" />
+</resources>

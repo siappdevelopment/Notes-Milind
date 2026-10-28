@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Soft outer wave / halo -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/permission_btn_wave" />
+            <corners android:radius="34dp" />
+        </shape>
+    </item>
+
+    <!-- Solid button inset so the wave shows around it -->
+    <item
+        android:bottom="5dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="5dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/app_primary_color" />
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+
+</layer-list>

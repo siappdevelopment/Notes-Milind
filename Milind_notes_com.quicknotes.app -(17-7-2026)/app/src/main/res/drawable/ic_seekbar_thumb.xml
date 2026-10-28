@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer Shadow/Glow (Transparent) -->
+    <item>
+        <shape android:shape="oval">
+            <size android:width="28dp" android:height="28dp"/>
+            <solid android:color="@color/white"/>
+        </shape>
+    </item>
+
+    <!-- White Circle -->
+    <item android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="2dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/white"/>
+        </shape>
+    </item>
+
+    <!-- Purple Center -->
+    <item android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/app_primary_color"/>
+        </shape>
+    </item>
+</layer-list>

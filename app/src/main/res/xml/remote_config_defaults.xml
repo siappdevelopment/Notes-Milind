@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Firebase Remote Config defaults for dynamic app flow.
+
+  Keys (must match RemoteConfigManager):
+    screen_flow                  – JSON array of FlowStep names (order = navigation order)
+    splash_permission_mode       – NONE | NOTIFICATION | CALL_STATE | BOTH
+    permission_screen_permissions – JSON array of PermissionType names (request order)
+    onboarding_count             – 0–3 onboarding pages to show (0 = skip onboarding)
+    show_paywall_after_onboarding – true = insert PREMIUM before HOME for non-premium users (once)
+    paywall_session_interval     – show session paywall every N cold launches (0 = disabled)
+    feedback_url                 – plain feedback API base URL (no encrypt)
+
+  FlowStep values:
+    LANGUAGE, ONBOARDING, PERMISSION, HOME, UPDATE, RATE_US, PREMIUM
+
+  PermissionType values:
+    NOTIFICATION, CALL_STATE, OVERLAY
+
+  Splash is always first and is NOT listed in screen_flow.
+-->
+<defaultsMap>
+    <!--
+      Default screen sequence after Splash.
+      Change order / omit screens remotely without an app update.
+      Example: ["PERMISSION","LANGUAGE","ONBOARDING","HOME"]
+      Example: ["HOME"]
+    -->
+    <entry>
+        <key>screen_flow</key>
+        <value>["LANGUAGE","ONBOARDING","PERMISSION","HOME"]</value>
+    </entry>
+
+    <!--
+      Permissions requested on Splash before the first screen_flow step.
+      NONE         – no splash permission prompts
+      NOTIFICATION – POST_NOTIFICATIONS only
+      CALL_STATE   – READ_PHONE_STATE only
+      BOTH         – POST_NOTIFICATIONS then READ_PHONE_STATE
+      Allow and deny both continue the flow.
+    -->
+    <entry>
+        <key>splash_permission_mode</key>
+        <value>BOTH</value>
+    </entry>
+
+    <!--
+      Permissions requested on the PERMISSION step (Call / Overlay UIs — no Welcome).
+      Order is exact; already-granted entries are skipped.
+      Single screen example: ["OVERLAY"]
+      Example: ["CALL_STATE","OVERLAY"]
+    -->
+    <entry>
+        <key>permission_screen_permissions</key>
+        <value>["CALL_STATE","NOTIFICATION","OVERLAY"]</value>
+    </entry>
+
+    <!--
+      Number of onboarding pages shown (content is local; only count is remote).
+      0 = skip onboarding, 1–3 = show that many pages in order.
+    -->
+    <entry>
+        <key>onboarding_count</key>
+        <value>3</value>
+    </entry>
+
+    <!--
+      Repeat onboarding after every N normal app launches.
+      0 = show onboarding once only. 1 = every other launch, 2 = every third launch, etc.
+      Can also be nested anywhere inside the ads JSON as "onboarding_repeat_count": N.
+    -->
+    <entry>
+        <key>onboarding_repeat_count</key>
+        <value>2</value>
+    </entry>
+
+    <!--
+      When true, PREMIUM (PaywallActivity) is inserted immediately before HOME
+      for non-premium users during the first-run path only
+      (after Language / Onboarding / Permission as configured).
+      Premium users and subsequent launches skip it. Default false = never insert.
+      Override in Firebase Console (Boolean or String "true"/"false") and Publish.
+    -->
+    <entry>
+        <key>show_paywall_after_onboarding</key>
+        <value>true</value>
+    </entry>
+
+    <!--
+      Session-based paywall: show PaywallActivity every N cold app launches
+      for non-premium users (independent of show_paywall_after_onboarding).
+      0 = disabled. Examples: 5, 10, 20.
+      Skipped when the onboarding paywall is already scheduled for the same launch.
+      Override in Firebase Console (Number) and Publish.
+    -->
+    <entry>
+        <key>paywall_session_interval</key>
+        <value>0</value>
+    </entry>
+
+    <!--
+      Plain feedback API base URL (no encrypt), e.g. http://139.59.79.157:3002
+      Nested under APi.feedback_url in ads JSON is also supported.
+    -->
+    <entry>
+        <key>feedback_url</key>
+        <value></value>
+    </entry>
+</defaultsMap>
+
