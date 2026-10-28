@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="4dp"
+
+    android:layout_height="wrap_content"
+  >
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back"
+        android:padding="8dp"
+       android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/searchContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/searchContainer"
+        app:tint="@color/app_txt_black" />
+
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/note_header_search_height"
+        android:layout_marginStart="8dp"
+        android:visibility="invisible"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/bg_category_chip_unselected"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp"
+        app:layout_constraintEnd_toStartOf="@id/btnBookmark"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_search"
+            app:tint="?attr/colorOnSurfaceVariant" />
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:maxLength="70"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/cd_search"
+            android:hint="@string/search_notepad"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant" />
+
+    </LinearLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/btnBookmark"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:padding="4dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/bookmark_note"
+        android:src="@drawable/ic_bookmark"
+        app:layout_constraintBottom_toBottomOf="@id/searchContainer"
+        app:layout_constraintEnd_toStartOf="@id/btnAttachment"
+        app:layout_constraintTop_toTopOf="@id/searchContainer"
+        app:tint="@color/app_txt_black" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/btnAttachment"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/attachment"
+        android:padding="4dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_attecht"
+        app:layout_constraintBottom_toBottomOf="@id/searchContainer"
+        app:layout_constraintEnd_toStartOf="@id/btnMore"
+        app:layout_constraintTop_toTopOf="@id/searchContainer"
+        app:tint="@color/app_txt_black" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/btnMore"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/drawer_more"
+        android:src="@drawable/ic_more_vert"
+        android:padding="4dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/searchContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/searchContainer"
+        app:tint="@color/app_txt_black" />
+
+    <TextView
+        android:id="@+id/tvNoteDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/plus_jakarta_sans_medium"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:textColor="@color/app_txt_black"
+        android:textSize="14sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchContainer"
+        tools:text="07/01, 14:20" />
+
+    <LinearLayout
+        android:id="@+id/btnCategorySelector"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/note_header_search_height"
+        android:layout_marginEnd="12dp"
+
+        android:background="@drawable/bg_category_chip_unselected"
+        android:contentDescription="@string/select_category"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNoteDate"
+        android:paddingEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNoteDate">
+
+        <ImageView
+            android:id="@+id/ivCategoryIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_category_default"
+            app:tint="@color/app_txt_black" />
+
+        <TextView
+            android:id="@+id/tvCategoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="14dp"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/category"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
+            android:textColor="@color/app_txt_black"
+            tools:text="Personal" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="4dp"
+            android:contentDescription="@null"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_expand_more"
+            app:tint="@color/app_txt_black" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

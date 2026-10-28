@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawingBottomToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/rich_text_toolbar_height"
+    android:background="?attr/colorSurface"
+    android:elevation="4dp"
+    android:paddingHorizontal="@dimen/rich_text_toolbar_padding_horizontal">
+
+    <ImageView
+        android:id="@+id/btnPen"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_rich_text_toolbar_item"
+        android:clickable="true"
+        android:contentDescription="@string/pen"
+        android:focusable="true"
+        android:padding="12dp"
+        android:src="@drawable/ic_drawing_op"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnDrawing"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/color_rich_text_toolbar_icon" />
+
+    <ImageView
+        android:id="@+id/btnDrawing"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_rich_text_toolbar_item"
+        android:clickable="true"
+        android:contentDescription="@string/highlighter"
+        android:focusable="true"
+        android:padding="12dp"
+        android:src="@drawable/ic_drawing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnSticker"
+        app:layout_constraintStart_toEndOf="@id/btnPen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/color_rich_text_toolbar_icon" />
+
+    <ImageView
+        android:id="@+id/btnSticker"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_rich_text_toolbar_item"
+        android:clickable="true"
+        android:contentDescription="@string/sticker"
+        android:focusable="true"
+        android:padding="12dp"
+        android:src="@drawable/ic_sticker"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnShape"
+        app:layout_constraintStart_toEndOf="@id/btnDrawing"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/color_rich_text_toolbar_icon" />
+
+    <ImageView
+        android:id="@+id/btnShape"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_rich_text_toolbar_item"
+        android:clickable="true"
+        android:contentDescription="@string/shape"
+        android:focusable="true"
+        android:padding="12dp"
+        android:src="@drawable/ic_tape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnGallery"
+        app:layout_constraintStart_toEndOf="@id/btnSticker"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/color_rich_text_toolbar_icon" />
+
+
+    <ImageView
+        android:id="@+id/btnGallery"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_rich_text_toolbar_item"
+        android:clickable="true"
+        android:contentDescription="@string/photo"
+        android:focusable="true"
+        android:padding="12dp"
+        android:src="@drawable/ic_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnEraser"
+        app:layout_constraintStart_toEndOf="@id/btnShape"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/color_rich_text_toolbar_icon" />
+
+    <ImageView
+        android:id="@+id/btnEraser"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_rich_text_toolbar_item"
+        android:clickable="true"
+        android:contentDescription="@string/eraser"
+        android:focusable="true"
+        android:padding="12dp"
+        android:src="@drawable/ic_earse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnGallery"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/color_rich_text_toolbar_icon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

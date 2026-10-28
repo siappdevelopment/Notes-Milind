@@ -1,0 +1,27 @@
+<svg width="842" height="595" viewBox="0 0 842 595" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_404_7309)">
+<rect width="842" height="595" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 595H842V0H0V595Z" fill="#99CFFF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15 580H827V15H15V580Z" fill="white"/>
+<path d="M826.5 15.5V71.5H15.5V15.5H826.5Z" fill="#BBE2FF" stroke="#B4D2FF"/>
+<path d="M15 168H829" stroke="#B4D2FF"/>
+<path d="M15 120H829" stroke="#B4D2FF"/>
+<path d="M15 215H829" stroke="#B4D2FF"/>
+<path d="M15 263H829" stroke="#B4D2FF"/>
+<path d="M15 311H829" stroke="#B4D2FF"/>
+<path d="M15 358H829" stroke="#B4D2FF"/>
+<path d="M15 406H829" stroke="#B4D2FF"/>
+<path d="M15 453H829" stroke="#B4D2FF"/>
+<path d="M15 501H829" stroke="#B4D2FF"/>
+<path d="M15 548H829" stroke="#B4D2FF"/>
+<path d="M67 15V580" stroke="#B4D2FF"/>
+<path d="M257 15V580" stroke="#B4D2FF"/>
+<path d="M637 15V580" stroke="#B4D2FF"/>
+<path d="M447 15V580" stroke="#B4D2FF"/>
+</g>
+<defs>
+<clipPath id="clip0_404_7309">
+<rect width="842" height="595" fill="white"/>
+</clipPath>
+</defs>
+</svg>

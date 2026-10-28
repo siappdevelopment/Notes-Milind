@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_navigation_drawer"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/drawerHeader"
+        layout="@layout/layout_nav_drawer_header" />
+
+    <include
+        android:id="@+id/upgradeCard"
+        layout="@layout/layout_nav_drawer_upgrade" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/drawerScroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <include
+                android:id="@+id/sectionCategories"
+                layout="@layout/item_nav_drawer_section_header" />
+
+            <FrameLayout
+                android:id="@+id/categoryListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/nav_drawer_category_margin_top"
+                android:background="@android:color/transparent"
+                android:clipChildren="true"
+                android:clipToPadding="true">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDrawerCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:clipChildren="true"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="true"
+                    android:overScrollMode="never"
+                    android:paddingTop="@dimen/nav_drawer_category_shadow_padding"
+                    android:paddingBottom="@dimen/nav_drawer_category_shadow_padding"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_nav_drawer_row" />
+
+                <View
+                    android:id="@+id/categoryFadeTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/nav_drawer_category_fade_height"
+                    android:layout_gravity="top"
+                    android:background="@drawable/bg_nav_drawer_category_fade_top"
+                    android:clickable="false"
+                    android:elevation="40dp"
+                    android:focusable="false"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <View
+                    android:id="@+id/categoryFadeBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/nav_drawer_category_fade_height"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/bg_nav_drawer_category_fade_bottom"
+                    android:clickable="false"
+                    android:elevation="40dp"
+                    android:focusable="false"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </FrameLayout>
+
+
+            <include
+                android:id="@+id/sectionOthers"
+                layout="@layout/item_nav_drawer_section_header" />
+
+            <include
+                android:id="@+id/rowBookmark"
+                layout="@layout/item_nav_drawer_row" />
+
+            <include
+                android:id="@+id/rowArchive"
+                layout="@layout/item_nav_drawer_row" />
+
+            <include
+                android:id="@+id/rowRecycleBin"
+                layout="@layout/item_nav_drawer_row" />
+
+            <include
+                android:id="@+id/rowSettings"
+                layout="@layout/item_nav_drawer_row" />
+
+
+
+            <include
+                android:id="@+id/sectionAbout"
+                layout="@layout/item_nav_drawer_section_header" />
+
+            <include
+                android:id="@+id/rowPrivacyPolicy"
+                layout="@layout/item_nav_drawer_row" />
+
+            <include
+                android:id="@+id/rowRateUs"
+                layout="@layout/item_nav_drawer_row" />
+
+            <include
+                android:id="@+id/rowShareApp"
+                layout="@layout/item_nav_drawer_row" />
+
+            <include
+                android:id="@+id/rowFeedback"
+                layout="@layout/item_nav_drawer_row" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/drawerFooter"
+        layout="@layout/layout_nav_drawer_footer" />
+
+</LinearLayout>

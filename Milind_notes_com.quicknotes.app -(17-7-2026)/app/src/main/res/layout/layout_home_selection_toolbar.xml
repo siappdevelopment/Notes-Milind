@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="0dp"
+    app:cardUseCompatPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_stroke" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="4dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="8dp">
+
+            <!-- Lock -->
+            <LinearLayout
+                android:id="@+id/btnSelectionLock"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="2dp">
+
+                <ImageView
+                    android:id="@+id/ivSelectionLock"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/lock_note"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_lock"
+                    app:tint="@color/text_black_2" />
+
+                <TextView
+                    android:id="@+id/tvSelectionLock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center_horizontal"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:text="@string/lock_note"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black_2"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Pin -->
+            <LinearLayout
+                android:id="@+id/btnSelectionPin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="2dp">
+
+                <ImageView
+                    android:id="@+id/ivSelectionPin"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/pin_note"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_op_pin"
+                    app:tint="@color/text_black_2" />
+
+                <TextView
+                    android:id="@+id/tvSelectionPin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center_horizontal"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:text="@string/pin_note"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black_2"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Add Reminder -->
+            <LinearLayout
+                android:id="@+id/btnSelectionReminder"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="2dp">
+
+                <ImageView
+                    android:id="@+id/ivSelectionReminder"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/add_reminder"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_op_reminder"
+                    app:tint="@color/text_black_2" />
+
+                <TextView
+                    android:id="@+id/tvSelectionReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center_horizontal"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:text="@string/add_reminder"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black_2"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Copy -->
+            <LinearLayout
+                android:id="@+id/btnSelectionCopy"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="2dp">
+
+                <ImageView
+                    android:id="@+id/ivSelectionCopy"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/copy"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_canvas_duplicate"
+                    app:tint="@color/text_black_2" />
+
+                <TextView
+                    android:id="@+id/tvSelectionCopy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center_horizontal"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:text="@string/copy"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black_2"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- Delete -->
+            <LinearLayout
+                android:id="@+id/btnSelectionDelete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingHorizontal="2dp">
+
+                <ImageView
+                    android:id="@+id/ivSelectionDelete"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/delete"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_delete"
+                    app:tint="@color/text_black_2" />
+
+                <TextView
+                    android:id="@+id/tvSelectionDelete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:gravity="center_horizontal"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:text="@string/delete"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_black_2"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,32 @@
+<svg width="842" height="595" viewBox="0 0 842 595" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1063_7734)">
+<rect width="842" height="595" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M842 3.6805e-05L842 595L-2.60083e-05 595L0 0L842 3.6805e-05Z" fill="#FFFAF9"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M105.777 68.0078V0.00012207H39.6662V68.0078L72.7218 52.3427L105.777 68.0078Z" fill="#FFCED6"/>
+<rect x="325" y="95" width="246.4" height="230" rx="12" fill="#B8E6D8"/>
+<rect x="330.6" y="140" width="235.2" height="179" rx="8" fill="#F7FFFC"/>
+<rect x="325" y="342" width="246.4" height="230" rx="12" fill="#E4EBC1"/>
+<rect x="330.6" y="387" width="235.2" height="179" rx="8" fill="#FDFFF5"/>
+<rect x="582.492" y="95" width="246.4" height="230" rx="12" fill="#FEEBA2"/>
+<rect x="588.199" y="140" width="235.2" height="179" rx="8" fill="#FFFCEE"/>
+<rect x="582.6" y="342" width="246.4" height="230" rx="12" fill="#FFD3B7"/>
+<rect x="588.199" y="387" width="235.2" height="179" rx="8" fill="#FFF9F6"/>
+<rect x="16" y="95.0903" width="298" height="477" rx="12" fill="#FFDFE4"/>
+<path d="M23 148C23 143.582 26.5817 140 31 140H299C303.418 140 307 143.582 307 148V558C307 562.418 303.418 566 299 566H31C26.5817 566 23 562.418 23 558V148Z" fill="#FFFAFB"/>
+<path d="M23 177.09H307" stroke="#FFCED6" stroke-linecap="round" stroke-dasharray="1 3"/>
+<path d="M23 217.09H307" stroke="#FFCED6" stroke-linecap="round" stroke-dasharray="1 3"/>
+<path d="M23 257.09H307" stroke="#FFCED6" stroke-linecap="round" stroke-dasharray="1 3"/>
+<path d="M23 297.09H307" stroke="#FFCED6" stroke-linecap="round" stroke-dasharray="1 3"/>
+<path d="M23 337.09H307" stroke="#FFCED6" stroke-linecap="round" stroke-dasharray="1 3"/>
+<path d="M23 377.09H307" stroke="#FFCED6" stroke-linecap="round" stroke-dasharray="1 3"/>
+<path d="M23 417.09H307" stroke="#FFCED6" stroke-linecap="round" stroke-dasharray="1 3"/>
+<path d="M23 457.09H307" stroke="#FFCED6" stroke-linecap="round" stroke-dasharray="1 3"/>
+<path d="M23 497.09H307" stroke="#FFCED6" stroke-linecap="round" stroke-dasharray="1 3"/>
+<path d="M23 537.09H307" stroke="#FFCED6" stroke-linecap="round" stroke-dasharray="1 3"/>
+</g>
+<defs>
+<clipPath id="clip0_1063_7734">
+<rect width="842" height="595" fill="white"/>
+</clipPath>
+</defs>
+</svg>
