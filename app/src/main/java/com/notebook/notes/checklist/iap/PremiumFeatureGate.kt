@@ -2,7 +2,6 @@ package com.notebook.notes.checklist.iap
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import com.notebook.notes.checklist.R
@@ -17,8 +16,7 @@ import com.notebook.notes.checklist.R
  * }
  * ```
  *
- * Free users see [PurchaseDialog]; Continue opens [PaywallActivity].
- * [onGranted] is the last parameter so trailing lambdas bind correctly.
+ * Free users see [PurchaseDialog]; * [onGranted] is the last parameter so trailing lambdas bind correctly.
  */
 object PremiumFeatureGate {
 
@@ -85,7 +83,7 @@ object PremiumFeatureGate {
             PurchaseDialog.show(
                 context = context,
                 layoutInflater = layoutInflater,
-                onContinue = { openPaywall(context) },
+                onContinue = { },
                 onCancel = onDenied,
                 titleRes = feature.titleRes,
                 messageRes = feature.messageRes,
@@ -94,19 +92,6 @@ object PremiumFeatureGate {
             )
         } catch (_: Exception) {
             onDenied?.invoke()
-            openPaywall(context)
-        }
-    }
-
-    private fun openPaywall(context: Context) {
-        try {
-            val intent = Intent(context, PaywallActivity::class.java)
-            if (context !is Activity) {
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }
-            context.startActivity(intent)
-        } catch (_: Exception) {
-            // Never crash navigation
         }
     }
 }

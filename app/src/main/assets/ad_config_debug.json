@@ -1,5 +1,9 @@
 {
   "ads_enabled": true,
+  "onboarding_count": 3,
+  "onboarding_repeat_count": 2,
+  "screen_flow": ["LANGUAGE","ONBOARDING","PERMISSION","HOME"],
+  "permission_screen_permissions": ["CALL_STATE","NOTIFICATION","OVERLAY"],
   "App_PrivacyPolicy": "https://sites.google.com/view/notes-easy-notepad-memo-dg/home",
   "App_TermsOfUse": "https://sites.google.com/view/notes-easy-notepad-memo-dg/home",
   "inter_splash": {

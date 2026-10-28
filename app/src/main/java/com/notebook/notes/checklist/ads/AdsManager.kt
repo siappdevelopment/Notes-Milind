@@ -23,6 +23,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
+import com.notebook.notes.checklist.Advertisement.ADSUtilitis
 import com.notebook.notes.checklist.utils.ext.goneView
 import timber.log.Timber
 
@@ -435,12 +436,14 @@ object AdsManager {
             return
         }
 
+        ADSUtilitis.MassageBoxFull(activity)
         NotesAd.getInstance().initRewardAds(
             activity,
             AdRemoteConfig.reward_example.id,
             object : AdCallback() {
                 override fun onRewardAdLoaded(rewardedAd: RewardedAd?) {
                     super.onRewardAdLoaded(rewardedAd)
+                    ADSUtilitis.MassageBoxFullDismiss()
                     rewardExample = rewardedAd
 
                     var isEarn = false
@@ -472,6 +475,7 @@ object AdsManager {
 
                 override fun onAdFailedToLoad(i: LoadAdError?) {
                     super.onAdFailedToLoad(i)
+                    ADSUtilitis.MassageBoxFullDismiss()
                     onFailed()
                 }
             }

@@ -265,12 +265,6 @@ class HomeActivity : BaseActivity() {
         refreshVisibleListDateTimeFormat()
         // Back from Paywall after purchase — remove ads immediately.
         refreshAdsForPremium()
-        // Warm app opens skip Splash — still evaluate session paywall here (5, 10, 15…).
-        binding.root.post {
-            if (!isFinishing) {
-                sessionManager.maybePresentSessionPaywallFromHome(this)
-            }
-        }
     }
 
     /** Re-applies Settings → Date/Time Format to the currently visible notes list. */
@@ -469,12 +463,7 @@ class HomeActivity : BaseActivity() {
         drawerBinding.sectionOthers.tvSectionTitle.text = getString(R.string.drawer_section_others)
         drawerBinding.sectionAbout.tvSectionTitle.text = getString(R.string.drawer_section_about)
 
-        drawerBinding.upgradeCard.root.setOnClickListener {
-            clearTopBarSearchFocus()
-            closeDrawer()
-            startActivity(Intent(this, com.notebook.notes.checklist.iap.PaywallActivity::class.java))
-        }
-        drawerBinding.upgradeCard.root.isVisible = !premiumManager.isPremium()
+        drawerBinding.upgradeCard.root.isVisible = false
 
         // Observe only. Entitlement syncing belongs to the process lifecycle (see MyApplication);
         // triggering a restore from here ran one on every return to Home — including the return from
@@ -482,7 +471,6 @@ class HomeActivity : BaseActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 premiumManager.isPremiumFlow.collect { isPremium ->
-                    drawerBinding.upgradeCard.root.isVisible = !isPremium
                     applyTopBarForCurrentTab()
                     if (isPremium) {
                         refreshAdsForPremium()
@@ -673,9 +661,6 @@ class HomeActivity : BaseActivity() {
 
     private fun setupTopBar() {
         topBarBinding.btnMenu.setOnClickListener { openDrawer() }
-        topBarBinding.btnPro.setOnClickListener {
-            startActivity(Intent(this, com.notebook.notes.checklist.iap.PaywallActivity::class.java))
-        }
         topBarBinding.btnSettings.setOnClickListener {
             openActivityWithInterAd {
                 launchActivity<SettingActivity> { }
@@ -853,7 +838,7 @@ class HomeActivity : BaseActivity() {
             ?: defaultTopBarConfiguration(selectedTab)
 
         topBarBinding.tvHomeTitle.setText(config.titleRes)
-        topBarBinding.btnPro.isVisible = config.showProBadge && !premiumManager.isPremium()
+        topBarBinding.btnPro.isVisible = false
         topBarBinding.btnSettings.isVisible = config.showSettings
         topBarBinding.autoSavedBadge.isVisible = config.showAutoSavedBadge
     }

@@ -10,7 +10,6 @@ import com.notebook.notes.checklist.ui.activity.LanguageActivity
 import com.notebook.notes.checklist.ui.activity.Onboarding1Activity
 import com.notebook.notes.checklist.ui.activity.OverLayPermissionActivity
 import com.notebook.notes.checklist.ui.activity.PermissionFlowActivity
-import com.notebook.notes.checklist.iap.PaywallActivity
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -46,7 +45,7 @@ class NavigationCoordinator @Inject constructor() {
         FlowStep.ONBOARDING -> Onboarding1Activity::class.java
         FlowStep.PERMISSION -> PermissionFlowActivity::class.java
         FlowStep.HOME -> HomeActivity::class.java
-        FlowStep.PREMIUM -> PaywallActivity::class.java
+        FlowStep.PREMIUM,
         FlowStep.UPDATE,
         FlowStep.RATE_US -> null
     }.also {

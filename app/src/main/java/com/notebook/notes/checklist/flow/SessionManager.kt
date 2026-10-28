@@ -1,11 +1,7 @@
 package com.notebook.notes.checklist.flow
 
-import android.app.Activity
-import android.content.Intent
 import android.util.Log
-import com.notebook.notes.checklist.Advertisement.ADSUtilitis
 import com.notebook.notes.checklist.helper.PreferenceHelper
-import com.notebook.notes.checklist.iap.PaywallActivity
 import com.notebook.notes.checklist.iap.PremiumManager
 import com.notebook.notes.checklist.utils.Constant
 import javax.inject.Inject
@@ -92,26 +88,6 @@ class SessionManager @Inject constructor(
         val current = getTotalSessionCount()
         preferenceHelper.putInt(Constant.LAST_PAYWALL_SESSION, current)
         Log.d(TAG, "Session paywall marked at session $current")
-    }
-
-    /**
-     * For warm starts that land on Home (Splash skipped): present PaywallActivity when due.
-     * No-ops if startup flow already handled paywall this foreground period.
-     */
-    fun maybePresentSessionPaywallFromHome(activity: Activity) {
-        if (startupHandledPaywallThisForeground) return
-        if (activity.isFinishing) return
-        if (PremiumManager.isPremiumUser()) return
-        if (!shouldShowSessionPaywall()) return
-
-        markSessionPaywallShown()
-        markStartupHandledPaywall()
-        try {
-            ADSUtilitis.trackScreen(activity, "Session_Paywall_Shown")
-        } catch (_: Exception) {
-        }
-        activity.startActivity(Intent(activity, PaywallActivity::class.java))
-        Log.d(TAG, "Presented session paywall from Home (session=${getTotalSessionCount()})")
     }
 
     companion object {

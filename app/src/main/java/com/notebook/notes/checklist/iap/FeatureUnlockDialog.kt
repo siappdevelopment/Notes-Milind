@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
-import com.notebook.notes.checklist.Advertisement.ADSRewardedDisplay
+import com.notebook.notes.checklist.ads.AdsManager
 import com.notebook.notes.checklist.R
 import com.notebook.notes.checklist.databinding.DialogFeatureUnlockBinding
 import com.notebook.notes.checklist.util.SystemBars
@@ -23,6 +23,7 @@ class FeatureUnlockDialog : DialogFragment() {
     private var listener: FeatureUnlockListener? = null
     private var feature: PremiumFeature? = null
     private var showRewardOption: Boolean = true
+    private var isRewardRequestInFlight: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,37 +69,27 @@ class FeatureUnlockDialog : DialogFragment() {
             handleWatchAd()
         }
 
-        binding.btnUpgrade.setOnClickListener {
-            handleUpgrade()
-        }
     }
 
     private fun handleWatchAd() {
         val activity = activity ?: return
-        
-        if (ADSRewardedDisplay.isRewardedReady()) {
-            dismiss()
-            ADSRewardedDisplay.show(activity, object : ADSRewardedDisplay.OnRewardedAdsCallback {
-                override fun onRewardEarned() {
-                    listener?.onRewardUnlock()
-                }
+        if (isRewardRequestInFlight) return
+        isRewardRequestInFlight = true
 
-                override fun onFailed() {
-                    showAdError()
-                }
-
-                override fun onNotAvailable() {
-                    showAdError()
-                }
-            })
-        } else {
-            showAdError()
-            // Try to preload for next time if not already loading
-            if (!ADSRewardedDisplay.isRewardedLoading()) {
-                ADSRewardedDisplay.preload(activity)
-            }
-        }
+        AdsManager.loadAndShowReward(
+            activity = activity,
+            onSuccess = {
+                isRewardRequestInFlight = false
+                if (isAdded) dismissAllowingStateLoss()
+                listener?.onRewardUnlock()
+            },
+            onFailed = {
+                isRewardRequestInFlight = false
+                showAdError()
+            },
+        )
     }
+
 
     private fun showAdError() {
         context?.let {
@@ -109,10 +100,6 @@ class FeatureUnlockDialog : DialogFragment() {
     private fun handleUpgrade() {
         dismiss()
         listener?.onUpgrade()
-        // Paywall is handled by the caller or we can start it here
-        // The instructions say: "Upgrade button: PaywallActivity"
-        val intent = android.content.Intent(requireContext(), PaywallActivity::class.java)
-        startActivity(intent)
     }
 
     override fun onDestroyView() {
