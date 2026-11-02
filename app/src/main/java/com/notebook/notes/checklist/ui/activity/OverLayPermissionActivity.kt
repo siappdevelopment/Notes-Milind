@@ -129,6 +129,7 @@ class OverLayPermissionActivity : BaseActivity(), FlowPermissionHost {
         val showListIntent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
         try {
             overlayPermissionLauncher.launch(showListIntent)
+            OverlayPermissionGuideActivity.showDelayed(this)
         } catch (_: Exception) {
             overlayPermissionLauncher.launch(
                 Intent(
@@ -136,6 +137,7 @@ class OverLayPermissionActivity : BaseActivity(), FlowPermissionHost {
                     Uri.parse("package:$packageName")
                 )
             )
+            OverlayPermissionGuideActivity.showDelayed(this)
         }
     }
 

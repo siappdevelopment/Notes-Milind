@@ -647,4 +647,6 @@
     <string name="facebook_client_token" translatable="false">123456789</string>
     <string name="event_token" translatable="false">12345</string>
     <string name="press_back_again_to_exit">Press back again to exit</string>
+    <string name="overlay_guide_instruction">Find this app and turn on Allow display over other apps</string>
+    <string name="overlay_guide_tap_hand">👆</string>
 </resources>

@@ -110,6 +110,14 @@
         <item name="android:windowLightNavigationBar">true</item>
         <item name="android:navigationBarColor">@color/app_primary_color</item>
     </style>
+    <!-- Translucent host of the overlay-permission guide card shown over Settings -->
+    <style name="Theme.Notes.OverlayGuide" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Toast</item>
+    </style>
     <style name="TextStyle" />
     <style name="TextStyle.Medium" parent="TextStyle">
         <item name="android:fontFamily">@font/plus_jakarta_sans_medium</item>

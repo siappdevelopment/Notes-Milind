@@ -98,6 +98,13 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
+        <!-- Guide card shown over the system "Display over other apps" Settings screen. -->
+        <activity
+            android:name=".ui.activity.OverlayPermissionGuideActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:taskAffinity="${applicationId}.overlayguide"
+            android:theme="@style/Theme.Notes.OverlayGuide" />
         <activity
             android:name=".ui.activity.CreateNotesActivity"
             android:exported="false"

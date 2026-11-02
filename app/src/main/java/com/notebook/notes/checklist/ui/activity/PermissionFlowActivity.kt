@@ -341,6 +341,8 @@ class PermissionFlowActivity : BaseActivity(), FlowPermissionHost {
                 )
             )
         }
+        // Tap-the-toggle guide card over the Settings screen.
+        OverlayPermissionGuideActivity.showDelayed(this)
     }
 
     /**
