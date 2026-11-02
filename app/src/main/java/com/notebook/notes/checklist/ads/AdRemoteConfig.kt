@@ -35,11 +35,10 @@ data class AdRemoteConfig(
 
         fun initialize(context: Context, json: String? = null) {
             synchronized(this) {
-                instance = if (BuildConfig.DEBUG) {
-                    fromAssets(context, DEBUG_FILE_NAME)
-                } else {
-                    fromJsonOrAssets(context, json, RELEASE_FILE_NAME)
-                }
+                // Live Remote Config JSON wins in every build; the bundled asset is only the fallback
+                // (fetch failed / unparseable), the debug one in debug builds.
+                val fallbackFile = if (BuildConfig.DEBUG) DEBUG_FILE_NAME else RELEASE_FILE_NAME
+                instance = fromJsonOrAssets(context, json, fallbackFile)
             }
         }
 

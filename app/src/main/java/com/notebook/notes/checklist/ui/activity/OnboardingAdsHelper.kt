@@ -7,9 +7,19 @@ import androidx.cardview.widget.CardView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.ads.module.ads.wrapper.ApNativeAd
+import com.ads.module.billing.AppPurchase
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.notebook.notes.checklist.Advertisement.ADSConsentManager
+import com.notebook.notes.checklist.Advertisement.ADSMainClass
+import com.notebook.notes.checklist.Advertisement.ADSUtilitis
 import com.notebook.notes.checklist.R
+import com.notebook.notes.checklist.ads.AdRemoteConfig
+import com.notebook.notes.checklist.ads.AdUnitConfig
 import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.native_onboarding_1_1
+import com.notebook.notes.checklist.ads.native_onboarding_1_4
+import com.notebook.notes.checklist.ads.native_onboarding_2_1
+import com.notebook.notes.checklist.ads.native_onboarding_2_4
 import com.notebook.notes.checklist.ads.populateNativeAdView
 
 /**
@@ -30,6 +40,11 @@ object OnboardingAdsHelper {
         nativePlaceholder: FrameLayout,
         bannerPlaceholder: FrameLayout,
     ) {
+        // No ad will ever load (master switch off, unit disabled, ads-free, no consent, offline): never show the shimmer.
+        if (!isAdAllowed(activity, unitConfig(page, isFirst))) {
+            hide(adsContainer, cardView, shimmer, nativePlaceholder, bannerPlaceholder)
+            return
+        }
         showLoading(adsContainer, cardView, shimmer, nativePlaceholder, bannerPlaceholder)
 
         val live: MutableLiveData<ApNativeAd?> =
@@ -55,6 +70,19 @@ object OnboardingAdsHelper {
             AdsManager.loadNativeOnboarding4(activity, isFirst, R.layout.layout_native_onboarding)
         }
     }
+
+    private fun unitConfig(page: Int, isFirst: Boolean): AdUnitConfig = when {
+        page == 1 -> if (isFirst) AdRemoteConfig.native_onboarding_1_1 else AdRemoteConfig.native_onboarding_2_1
+        else -> if (isFirst) AdRemoteConfig.native_onboarding_1_4 else AdRemoteConfig.native_onboarding_2_4
+    }
+
+    private fun isAdAllowed(activity: AppCompatActivity, config: AdUnitConfig): Boolean =
+        AdRemoteConfig.getInstance().adsEnabled &&
+            config.isEnable &&
+            !ADSMainClass.getAds_Free() &&
+            !AppPurchase.getInstance().isPurchased(activity) &&
+            ADSConsentManager.canRequestAds(activity) &&
+            ADSUtilitis.IsNetworkConnected(activity)
 
     private fun showLoading(
         adsContainer: View,

@@ -82,11 +82,7 @@ object RemoteConfigUtils {
         remoteConfig = Firebase.remoteConfig
 
         val configSettings = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = if (BuildConfig.DEBUG) {
-                0
-            } else {
-                60 * 60
-            }
+            minimumFetchIntervalInSeconds = 0
         }
         val defaults = extraDefaults.toMutableMap().apply { putAll(getDefaultsFromAdConfig(context)) }
         remoteConfig.apply {

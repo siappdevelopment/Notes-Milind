@@ -168,6 +168,12 @@ open class BActivity : AppCompatActivity() {
         preloadAds()
 
         val splashInter = if (isFromUninstallShortcut) AdRemoteConfig.inter_splash_uninstall else AdRemoteConfig.inter_splash
+        Log.d(
+            "SplashInter",
+            "isEnable=${splashInter.isEnable} canRequestAds=${ADSConsentManager.canRequestAds(this)} " +
+                "network=${ADSUtilitis.IsNetworkConnected(this)} " +
+                "purchased=${AppPurchase.getInstance().isPurchased(this)} id=${splashInter.id}"
+        )
         if (splashInter.isEnable && ADSConsentManager.canRequestAds(this) && ADSUtilitis.IsNetworkConnected(this) &&
             !AppPurchase.getInstance().isPurchased(this)
         ) {

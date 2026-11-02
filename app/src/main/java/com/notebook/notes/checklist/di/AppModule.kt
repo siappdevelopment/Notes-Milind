@@ -1,6 +1,7 @@
 package com.notebook.notes.checklist.di
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Room
 import com.notebook.notes.checklist.data.AttachmentDao
 import com.notebook.notes.checklist.data.CategoryDao
@@ -84,7 +85,12 @@ object AppModule {
     ): OnboardingManager =
         // Read lazily so the value Firebase cached on Splash is used, not the pre-fetch default.
         OnboardingManager(PreferenceOnboardingStore(preferenceHelper)) {
-            remoteConfigManager.getOnboardingRepeatCount()
+            remoteConfigManager.getOnboardingRepeatCount().also {
+                Log.e(
+                    "Milind",
+                    "provideOnboardingManager: "+it
+
+                ) }
         }
 
     @Singleton

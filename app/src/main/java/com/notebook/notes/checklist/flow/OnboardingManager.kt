@@ -13,7 +13,7 @@ interface OnboardingStore {
  * Decides whether a cold launch should show onboarding.
  *
  * - The first launch always shows it.
- * - With a repeat count of N > 0 it is shown again after N normal launches, forever.
+ * - With a repeat count of N > 0 it is shown every N launches (N = 1: every launch), forever.
  * - With a repeat count of 0 (or negative) it is shown only once.
  *
  * Onboarding that was started but never completed leaves the state untouched, so it is shown again.
@@ -28,7 +28,8 @@ class OnboardingManager(
         if (!store.hasSeenOnboarding) return true
         val repeat = repeatCount().coerceAtLeast(0)
         // `>=` (not `==`): a counter already past a lowered repeat count still triggers onboarding.
-        return repeat > 0 && store.launchesSinceOnboarding >= repeat
+        // The counter holds normal launches since onboarding, so this launch is number counter + 1.
+        return repeat > 0 && store.launchesSinceOnboarding + 1 >= repeat
     }
 
     /** Call when the user finishes or skips onboarding. Restarts the cycle. */

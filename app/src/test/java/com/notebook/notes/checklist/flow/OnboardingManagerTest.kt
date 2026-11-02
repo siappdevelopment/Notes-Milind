@@ -49,16 +49,24 @@ class OnboardingManagerTest {
     // --- repeat count 1 ---
 
     @Test
-    fun `count 1 alternates onboarding and main`() {
+    fun `count 1 shows onboarding on every launch`() {
         repeatCount = 1
-        assertEquals(listOf(ONBOARDING, MAIN, ONBOARDING, MAIN, ONBOARDING), launches(5))
+        assertEquals(listOf(ONBOARDING, ONBOARDING, ONBOARDING, ONBOARDING, ONBOARDING), launches(5))
     }
 
     // --- repeat count 2 ---
 
     @Test
-    fun `count 2 shows onboarding every third launch forever`() {
+    fun `count 2 shows onboarding every second launch forever`() {
         repeatCount = 2
+        assertEquals(listOf(ONBOARDING, MAIN, ONBOARDING, MAIN, ONBOARDING), launches(5))
+    }
+
+    // --- repeat count 3 ---
+
+    @Test
+    fun `count 3 shows onboarding every third launch forever`() {
+        repeatCount = 3
         assertEquals(
             listOf(ONBOARDING, MAIN, MAIN, ONBOARDING, MAIN, MAIN, ONBOARDING),
             launches(7),
@@ -117,7 +125,7 @@ class OnboardingManagerTest {
 
     @Test
     fun `killing the app during a repeated onboarding shows it again next launch`() {
-        repeatCount = 1
+        repeatCount = 2
         launches(2) // onboarding, main - the next launch is a repeat
         assertEquals(ONBOARDING, coldLaunch(finishOnboarding = false))
         assertEquals(ONBOARDING, coldLaunch(finishOnboarding = true))
@@ -126,12 +134,12 @@ class OnboardingManagerTest {
 
     @Test
     fun `raising the repeat count later keeps counting from the saved counter`() {
-        repeatCount = 1
+        repeatCount = 2
         launches(2) // onboarding, main -> counter = 1, onboarding due
         assertTrue(manager.shouldShowOnboarding())
         manager.onOnboardingCompleted()
 
-        repeatCount = 3
+        repeatCount = 4
         assertEquals(listOf(MAIN, MAIN, MAIN, ONBOARDING), launches(4))
     }
 
