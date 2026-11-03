@@ -180,6 +180,8 @@ class GlobalApp : ADSAppManage() {
 
         Admob.getInstance().setDisableAdResumeWhenClickAds(true)
         Admob.getInstance().setOpenActivityAfterShowInterAds(false)
+        // Off until the live `open_resume` config arrives (BActivity.applyOpenResume switches it on).
+        AppOpenManager.getInstance().disableAppResume()
         AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity::class.java)
         AppOpenManager.getInstance().disableAppResumeWithActivity(LanguageActivity::class.java)
         AppOpenManager.getInstance().disableAppResumeWithActivity(Onboarding1Activity::class.java)

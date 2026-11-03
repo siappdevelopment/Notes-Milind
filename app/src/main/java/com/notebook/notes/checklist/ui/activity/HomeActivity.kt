@@ -6,6 +6,8 @@ import android.animation.ValueAnimator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -51,9 +53,10 @@ import com.notebook.notes.checklist.Advertisement.ADSMainClass
 import com.notebook.notes.checklist.Advertisement.ADSNativeDisplay
 import com.notebook.notes.checklist.Advertisement.ADSUtilitis
 import com.notebook.notes.checklist.R
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.notebook.notes.checklist.ads.AdRemoteConfig
 import com.notebook.notes.checklist.ads.AdsManager
-import com.notebook.notes.checklist.ads.banner_home
+import com.notebook.notes.checklist.ads.home_screen
 import com.notebook.notes.checklist.ads.populateNativeAdView
 import com.notebook.notes.checklist.ui.activity.SettingActivity
 import com.notebook.notes.checklist.viewmodel.utils.launchActivity
@@ -202,49 +205,103 @@ class HomeActivity : BaseActivity() {
     }
 
     /**
-     * Home native, driven by remote config ([AdsManager], key `native_home`). Loaded here, rendered from
-     * [AdsManager.nativeHomeAdLive]; any "no ad" outcome (disabled, premium, offline, failed) hides the slot.
+     * Home ad, controlled from one remote-config key (`home_screen`) through [AdsManager]: `type` "banner"
+     * shows a banner in the bottom slot, anything else the small native. `reloadIntervalSeconds` re-requests
+     * it while the screen is in front. Any "no ad" outcome (disabled, premium, offline, failed) hides the slot.
      */
     private fun loadAds() {
-        if (!ADSConsentManager.canRequestAds(this) || ADSMainClass.getAds_Free()) {
+        val config = AdRemoteConfig.home_screen
+        if (!canShowHomeAd()) {
             hideOtherScreenAdPlaceholders()
             return
         }
-        if (AdRemoteConfig.banner_home.isEnable) {
-            loadHomeBanner()
-            return
+        if (config.type.equals("banner", ignoreCase = true)) loadHomeBanner() else loadHomeNative()
+    }
+
+    /** Same gate for the first load and every reload: enabled, consent given, not ads-free. */
+    private fun canShowHomeAd(): Boolean =
+        AdRemoteConfig.home_screen.isEnable &&
+            ADSConsentManager.canRequestAds(this) &&
+            !ADSMainClass.getAds_Free()
+
+    private fun loadHomeNative() {
+        // Banner-style small native: use its own shimmer placeholder inside the shared slot (same as Create Note).
+        findViewById<ShimmerFrameLayout>(R.id.shimmer_container_banner)?.let { shimmer ->
+            shimmer.removeAllViews()
+            shimmer.addView(layoutInflater.inflate(R.layout.fill_in_ad_unifiled_small, shimmer, false))
         }
         // Drop a previous screen's ad so it is never rendered twice; the first null is that reset.
         AdsManager.nativeHomeAdLive.value = null
         var skippedInitialNull = true
+        var hasAd = false
         AdsManager.nativeHomeAdLive.observe(this) { ad ->
             if (ad != null) {
+                hasAd = true
                 populateNativeAdView(
                     this,
                     ad,
                     findViewById(R.id.flNativeSmallPlaceholder),
                     findViewById(R.id.shimmer_container_banner)
                 )
-            } else if (!skippedInitialNull) {
+            } else if (!skippedInitialNull && !hasAd) {
+                // A failed periodic reload keeps the ad that is already showing.
                 hideOtherScreenAdPlaceholders()
             }
             skippedInitialNull = false
         }
-        AdsManager.loadNativeHome(this, R.layout.layout_native_ad_small)
+        AdsManager.loadNativeHome(this, R.layout.fill_in_admob_mid_native_ad)
     }
 
-    /** Home banner (`banner_home`) in the bottom slot; takes the place of the native when enabled. */
+    /** Home banner (`home_screen` with type banner) in the bottom slot. */
     private fun loadHomeBanner() {
         // fr_banner already contains layout_banner_control (see activity_home.xml).
         val bannerSlot = findViewById<FrameLayout>(R.id.fr_banner)
         // The ads SDK resolves R.id.shimmer_container_banner with Activity.findViewById (first match).
         // The native card also uses that id, so detach it or the SDK hides the wrong shimmer and the
         // banner's own shimmer stays visible on top of the loaded ad.
-        (findViewById<View>(R.id.flNativeSmallPlaceholder).parent as? View)?.let { nativeCard ->
+        (findViewById<View>(R.id.flNativeSmallPlaceholder)?.parent as? View)?.let { nativeCard ->
             (nativeCard.parent as? ViewGroup)?.removeView(nativeCard)
         }
         bannerSlot.visibility = View.VISIBLE
-        AdsManager.loadBanner(this, AdRemoteConfig.banner_home, bannerSlot, isCollapse = false)
+        AdsManager.loadBanner(this, AdRemoteConfig.home_screen.forBanner(), bannerSlot, isCollapse = false)
+    }
+
+    private val adReloadHandler = Handler(Looper.getMainLooper())
+    private val adReloadRunnable = Runnable {
+        if (isFinishing || isDestroyed) return@Runnable
+        reloadHomeAd()
+        scheduleAdReload()
+    }
+
+    /** Re-requests the Home ad every `reloadIntervalSeconds` (remote config) while the screen is in front. */
+    private fun scheduleAdReload() {
+        adReloadHandler.removeCallbacks(adReloadRunnable)
+        val config = AdRemoteConfig.home_screen
+        val intervalSeconds = config.reloadIntervalSeconds ?: 0
+        if (!canShowHomeAd() || intervalSeconds <= 0 || !isHomeAdSlotVisible()) return
+        adReloadHandler.postDelayed(adReloadRunnable, intervalSeconds * 1000L)
+    }
+
+    /** The ad slot of the active type is still on screen (not collapsed after a failure or premium). */
+    private fun isHomeAdSlotVisible(): Boolean {
+        val slot = if (AdRemoteConfig.home_screen.type.equals("banner", ignoreCase = true)) {
+            findViewById<View>(R.id.fr_banner)
+        } else {
+            findViewById<View>(R.id.flNativeSmallPlaceholder)
+        }
+        return slot?.visibility == View.VISIBLE
+    }
+
+    private fun reloadHomeAd() {
+        val config = AdRemoteConfig.home_screen
+        if (!canShowHomeAd() || !isHomeAdSlotVisible()) return
+        if (config.type.equals("banner", ignoreCase = true)) {
+            findViewById<FrameLayout>(R.id.fr_banner)?.let { slot ->
+                AdsManager.loadBanner(this, config.forBanner(), slot, isCollapse = false)
+            }
+        } else {
+            AdsManager.loadNativeHome(this, R.layout.fill_in_admob_mid_native_ad)
+        }
     }
 
     private fun hideOtherScreenAdPlaceholders() {
@@ -273,6 +330,17 @@ class HomeActivity : BaseActivity() {
         refreshVisibleListDateTimeFormat()
         // Back from Paywall after purchase — remove ads immediately.
         refreshAdsForPremium()
+        scheduleAdReload()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        adReloadHandler.removeCallbacks(adReloadRunnable)
+    }
+
+    override fun onDestroy() {
+        adReloadHandler.removeCallbacks(adReloadRunnable)
+        super.onDestroy()
     }
 
     /** Re-applies Settings → Date/Time Format to the currently visible notes list. */

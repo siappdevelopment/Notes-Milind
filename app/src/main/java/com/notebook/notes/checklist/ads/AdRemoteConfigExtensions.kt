@@ -33,11 +33,17 @@ val AdRemoteConfig.Companion.native_onboarding_1_1: AdUnitConfig
 val AdRemoteConfig.Companion.native_onboarding_2_1: AdUnitConfig
     get() = getInstance().native_onboarding_2_1
 
-val AdRemoteConfig.Companion.native_onboarding_1_4: AdUnitConfig
-    get() = getInstance().native_onboarding_1_4
+val AdRemoteConfig.Companion.native_onboarding_1_2: AdUnitConfig
+    get() = getInstance().native_onboarding_1_2
 
-val AdRemoteConfig.Companion.native_onboarding_2_4: AdUnitConfig
-    get() = getInstance().native_onboarding_2_4
+val AdRemoteConfig.Companion.native_onboarding_2_2: AdUnitConfig
+    get() = getInstance().native_onboarding_2_2
+
+val AdRemoteConfig.Companion.native_onboarding_1_3: AdUnitConfig
+    get() = getInstance().native_onboarding_1_3
+
+val AdRemoteConfig.Companion.native_onboarding_2_3: AdUnitConfig
+    get() = getInstance().native_onboarding_2_3
 
 val AdRemoteConfig.Companion.native_onboarding_fullscreen_1_3: AdUnitConfig
     get() = getInstance().native_onboarding_fullscreen_1_3
@@ -50,8 +56,8 @@ val AdRemoteConfig.Companion.native_onboarding_fullscreen_1_4: AdUnitConfig
 
 val AdRemoteConfig.Companion.native_onboarding_fullscreen_2_4: AdUnitConfig
     get() = getInstance().native_onboarding_fullscreen_2_4
-val AdRemoteConfig.Companion.native_home: AdUnitConfig
-    get() = getInstance().native_home
+val AdRemoteConfig.Companion.home_screen: AdUnitConfig
+    get() = getInstance().home_screen
 
 val AdRemoteConfig.Companion.create_note: AdUnitConfig
     get() = getInstance().create_note
@@ -70,9 +76,6 @@ val AdRemoteConfig.Companion.inter_screen_open: AdUnitConfig
 
 val AdRemoteConfig.Companion.inter_onboarding: AdUnitConfig
     get() = getInstance().inter_onboarding
-
-val AdRemoteConfig.Companion.banner_home: AdUnitConfig
-    get() = getInstance().banner_home
 
 val AdRemoteConfig.Companion.native_survey: AdUnitConfig
     get() = getInstance().native_survey

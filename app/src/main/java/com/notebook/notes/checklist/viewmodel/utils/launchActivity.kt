@@ -29,7 +29,7 @@ fun Activity.openWithCreateNotesInterAd(navigate: () -> Unit) {
 }
 
 fun Activity.finishWithCreateNotesBackInterAd() {
-    AdsManager.showInterScreenOpen(this) { finish() }
+    AdsManager.showInterCreateNoteBack(this) { finish() }
 }
 
 fun Activity.openWithSetPasswordInterAd(navigate: () -> Unit) {

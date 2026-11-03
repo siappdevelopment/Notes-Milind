@@ -17,9 +17,11 @@ import com.notebook.notes.checklist.ads.AdRemoteConfig
 import com.notebook.notes.checklist.ads.AdUnitConfig
 import com.notebook.notes.checklist.ads.AdsManager
 import com.notebook.notes.checklist.ads.native_onboarding_1_1
-import com.notebook.notes.checklist.ads.native_onboarding_1_4
+import com.notebook.notes.checklist.ads.native_onboarding_1_2
+import com.notebook.notes.checklist.ads.native_onboarding_1_3
 import com.notebook.notes.checklist.ads.native_onboarding_2_1
-import com.notebook.notes.checklist.ads.native_onboarding_2_4
+import com.notebook.notes.checklist.ads.native_onboarding_2_2
+import com.notebook.notes.checklist.ads.native_onboarding_2_3
 import com.notebook.notes.checklist.ads.populateNativeAdView
 
 /**
@@ -29,7 +31,7 @@ import com.notebook.notes.checklist.ads.populateNativeAdView
  */
 object OnboardingAdsHelper {
 
-    /** Page 1 uses `native_onboarding_*_1`; later pages use `native_onboarding_*_4`. */
+    /** Page N uses its own key `native_onboarding_{1,2}_N` (1 = first onboarding, 2 = later ones). */
     fun load(
         activity: AppCompatActivity,
         page: Int,
@@ -47,8 +49,11 @@ object OnboardingAdsHelper {
         }
         showLoading(adsContainer, cardView, shimmer, nativePlaceholder, bannerPlaceholder)
 
-        val live: MutableLiveData<ApNativeAd?> =
-            if (page == 1) AdsManager.nativeOnboarding1AdLive else AdsManager.nativeOnboarding4AdLive
+        val live: MutableLiveData<ApNativeAd?> = when (page) {
+            1 -> AdsManager.nativeOnboarding1AdLive
+            2 -> AdsManager.nativeOnboarding2AdLive
+            else -> AdsManager.nativeOnboarding3AdLive
+        }
         // Page 1 keeps the ad SplashActivity preloaded; later pages drop the previous ad so it is not shown twice.
         if (page != 1) live.value = null
 
@@ -66,14 +71,16 @@ object OnboardingAdsHelper {
         })
 
         // Page 1 was preloaded on splash, so only later pages request here.
-        if (page != 1) {
-            AdsManager.loadNativeOnboarding4(activity, isFirst, R.layout.layout_native_onboarding)
+        when (page) {
+            2 -> AdsManager.loadNativeOnboarding2(activity, isFirst, R.layout.layout_native_onboarding)
+            3 -> AdsManager.loadNativeOnboarding3(activity, isFirst, R.layout.layout_native_onboarding)
         }
     }
 
-    private fun unitConfig(page: Int, isFirst: Boolean): AdUnitConfig = when {
-        page == 1 -> if (isFirst) AdRemoteConfig.native_onboarding_1_1 else AdRemoteConfig.native_onboarding_2_1
-        else -> if (isFirst) AdRemoteConfig.native_onboarding_1_4 else AdRemoteConfig.native_onboarding_2_4
+    private fun unitConfig(page: Int, isFirst: Boolean): AdUnitConfig = when (page) {
+        1 -> if (isFirst) AdRemoteConfig.native_onboarding_1_1 else AdRemoteConfig.native_onboarding_2_1
+        2 -> if (isFirst) AdRemoteConfig.native_onboarding_1_2 else AdRemoteConfig.native_onboarding_2_2
+        else -> if (isFirst) AdRemoteConfig.native_onboarding_1_3 else AdRemoteConfig.native_onboarding_2_3
     }
 
     private fun isAdAllowed(activity: AppCompatActivity, config: AdUnitConfig): Boolean =

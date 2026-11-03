@@ -329,6 +329,7 @@ class CreateNotesActivity : BaseActivity(), RichTextEditorHost {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AdsManager.loadInterCreateNoteBack(this)
         this.changeNavigationBarToWhite()
         isLockAuthenticated =
             intent.getBooleanExtra(NoteEditViewModel.EXTRA_LOCK_AUTHENTICATED, false)

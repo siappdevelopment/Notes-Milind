@@ -15,8 +15,8 @@
     <dimen name="note_card_category_pill_radius">999dp</dimen>
     <dimen name="bottom_nav_padding">8dp</dimen>
     <dimen name="bottom_nav_shadow_padding">4dp</dimen>
-    <dimen name="bottom_nav_bar_height">56dp</dimen>
-    <dimen name="bottom_nav_item_height">52dp</dimen>
+    <dimen name="bottom_nav_bar_height">64dp</dimen>
+    <dimen name="bottom_nav_item_height">60dp</dimen>
     <dimen name="bottom_nav_selected_pill_height">44dp</dimen>
     <dimen name="nav_drawer_width">300dp</dimen>
     <dimen name="nav_drawer_category_fade_height">28dp</dimen>

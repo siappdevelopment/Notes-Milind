@@ -6,6 +6,9 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +36,8 @@ object AdsManager {
     val nativeLanguageAdLive = MutableLiveData<ApNativeAd?>()
     val nativeLanguageClickAdLive = MutableLiveData<ApNativeAd?>()
     val nativeOnboarding1AdLive = MutableLiveData<ApNativeAd?>()
-    val nativeOnboarding4AdLive = MutableLiveData<ApNativeAd?>()
+    val nativeOnboarding2AdLive = MutableLiveData<ApNativeAd?>()
+    val nativeOnboarding3AdLive = MutableLiveData<ApNativeAd?>()
     val nativeAdOnBoardingFullLive = MutableLiveData<ApNativeAd?>()
     val nativeAdOnBoardingFull2Live = MutableLiveData<ApNativeAd?>()
     val nativeSurveyAdLive = MutableLiveData<ApNativeAd?>()
@@ -55,6 +59,10 @@ object AdsManager {
 
     private var interSplashAd: ApInterstitialAd? = null
     private var interOnboarding: ApInterstitialAd? = null
+    private var interOnboardingLoading = false
+    private var interOnboardingWaiting = false
+    private const val INTER_ONBOARDING_MAX_WAIT_MS = 5000L
+    private const val INTER_ONBOARDING_POLL_MS = 150L
 
     private var rewardExample :RewardedAd? = null
 
@@ -121,14 +129,26 @@ object AdsManager {
         )
     }
 
-    fun loadNativeOnboarding4(activity: Activity, isFirst: Boolean, layoutRes: Int) {
+    fun loadNativeOnboarding2(activity: Activity, isFirst: Boolean, layoutRes: Int) {
         val config =
-            if (isFirst) AdRemoteConfig.native_onboarding_1_4 else AdRemoteConfig.native_onboarding_2_4
+            if (isFirst) AdRemoteConfig.native_onboarding_1_2 else AdRemoteConfig.native_onboarding_2_2
         loadNativeInternal(
             activity,
             config,
             layoutRes,
-            nativeOnboarding4AdLive,
+            nativeOnboarding2AdLive,
+            NotesAd.getInstance().getShouldDisplayNativeOnboardingNormal2(config.enableUaCheck)
+        )
+    }
+
+    fun loadNativeOnboarding3(activity: Activity, isFirst: Boolean, layoutRes: Int) {
+        val config =
+            if (isFirst) AdRemoteConfig.native_onboarding_1_3 else AdRemoteConfig.native_onboarding_2_3
+        loadNativeInternal(
+            activity,
+            config,
+            layoutRes,
+            nativeOnboarding3AdLive,
             NotesAd.getInstance().getShouldDisplayNativeOnboardingNormal2(config.enableUaCheck)
         )
     }
@@ -169,7 +189,7 @@ object AdsManager {
     }
 
     fun loadNativeHome(activity: Activity, layoutRes: Int) {
-        val config = AdRemoteConfig.native_home
+        val config = AdRemoteConfig.home_screen.forNative()
         loadNativeInternal(
             activity,
             config,
@@ -268,6 +288,10 @@ object AdsManager {
 
     fun loadInterOnboarding(context: Context, ignoreLimit: Boolean = false) {
         val config = AdRemoteConfig.inter_onboarding
+        Timber.tag("InterOnboarding").d(
+            "load: isEnable=${config.isEnable} purchased=${AppPurchase.getInstance().isPurchased(context)} " +
+                "uaCheck=${config.enableUaCheck} shouldDisplay=${NotesAd.getInstance().getShouldDisplayInterOnboarding(config.enableUaCheck)} id=${config.id}"
+        )
         if (!config.isEnable
             || AppPurchase.getInstance().isPurchased(context)
             || (!ignoreLimit && !NotesAd.getInstance().getShouldDisplayInterOnboarding(config.enableUaCheck))
@@ -275,25 +299,83 @@ object AdsManager {
             interOnboarding = null
             return
         }
+        interOnboardingLoading = true
         interOnboarding =
-            NotesAd.getInstance().getInterstitialAds(context, config.id, object : AdCallback() {})
+            NotesAd.getInstance().getInterstitialAds(context, config.id, object : AdCallback() {
+                override fun onApInterstitialLoad(apInterstitialAd: ApInterstitialAd?) {
+                    super.onApInterstitialLoad(apInterstitialAd)
+                    interOnboardingLoading = false
+                }
+
+                override fun onAdFailedToLoad(i: LoadAdError?) {
+                    super.onAdFailedToLoad(i)
+                    interOnboardingLoading = false
+                }
+            })
     }
 
+    /**
+     * Shows `inter_onboarding`, then calls [onAction] once. Ready: show now. Still loading: loading dialog
+     * and wait up to [INTER_ONBOARDING_MAX_WAIT_MS]. Not allowed, failed or never requested: [onAction] at once.
+     */
     fun showInterOnboarding(context: Context, ignoreLimit: Boolean = false, onAction: () -> Unit) {
         val interstitial = interOnboarding
-        if (interstitial != null && interstitial.isReady && !AppPurchase.getInstance()
-                .isPurchased(context) && (ignoreLimit || NotesAd.getInstance().getShouldDisplayInterOnboarding(AdRemoteConfig.inter_onboarding.enableUaCheck))
-        ) {
-            NotesAd.getInstance()
-                .forceShowInterstitial(context, interstitial, object : AdCallback() {
-                    override fun onNextAction() {
-                        super.onNextAction()
+        val allowed = interstitial != null &&
+            !AppPurchase.getInstance().isPurchased(context) &&
+            (ignoreLimit || NotesAd.getInstance().getShouldDisplayInterOnboarding(AdRemoteConfig.inter_onboarding.enableUaCheck))
+        if (!allowed || interstitial == null) {
+        Timber.tag("InterOnboarding").d(
+            "show: ad=${interstitial != null} ready=${interstitial?.isReady} loading=$interOnboardingLoading allowed=$allowed"
+        )
+            onAction()
+            return
+        }
+        if (interstitial.isReady) {
+            forceShowInterOnboarding(context, interstitial, onAction)
+            return
+        }
+        if (!interOnboardingLoading) {
+            onAction()
+            return
+        }
+        if (interOnboardingWaiting) return
+        interOnboardingWaiting = true
+        ADSUtilitis.MassageBoxFull(context)
+        val handler = Handler(Looper.getMainLooper())
+        val startedAt = SystemClock.elapsedRealtime()
+        handler.post(object : Runnable {
+            override fun run() {
+                val gone = (context as? Activity)?.let { it.isFinishing || it.isDestroyed } == true
+                val waitedOut = SystemClock.elapsedRealtime() - startedAt >= INTER_ONBOARDING_MAX_WAIT_MS
+                when {
+                    gone -> {
+                        interOnboardingWaiting = false
+                        ADSUtilitis.MassageBoxFullDismiss()
+                    }
+                    interstitial.isReady -> {
+                        interOnboardingWaiting = false
+                        ADSUtilitis.MassageBoxFullDismiss()
+                        forceShowInterOnboarding(context, interstitial, onAction)
+                    }
+                    waitedOut || !interOnboardingLoading -> {
+                        interOnboardingWaiting = false
+                        ADSUtilitis.MassageBoxFullDismiss()
                         onAction()
                     }
-                }, true)
-        } else {
-            onAction()
-        }
+                    else -> handler.postDelayed(this, INTER_ONBOARDING_POLL_MS)
+                }
+            }
+        })
+    }
+
+    private fun forceShowInterOnboarding(context: Context, interstitial: ApInterstitialAd, onAction: () -> Unit) {
+        NotesAd.getInstance()
+            .forceShowInterstitial(context, interstitial, object : AdCallback() {
+                override fun onNextAction() {
+                    super.onNextAction()
+                    onAction()
+                }
+            }, true)
     }
 
     /**
@@ -353,6 +435,9 @@ object AdsManager {
 
     private val interBottomNav = CountedInter("InterBottomNav") { AdRemoteConfig.inter_bottom_nav }
     private val interScreenOpen = CountedInter("InterScreenOpen") { AdRemoteConfig.inter_screen_open }
+    // Same config (`inter_screen_open`) as screen-open, but its own ad and counter, so Create Note back presses
+    // do not shift which screen-open trigger lands on `clickCount` (the inter must show when a note opens).
+    private val interCreateNoteBack = CountedInter("InterCreateNoteBack") { AdRemoteConfig.inter_screen_open }
 
     /** Bottom-navigation tab change (`inter_bottom_nav`). */
     fun loadInterBottomNav(context: Context) = interBottomNav.load(context)
@@ -361,13 +446,19 @@ object AdsManager {
         interBottomNav.show(context, onAction)
 
     /**
-     * Screen changes: opening another screen AND back presses share this one control
-     * (`inter_screen_open`), so they use the same ad and the same counter.
+     * Screen changes: opening another screen and back presses of the other screens share this one control
+     * (`inter_screen_open`), so they use the same ad and the same counter (Create Note back has its own, below).
      */
     fun loadInterScreenOpen(context: Context) = interScreenOpen.load(context)
 
     fun showInterScreenOpen(context: Context, onAction: () -> Unit) =
         interScreenOpen.show(context, onAction)
+
+    /** Create Note back press: `inter_screen_open` config with a separate ad and counter. */
+    fun loadInterCreateNoteBack(context: Context) = interCreateNoteBack.load(context)
+
+    fun showInterCreateNoteBack(context: Context, onAction: () -> Unit) =
+        interCreateNoteBack.show(context, onAction)
 
     fun loadInterWelcome(context: Context, ignoreLimit: Boolean = false) {
         val cached = interWelcomeAdLive.value?.takeIf { it.isReady }
@@ -542,7 +633,8 @@ object AdsManager {
         nativeLanguageAdLive.postValue(null)
         nativeLanguageClickAdLive.postValue(null)
         nativeOnboarding1AdLive.postValue(null)
-        nativeOnboarding4AdLive.postValue(null)
+        nativeOnboarding2AdLive.postValue(null)
+        nativeOnboarding3AdLive.postValue(null)
         nativeAdOnBoardingFullLive.postValue(null)
         nativeSurveyAdLive.postValue(null)
         nativeConfirmUninstallAdLive.postValue(null)

@@ -86,7 +86,8 @@ object FullscreenAdWindowHelper {
             WindowCompat.getInsetsController(window, window.decorView).apply {
                 systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_DEFAULT
                 show(WindowInsetsCompat.Type.statusBars())
-                isAppearanceLightStatusBars = false
+                // App screens have a light background: dark status bar icons.
+                isAppearanceLightStatusBars = true
                 isAppearanceLightNavigationBars = true
             }
 

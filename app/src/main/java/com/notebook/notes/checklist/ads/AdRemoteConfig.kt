@@ -161,11 +161,17 @@ data class AdRemoteConfig(
     val native_onboarding_2_1: AdUnitConfig
         get() = getAdUnit("native_onboarding_2_1")
 
-    val native_onboarding_1_4: AdUnitConfig
-        get() = getAdUnit("native_onboarding_1_4")
+    val native_onboarding_1_2: AdUnitConfig
+        get() = getAdUnit("native_onboarding_1_2")
 
-    val native_onboarding_2_4: AdUnitConfig
-        get() = getAdUnit("native_onboarding_2_4")
+    val native_onboarding_2_2: AdUnitConfig
+        get() = getAdUnit("native_onboarding_2_2")
+
+    val native_onboarding_1_3: AdUnitConfig
+        get() = getAdUnit("native_onboarding_1_3")
+
+    val native_onboarding_2_3: AdUnitConfig
+        get() = getAdUnit("native_onboarding_2_3")
 
     val native_onboarding_fullscreen_1_3: AdUnitConfig
         get() = getAdUnit("native_onboarding_fullscreen_1_3")
@@ -182,8 +188,8 @@ data class AdRemoteConfig(
     val native_permission: AdUnitConfig
         get() = getAdUnit("native_permission")
 
-    val native_home: AdUnitConfig
-        get() = getAdUnit("native_home")
+    val home_screen: AdUnitConfig
+        get() = getAdUnit("home_screen")
 
     /** Create-note top ad; `type` is "native" or "banner". */
     val create_note: AdUnitConfig
@@ -201,9 +207,6 @@ data class AdRemoteConfig(
     val inter_onboarding: AdUnitConfig
         get() = getAdUnit("inter_onboarding")
 
-
-    val banner_home: AdUnitConfig
-        get() = getAdUnit("banner_home")
 
     val native_survey: AdUnitConfig
         get() = getAdUnit("native_survey")

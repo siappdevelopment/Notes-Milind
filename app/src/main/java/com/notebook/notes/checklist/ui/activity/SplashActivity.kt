@@ -35,7 +35,13 @@ import com.notebook.notes.checklist.ui.uninstall.ConfirmUninstallActivity
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.lifecycle.lifecycleScope
 import com.notebook.notes.checklist.R
+import com.ads.module.ads.NotesAd
+import com.ads.module.billing.AppPurchase
+import com.ads.module.funtion.AdCallback
+import com.notebook.notes.checklist.Advertisement.ADSConsentManager
+import com.notebook.notes.checklist.ads.AdRemoteConfig
 import com.notebook.notes.checklist.ads.AdsManager
+import com.notebook.notes.checklist.ads.inter_splash
 import com.notebook.notes.checklist.ads.AppSharedPref
 import com.notebook.notes.checklist.iap.model.PurchaseEvent
 import com.revenuecat.purchases.Purchases
@@ -210,7 +216,7 @@ class SplashActivity : BActivity() {
                 "session=${sessionManager.getTotalSessionCount()} requesting=$needed"
         )
         if (needed.isEmpty()) {
-            flowManager.start(this)
+            showSplashInterThenStartFlow()
         } else {
             pendingSplashPermissions = needed
             splashPermissionIndex = 0
@@ -218,6 +224,46 @@ class SplashActivity : BActivity() {
         }
     }
 
+
+    private var splashInterHandled = false
+    private var flowStarted = false
+
+    override fun onSplashInterDone() {
+        if (isFromUninstallShortcut) super.onSplashInterDone() else startFlowOnce()
+    }
+
+    private fun startFlowOnce() {
+        if (flowStarted || isFinishing || isDestroyed) return
+        flowStarted = true
+        flowManager.start(this)
+    }
+
+    /**
+     * Splash permissions are done (accepted or denied): show `inter_splash` if it can load, then start the
+     * screen flow. Any reason it cannot show (disabled, no consent, offline, premium, no fill, timeout)
+     * goes straight to the flow.
+     */
+    private fun showSplashInterThenStartFlow() {
+        if (splashInterHandled) return
+        splashInterHandled = true
+        val config = AdRemoteConfig.inter_splash
+        val canShow = config.isEnable &&
+            ADSConsentManager.canRequestAds(this) &&
+            ADSUtilitis.IsNetworkConnected(this) &&
+            !AppPurchase.getInstance().isPurchased(this)
+        Log.d("SplashInter", "after permissions: isEnable=${config.isEnable} canShow=$canShow id=${config.id}")
+        if (!canShow) {
+            startFlowOnce()
+            return
+        }
+        NotesAd.getInstance().loadSplashInterstitialAds(
+            this, config.id, SPLASH_INTER_TIMEOUT_MS, 0, object : AdCallback() {
+                override fun onNextAction() {
+                    super.onNextAction()
+                    startFlowOnce()
+                }
+            })
+    }
 
     /**
      * Decides once per real cold launch whether onboarding is due. Rotation and Activity recreation
@@ -233,7 +279,7 @@ class SplashActivity : BActivity() {
 
     private fun requestNextSplashPermission() {
         if (splashPermissionIndex >= pendingSplashPermissions.size) {
-            flowManager.start(this)
+            showSplashInterThenStartFlow()
             return
         }
         val permission = pendingSplashPermissions[splashPermissionIndex++]
@@ -272,6 +318,10 @@ class SplashActivity : BActivity() {
             systemBarsBehavior =
                 WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
+    }
+
+    private companion object {
+        const val SPLASH_INTER_TIMEOUT_MS = 8000L
     }
 
     fun fcmtoken(){

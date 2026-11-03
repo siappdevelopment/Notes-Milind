@@ -22,11 +22,12 @@ import com.notebook.notes.checklist.Advertisement.ADSConsentManager
 import com.notebook.notes.checklist.Advertisement.AESHelper
 import com.notebook.notes.checklist.BuildConfig
 import android.os.CountDownTimer
+import com.ads.module.admob.AppOpenManager
 import com.ads.module.ads.NotesAd
 import com.ads.module.billing.AppPurchase
 import com.ads.module.funtion.AdCallback
-import com.notebook.notes.checklist.ads.inter_splash
 import com.notebook.notes.checklist.ads.inter_splash_uninstall
+import com.notebook.notes.checklist.ads.open_resume
 import com.notebook.notes.checklist.ads.AdRemoteConfig
 import com.notebook.notes.checklist.ads.AppConstants
 import com.notebook.notes.checklist.ads.AppLinksConfigApplier
@@ -46,6 +47,12 @@ open class BActivity : AppCompatActivity() {
 
     /** Called after ads remote-config / consent / splash app-open finish. */
     open fun initActivity() {}
+
+    /**
+     * The safety net in [onResume] showed a splash inter that finished loading while the app was in the
+     * background (the SDK never reports that case itself). Default: continue the startup.
+     */
+    protected open fun onSplashInterDone() = app_next_screen_showing()
 
     /** True when launched from the long-press uninstall shortcut (see UninstallShortcutManager). */
     protected val isFromUninstallShortcut: Boolean
@@ -103,7 +110,7 @@ open class BActivity : AppCompatActivity() {
         NotesAd.getInstance().onCheckShowSplashWhenFail(this, object : AdCallback() {
             override fun onNextAction() {
                 super.onNextAction()
-                app_next_screen_showing()
+                onSplashInterDone()
             }
         }, 1000)
     }
@@ -165,9 +172,16 @@ open class BActivity : AppCompatActivity() {
         } catch (e: Exception) {
             flowRemoteConfigManager().cacheXmlDefaultsOnly()
         }
+        applyOpenResume()
         preloadAds()
 
-        val splashInter = if (isFromUninstallShortcut) AdRemoteConfig.inter_splash_uninstall else AdRemoteConfig.inter_splash
+        // Normal launches show inter_splash later, after the Splash permission step (SplashActivity).
+        // Only the uninstall shortcut keeps the early inter, because it skips the normal flow.
+        if (!isFromUninstallShortcut) {
+            app_next_screen_showing()
+            return
+        }
+        val splashInter = AdRemoteConfig.inter_splash_uninstall
         Log.d(
             "SplashInter",
             "isEnable=${splashInter.isEnable} canRequestAds=${ADSConsentManager.canRequestAds(this)} " +
@@ -187,6 +201,25 @@ open class BActivity : AppCompatActivity() {
         } else {
             app_next_screen_showing()
         }
+    }
+
+    /**
+     * App Open (resume) ad from the live `open_resume` config: gives the SDK its ad unit id (GlobalApp leaves it
+     * empty) and switches it on only when the unit is enabled and ads may be requested.
+     */
+    private fun applyOpenResume() {
+        val config = AdRemoteConfig.open_resume
+        val manager = AppOpenManager.getInstance()
+        val enabled = config.isEnable &&
+            config.id.isNotBlank() &&
+            !ADSMainClass.getAds_Free() &&
+            ADSConsentManager.canRequestAds(this) &&
+            NotesAd.getInstance().getShouldDisplayInterOnboarding(config.enableUaCheck)
+        // The SDK still fetches on every activity resume whatever the switch says, so a disabled unit
+        // gets a blank id: no request is made without consent / when the unit is off.
+        manager.setAppResumeAdId(if (enabled) config.id else "")
+        if (enabled) manager.enableAppResume() else manager.disableAppResume()
+        Log.d("OpenResume", "enabled=$enabled isEnable=${config.isEnable} id=${config.id}")
     }
 
     /**
