@@ -57,6 +57,7 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.notebook.notes.checklist.ads.AdRemoteConfig
 import com.notebook.notes.checklist.ads.AdsManager
 import com.notebook.notes.checklist.ads.home_screen
+import com.notebook.notes.checklist.util.SystemBars
 import com.notebook.notes.checklist.ads.populateNativeAdView
 import com.notebook.notes.checklist.ui.activity.SettingActivity
 import com.notebook.notes.checklist.viewmodel.utils.launchActivity
@@ -152,8 +153,7 @@ class HomeActivity : BaseActivity() {
         drawerBinding = binding.navDrawer
         registerUninstallShortcutIfEnabled()
         preloadInterAds()
-        AdsManager.loadInterBottomNav(this)
-        AdsManager.loadInterScreenOpen(this)
+        AdsManager.loadInterHome(this)
         appUpdateManager = AppUpdateManagerFactory.create(this)
         if (ADSMainClass.shouldShowAppUpdate()) {
             checkForUpdates()
@@ -324,6 +324,23 @@ class HomeActivity : BaseActivity() {
         }
     }
 
+    private val navBarHandler = Handler(Looper.getMainLooper())
+    private val hideNavBarRunnable = Runnable {
+        if (!isFinishing && !isDestroyed && hasWindowFocus()) SystemBars.hideNavigationBar(window)
+    }
+
+    /**
+     * Coming back from a full-screen ad or another screen can leave the system navigation bar showing over
+     * the bottom ad (the focus callback can fire before the system finishes re-showing it). Hide it now and
+     * again shortly after, once the transition has settled.
+     */
+    private fun keepNavigationBarHidden() {
+        SystemBars.hideNavigationBar(window)
+        navBarHandler.removeCallbacks(hideNavBarRunnable)
+        navBarHandler.postDelayed(hideNavBarRunnable, 300L)
+        navBarHandler.postDelayed(hideNavBarRunnable, 1000L)
+    }
+
     override fun onResume() {
         super.onResume()
         DateTimeUtils.refresh(this)
@@ -331,11 +348,13 @@ class HomeActivity : BaseActivity() {
         // Back from Paywall after purchase — remove ads immediately.
         refreshAdsForPremium()
         scheduleAdReload()
+        keepNavigationBarHidden()
     }
 
     override fun onPause() {
         super.onPause()
         adReloadHandler.removeCallbacks(adReloadRunnable)
+        navBarHandler.removeCallbacks(hideNavBarRunnable)
     }
 
     override fun onDestroy() {
@@ -621,7 +640,7 @@ class HomeActivity : BaseActivity() {
             }
         }
         bindDrawerRow(drawerBinding.rowPrivacyPolicy.root, R.drawable.ic_privacy_policy, R.string.drawer_privacy_policy) {
-            showComingSoon()
+            openPrivacyPolicy()
         }
         bindDrawerRow(drawerBinding.rowRateUs.root, R.drawable.ic_rate_us, R.string.drawer_rate_us) {
             openRateUs()
@@ -631,6 +650,17 @@ class HomeActivity : BaseActivity() {
         }
         bindDrawerRow(drawerBinding.rowFeedback.root, R.drawable.ic_drawer_feedback, R.string.drawer_feedback) {
             sendFeedback()
+        }
+    }
+
+    /** Opens the `App_PrivacyPolicy` URL from Remote Config (stored by AppLinksConfigApplier). */
+    private fun openPrivacyPolicy() {
+        val url = ADSMainClass.getPrivacyPolicy().orEmpty().trim()
+        if (url.isBlank()) return
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+        } catch (_: Exception) {
+            Toast.makeText(this, "No browser found", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -978,9 +1008,7 @@ class HomeActivity : BaseActivity() {
         }
 
 
-        AdsManager.showInterBottomNav(this) {
-            performShowTab(tab)
-        }
+        performShowTab(tab)
     }
 
     private fun performShowTab(tab: BottomTab) {

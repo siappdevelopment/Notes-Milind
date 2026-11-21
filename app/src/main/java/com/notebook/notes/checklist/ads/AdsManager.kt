@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -91,6 +92,7 @@ object AdsManager {
 
                 override fun onAdFailedToLoad(adError: LoadAdError?) {
                     super.onAdFailedToLoad(adError)
+                    Log.e("Milind", "onAdFailedToLoad: "+adError )
                     liveData.postValue(null)
                 }
             })
@@ -378,87 +380,31 @@ object AdsManager {
             }, true)
     }
 
-    /**
-     * A remote-config interstitial shown on every `clickCount`-th trigger (e.g. 3rd, 6th, 9th).
-     * Each instance has its own ad and its own counter, so every trigger type is controlled separately.
-     * A slot is skipped (not retried early) when no ad is ready; [onAction] always runs.
-     */
-    private class CountedInter(
-        private val tag: String,
-        private val config: () -> AdUnitConfig,
-    ) {
-        private var ad: ApInterstitialAd? = null
-        private var triggerCount = 0
+    private var interHome: ApInterstitialAd? = null
 
-        /** Preloads the ad; no-op while one is already loaded. */
-        fun load(context: Context) {
-            val cfg = config()
-            if (!cfg.isEnable
-                || AppPurchase.getInstance().isPurchased(context)
-                || !NotesAd.getInstance().getShouldDisplayInterOnboarding(cfg.enableUaCheck)
-                || ad?.isReady == true
-            ) return
-            ad = NotesAd.getInstance().getInterstitialAds(context, cfg.id, object : AdCallback() {})
+    fun loadInterHome(context: Context) {
+        val config = AdRemoteConfig.inter_home
+        if (!config.isEnable || AppPurchase.getInstance().isPurchased(context)) {
+            interHome = null
+            return
         }
-
-        fun show(context: Context, onAction: () -> Unit) {
-            val cfg = config()
-            if (!cfg.isEnable
-                || AppPurchase.getInstance().isPurchased(context)
-                || !NotesAd.getInstance().getShouldDisplayInterOnboarding(cfg.enableUaCheck)
-            ) {
-                onAction()
-                return
-            }
-            triggerCount++
-            Timber.tag(tag).d("trigger=$triggerCount clickCount=${cfg.clickCount} ready=${ad?.isReady}")
-            if (triggerCount % cfg.clickCount != 0) {
-                onAction()
-                return
-            }
-            val interstitial = ad
-            if (interstitial == null || !interstitial.isReady) {
-                Timber.tag(tag).d("slot missed: ad not ready")
-                load(context)
-                onAction()
-                return
-            }
-            // shouldReloadAds = true: the SDK reloads this same wrapper after it closes.
-            NotesAd.getInstance().forceShowInterstitial(context, interstitial, object : AdCallback() {
-                override fun onNextAction() {
-                    super.onNextAction()
-                    onAction()
-                }
-            }, true)
-        }
+        interHome = NotesAd.getInstance().getInterstitialAds(context, config.id, object : AdCallback() {})
     }
 
-    private val interBottomNav = CountedInter("InterBottomNav") { AdRemoteConfig.inter_bottom_nav }
-    private val interScreenOpen = CountedInter("InterScreenOpen") { AdRemoteConfig.inter_screen_open }
-    // Same config (`inter_screen_open`) as screen-open, but its own ad and counter, so Create Note back presses
-    // do not shift which screen-open trigger lands on `clickCount` (the inter must show when a note opens).
-    private val interCreateNoteBack = CountedInter("InterCreateNoteBack") { AdRemoteConfig.inter_screen_open }
-
-    /** Bottom-navigation tab change (`inter_bottom_nav`). */
-    fun loadInterBottomNav(context: Context) = interBottomNav.load(context)
-
-    fun showInterBottomNav(context: Context, onAction: () -> Unit) =
-        interBottomNav.show(context, onAction)
-
-    /**
-     * Screen changes: opening another screen and back presses of the other screens share this one control
-     * (`inter_screen_open`), so they use the same ad and the same counter (Create Note back has its own, below).
-     */
-    fun loadInterScreenOpen(context: Context) = interScreenOpen.load(context)
-
-    fun showInterScreenOpen(context: Context, onAction: () -> Unit) =
-        interScreenOpen.show(context, onAction)
-
-    /** Create Note back press: `inter_screen_open` config with a separate ad and counter. */
-    fun loadInterCreateNoteBack(context: Context) = interCreateNoteBack.load(context)
-
-    fun showInterCreateNoteBack(context: Context, onAction: () -> Unit) =
-        interCreateNoteBack.show(context, onAction)
+    fun showInterHome(context: Context, onAction: () -> Unit) {
+        val interstitial = interHome
+        if (interstitial != null && interstitial.isReady && !AppPurchase.getInstance().isPurchased(context)) {
+            NotesAd.getInstance()
+                .forceShowInterstitial(context, interstitial, object : AdCallback() {
+                    override fun onNextAction() {
+                        super.onNextAction()
+                        onAction()
+                    }
+                }, true)
+        } else {
+            onAction()
+        }
+    }
 
     fun loadInterWelcome(context: Context, ignoreLimit: Boolean = false) {
         val cached = interWelcomeAdLive.value?.takeIf { it.isReady }

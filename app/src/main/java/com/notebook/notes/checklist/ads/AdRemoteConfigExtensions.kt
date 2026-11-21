@@ -74,6 +74,9 @@ val AdRemoteConfig.Companion.inter_bottom_nav: AdUnitConfig
 val AdRemoteConfig.Companion.inter_screen_open: AdUnitConfig
     get() = getInstance().inter_screen_open
 
+val AdRemoteConfig.Companion.inter_home: AdUnitConfig
+    get() = getInstance().inter_home
+
 val AdRemoteConfig.Companion.inter_onboarding: AdUnitConfig
     get() = getInstance().inter_onboarding
 

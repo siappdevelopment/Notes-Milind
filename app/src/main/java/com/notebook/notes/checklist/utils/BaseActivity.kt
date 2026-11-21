@@ -73,7 +73,7 @@ abstract class BaseActivity<VB : ViewDataBinding> : AppCompatActivity() {
     open fun observerData() {}
 
     private fun setLocal() {
-        val locale = Locale(appSharedPref.languageCode)
+        val locale = Locale(com.notebook.notes.checklist.util.LocaleHelper.getSavedLanguageCode(this))
         Locale.setDefault(locale)
         val config = Configuration()
         config.setLocale(locale)

@@ -11,7 +11,8 @@
         android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/llOtherScreenAds"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -115,7 +116,7 @@
         android:padding="22dp"
         android:scaleType="centerInside"
         android:src="@drawable/ic_play_white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/llOtherScreenAds"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

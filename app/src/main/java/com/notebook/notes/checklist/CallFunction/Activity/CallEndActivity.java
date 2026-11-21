@@ -113,6 +113,9 @@ public class CallEndActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // Block the App Open ad while the call-end screen opens (flag + timed block, see ADSAppManage).
+        ADSAppManage.isAppOpenBlocked = true;
+        ADSAppManage.blockAppOpenAd(5000);
         try {
             if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -291,16 +294,6 @@ public class CallEndActivity extends BaseActivity {
                 } else {
                     linearBannerShimmer.setVisibility(View.GONE);
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    WindowInsetsController controller = getWindow().getInsetsController();
-                    if (controller != null) {
-                        controller.hide(WindowInsets.Type.navigationBars());
-                        controller.setSystemBarsBehavior(
-                            WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-                        );
-                    }
-                }
-
             }
 
             rlFullAd.setVisibility(View.VISIBLE);
@@ -315,15 +308,6 @@ public class CallEndActivity extends BaseActivity {
             mainView.setVisibility(View.VISIBLE);
             fullAdContainer.setVisibility(View.GONE);
             rlFullAd.setVisibility(View.GONE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                WindowInsetsController controller = getWindow().getInsetsController();
-                if (controller != null) {
-                    controller.hide(WindowInsets.Type.navigationBars());
-                    controller.setSystemBarsBehavior(
-                        WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-                    );
-                }
-            }
         }
 
         if (!isFirebaseFlow) {
@@ -410,6 +394,8 @@ public class CallEndActivity extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        ADSAppManage.isAppOpenBlocked = true;
+        ADSAppManage.blockAppOpenAd(5000);
         setIntent(intent);
         // Do not cancel notification here; if activity was started via full-screen intent while locked,
         // we want the notification to remain until the user actually unlocks and sees the UI.

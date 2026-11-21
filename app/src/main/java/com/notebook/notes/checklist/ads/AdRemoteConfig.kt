@@ -204,6 +204,9 @@ data class AdRemoteConfig(
     val inter_screen_open: AdUnitConfig
         get() = getAdUnit("inter_screen_open")
 
+    val inter_home: AdUnitConfig
+        get() = getAdUnit("inter_home")
+
     val inter_onboarding: AdUnitConfig
         get() = getAdUnit("inter_onboarding")
 

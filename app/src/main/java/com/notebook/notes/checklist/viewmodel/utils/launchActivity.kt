@@ -17,7 +17,7 @@ inline fun <reified T> Context.launchActivity(
 }
 
 fun Activity.openWithHomeInterAd(navigate: () -> Unit) {
-    AdsManager.showInterScreenOpen(this, navigate)
+    AdsManager.showInterHome(this, navigate)
 }
 
 fun Fragment.openWithHomeInterAd(navigate: () -> Unit) {
@@ -25,71 +25,71 @@ fun Fragment.openWithHomeInterAd(navigate: () -> Unit) {
 }
 
 fun Activity.openWithCreateNotesInterAd(navigate: () -> Unit) {
-    AdsManager.showInterScreenOpen(this, navigate)
+    navigate()
 }
 
 fun Activity.finishWithCreateNotesBackInterAd() {
-    AdsManager.showInterCreateNoteBack(this) { finish() }
+    finish()
 }
 
 fun Activity.openWithSetPasswordInterAd(navigate: () -> Unit) {
-    AdsManager.showInterScreenOpen(this, navigate)
+    navigate()
 }
 
 fun Activity.finishWithSetPasswordBackInterAd() {
-    AdsManager.showInterScreenOpen(this) { finish() }
+    finish()
 }
 
 fun Activity.openWithDrawingInterAd(navigate: () -> Unit) {
-    AdsManager.showInterScreenOpen(this, navigate)
+    navigate()
 }
 
 fun Activity.finishWithDrawingBackInterAd() {
-    AdsManager.showInterScreenOpen(this) { finish() }
+    finish()
 }
 
 fun Activity.openWithImageViewerInterAd(navigate: () -> Unit) {
-    AdsManager.showInterScreenOpen(this, navigate)
+    navigate()
 }
 
 fun Activity.finishWithImageViewerBackInterAd() {
-    AdsManager.showInterScreenOpen(this) { finish() }
+    finish()
 }
 
 fun Activity.openWithRecycleBinInterAd(navigate: () -> Unit) {
-    AdsManager.showInterScreenOpen(this, navigate)
+    navigate()
 }
 
 fun Activity.finishWithRecycleBinBackInterAd() {
-    AdsManager.showInterScreenOpen(this) { finish() }
+    finish()
 }
 
 fun Activity.openWithEditLabelInterAd(navigate: () -> Unit) {
-    AdsManager.showInterScreenOpen(this, navigate)
+    navigate()
 }
 
 fun Activity.finishWithEditLabelBackInterAd() {
-    AdsManager.showInterScreenOpen(this) { finish() }
+    finish()
 }
 
 fun Activity.openWithNoteBackgroundPickerInterAd(navigate: () -> Unit) {
-    AdsManager.showInterScreenOpen(this, navigate)
+    navigate()
 }
 
 fun Activity.finishWithNoteBackgroundPickerBackInterAd() {
-    AdsManager.showInterScreenOpen(this) { finish() }
+    finish()
 }
 
 fun Activity.openWithSettingInterAd(navigate: () -> Unit) {
-    AdsManager.showInterScreenOpen(this, navigate)
+    navigate()
 }
 
 fun Activity.finishWithSettingBackInterAd() {
-    AdsManager.showInterScreenOpen(this) { finish() }
+    finish()
 }
 
 
 fun Activity.finishWithVideoPlayerBackInterAd() {
-    AdsManager.showInterScreenOpen(this) { finish() }
+    finish()
 }
 

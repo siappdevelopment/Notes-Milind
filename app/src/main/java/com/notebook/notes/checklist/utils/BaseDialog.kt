@@ -71,7 +71,7 @@ abstract class BaseDialog<VB : ViewDataBinding>(
     }
 
     private fun setLocal() {
-        val languageCode = appSharedPref.languageCode
+        val languageCode = com.notebook.notes.checklist.util.LocaleHelper.getSavedLanguageCode(context)
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
         val config = Configuration()

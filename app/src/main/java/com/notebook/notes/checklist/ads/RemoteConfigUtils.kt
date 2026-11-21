@@ -131,6 +131,11 @@ object RemoteConfigUtils {
 
     fun getAdRemoteConfig(): String {
         val defaultValue = loadDefaultAdRemoteConfig()
+        if (BuildConfig.DEBUG) {
+            // Debug builds always use the bundled ad_config_debug.json, never the Firebase value.
+            Log.d(TAG, "$AD_REMOTE_CONFIG: debug build, using bundled debug asset (${defaultValue.length} chars)")
+            return defaultValue
+        }
         if (!completed) {
             Log.d(TAG, "$AD_REMOTE_CONFIG: fetch not completed, using bundled asset (${defaultValue.length} chars)")
             return defaultValue

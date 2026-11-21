@@ -59,7 +59,8 @@ object PremiumFeatureGate {
         onDenied: (() -> Unit)? = null,
         onGranted: () -> Unit,
     ) {
-        if (isPremiumSafe()) {
+        // Lock Note is free for everyone; the other features stay premium.
+        if (feature == PremiumFeature.LOCK_NOTE || isPremiumSafe()) {
             onGranted()
             return
         }

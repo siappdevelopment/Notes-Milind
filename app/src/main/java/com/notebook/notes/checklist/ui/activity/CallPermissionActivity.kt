@@ -8,10 +8,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import com.notebook.notes.checklist.ads.AdRemoteConfig
-import com.notebook.notes.checklist.ads.AdsManager
-import com.notebook.notes.checklist.ads.loadScreenAd
-import com.notebook.notes.checklist.ads.other_screen
 import com.notebook.notes.checklist.Advertisement.ADSConsentManager
 import com.notebook.notes.checklist.Advertisement.ADSMainClass
 import com.notebook.notes.checklist.R
@@ -24,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CallPermissionActivity : BaseActivity(), FlowPermissionHost {
+class CallPermissionActivity     : BaseActivity(), FlowPermissionHost {
     lateinit var binding: ActivityCallPermissionBinding
 
     @Inject
@@ -81,13 +77,7 @@ class CallPermissionActivity : BaseActivity(), FlowPermissionHost {
             return
         }
         initClick()
-        loadOtherScreenAds()
     }
-
-    private fun loadOtherScreenAds() {
-        AdsManager.loadScreenAd(this, AdRemoteConfig.other_screen)
-    }
-
 
     private fun initClick() {
         binding.btnAllow.setOnClickListener {
