@@ -30,9 +30,9 @@
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/app_logo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name_system"
-        android:roundIcon="@drawable/app_logo_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Notes">

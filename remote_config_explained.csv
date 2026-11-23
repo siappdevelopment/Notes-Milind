@@ -1,0 +1,60 @@
+﻿Section,Key,Value,Matlab (Gujlish)
+1. General / Flow,ads_enabled,true,Puri app ma ads no master switch. false = badha ads band
+1. General / Flow,onboarding_count,3,Onboarding na 3 page
+1. General / Flow,onboarding_repeat_count,2,Onboarding flow 2 round (native_onboarding_{round}_{page})
+1. General / Flow,screen_flow,"LANGUAGE, ONBOARDING, PERMISSION, HOME",Screens no order
+1. General / Flow,permission_screen_permissions,"CALL_STATE, NOTIFICATION, OVERLAY",Permission screen par kaya permission puchva
+1. General / Flow,App_PrivacyPolicy / App_TermsOfUse,URL,Privacy ane Terms links (banne same URL)
+2. Common fields,id / bannerId / nativeId,,AdMob ad unit ID
+2. Common fields,isEnable,,Aa ad show karvo ke nahi
+2. Common fields,enable_ua_check,,true = User Acquisition check lagay. Atyare false
+2. Common fields,reloadIntervalSeconds,,Banner reload time (30s)
+2. Common fields,colorCTA,,"CTA button color (""default"" = theme no)"
+2. Common fields,heightCTA,,CTA button height (45)
+2. Common fields,positionCTA,,CTA position (BOTTOM)
+2. Common fields,components,,"Native ad na parts ane order: icon_headline, body, media, cta"
+2. Common fields,type,,"""banner"" ke ""native"" - te screen par kayo ad"
+2. Common fields,clickCount,,Ketla click/open pachhi interstitial
+3. Splash,inter_splash,false,Normal splash par interstitial BAND
+3. Splash,inter_splash_uninstall,true,Uninstall shortcut splash par interstitial CHALU
+3. Splash,banner_splash,"true, 30s",Splash banner
+3. Splash,banner_splash_uninstall,"true, 30s",Uninstall splash banner
+3. Splash,open_resume,true,App background thi aave tyare App Open ad
+7. Home / Notes,home_screen,,"type=banner, 30s reload (nativeId che pan type banner etle use na thay)"
+7. Home / Notes,create_note,,type=native
+7. Home / Notes,native_drawing,,Drawing screen native
+7. Home / Notes,banner_home,,Alag home banner (home_screen sathe overlap - code ma kayu use thay te confirm karo)
+8. Interstitials,inter_bottom_nav (clickCount 3),,Bottom nav par darek 3 click e interstitial
+8. Interstitials,inter_screen_open (clickCount 2),,Darek 2 screen open e interstitial
+8. Interstitials,inter_welcome,,Welcome screen interstitial
+8. Interstitials,reward_example,,Rewarded ad example
+10. callend_screen,is_call_end_show,true,Call end screen chalu
+10. callend_screen,app_logo_show,false,App logo na batavvo
+10. callend_screen,is_callend_bottom_ad_show,true,Niche ad batavvo
+10. callend_screen,callend_bottom_ads_type,native,native / banner / big_banner / mrec
+10. callend_screen,callend_banner_ad_id / callend_native_ad_id,test,Ad unit IDs
+10. callend_screen,notification_install_days,1,Install pachhi 1 divas pachhi FCM notification (matra notification permission hoy)
+10. callend_screen,notification_call_install_days,1,Notification + Call permission hoy to
+10. callend_screen,notification_call_overlay_install_days,1,Badhi 3 permission hoy to
+10. callend_screen,All_allow_permission_show_fb_notification,true,Badhi permission hoy to Firebase notification batavvu
+10. callend_screen,close_button_show_on_full_native_ads,false,Fullscreen native par close button na batavvo
+10. callend_screen,country_get_with_ip,false,Country IP thi na lo
+10. callend_screen,notification_country / _call_country / _call_overlay_country,[],Khali = badha countries
+call_end_bacK_inter,call_end_inter_ads_show,true,Back par interstitial chalu
+call_end_bacK_inter,notification_screen_back_ads_show,false,Notification flow ma back par interstitial na batavvo
+call_end_bacK_inter,callend_again_open_count,2,Banner/native load na thay to call end screen vadhumam vadhu 2 vaar fari khule
+call_end_bacK_inter,call_end_inter_ads_type,inter,Ad type
+call_end_bacK_inter,callend_inter_ad_id,test,Interstitial unit
+call_end_bacK_inter,call_end_inter_day_count,1,Install na 1 divas pachhi (day 1 thi) interstitial shuru. 0 hoy to band
+call_end_bacK_inter,call_end_inter_active_total_show_count,3,Max show count (shouldShowCallEndAd ma use). 0 hoy to band
+call_end_bacK_inter,call_end_inter_ads_show_country,[],Khali = badha countries
+call_end_bacK_inter,call_end_inter_ads_exclude_country,[],Kai exclude nathi
+4. Language,native_language_1 / native_language_2,true,Language screen na native ads
+4. Language,native_language_1_click / native_language_2_click,true,Language select karya pachhi badlay jato native
+5. Onboarding,native_onboarding_{round}_{page},true,"Round 1-2, page 1-3 na native ads (1_1,1_2,1_3,2_1,2_2,2_3)"
+5. Onboarding,native_onboarding_fullscreen_1_3,false,Round 1 page 3 fullscreen native BAND
+5. Onboarding,native_onboarding_fullscreen_2_3 / 1_4 / 2_4,true,Fullscreen native chalu (media upar)
+5. Onboarding,inter_onboarding,true,Onboarding interstitial
+6. Permission,native_permission,true,Permission screen native
+9. Other screens,native_survey / native_confirm_uninstall / native_welcome,true,"Survey, Confirm uninstall, Welcome native"
+9. Other screens,setting_screen / set_password_screen / other_screen,type=native,Banner id pan chhe; type banner karo to banner batave

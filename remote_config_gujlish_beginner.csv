@@ -1,0 +1,69 @@
+Section,Key,Atyarni value,Matlab (Gujlish - saral bhasha),App ma use thay che?,Beginner tip
+A. Pehla samjo,ad unit ID,ca-app-pub-7208941695689653/xxxx,AdMob ni "ad no address". Dar ek ad jagya ni potani ID hoy.,-,ID ma "/" pachhi nu number badlo to ad ni jagya badlay.
+A. Pehla samjo,Test ID vs Real ID,3940256099942544 = TEST,3940256099942544 vali ID Google ni test ID che (kamai nathi thati). 7208941695689653 vali tamari real ID che.,-,Play Store par mukta pehla badhi ID real hovi joiye. Real ad par pote click na karo (account ban thay).
+A. Pehla samjo,type: banner vs native,-,banner = nani patti jevo ad. native = bigger ad je app na design jevo dekhay.,-,Je screen ma "type" key hoy tyaj banner/native badli shakay.
+A. Pehla samjo,Firebase Remote Config,-,Aa JSON Firebase ma mukay che. App update karya vagar ads on/off ke badlay shakay.,-,JSON badlya pachhi Firebase ma Publish dabavo. App ne navu config levaa thodo time lage.
+B. App no flow,ads_enabled,true,Puri app no ads master switch. false karo to koi pan ad nahi dekhay.,Ha,Emergency ma ads ek sathe band karva false karo.
+B. App no flow,onboarding_count,3,Onboarding screen ma ketla page.,Ha,-
+B. App no flow,onboarding_repeat_count,2,Onboarding ads ketla round chale. Key name: native_onboarding_{round}_{page}.,Ha,-
+B. App no flow,screen_flow,"LANGUAGE, ONBOARDING, PERMISSION, HOME",Screens no order. Je lakho te j order ma khule.,Ha,Koi screen kadhvi hoy to list ma thi kadhi nakho.
+B. App no flow,permission_screen_permissions,"CALL_STATE, NOTIFICATION, OVERLAY",Permission screen par kaya permission puchvi.,Ha,-
+B. App no flow,App_PrivacyPolicy,Google Sites link,Privacy Policy no link (app ma batave).,Ha,Play Store ma aapelo link sathe same rakho.
+B. App no flow,App_TermsOfUse,Google Sites link,Terms of Use no link.,Ha,-
+C. Common fields (badha ads ma),id / bannerId / nativeId,ID,Aa ad ni AdMob ID. id = ek j ad type vala unit ma. bannerId + nativeId = jya banner ane native bane option hoy.,Ha,Ek ID ma format match thavu joiye: banner ni ID native ma na chale.
+C. Common fields (badha ads ma),isEnable,true / false,Aa ad batavvo ke nahi. false = ad band.,Ha,Ek ad band karvo hoy to aa j false karo.
+C. Common fields (badha ads ma),enable_ua_check,false,User Acquisition check. true hoy to app ek khaas check kari ne j ad batave.,Ha,Atyare false che. Khabar na hoy to false j rakho.
+C. Common fields (badha ads ma),reloadIntervalSeconds,30,Banner/ad ketla second e navo load thay (auto refresh). 0 = reload nahi.,Matra Home ane Create Note ma,Bahu nano time (10s thi ochho) rakhsho to AdMob policy problem aavi shake.
+C. Common fields (badha ads ma),colorCTA,default,Native ad na button no color. default = theme no color.,Ha,-
+C. Common fields (badha ads ma),heightCTA,45,Native ad na button ni unchai (dp ma).,Ha,-
+C. Common fields (badha ads ma),positionCTA,BOTTOM,Native ad ma button kya batavvu.,Ha,-
+C. Common fields (badha ads ma),components,"icon_headline, body, media, cta",Native ad na parts ane tena order. media = photo/video. cta = button.,Ha,Order badlo to ad ni dekhav badlay.
+C. Common fields (badha ads ma),clickCount,3 ke 2,Interstitial ketla click/open pachhi batavvo. 3 = darek 3jo click.,Ha (inter_bottom_nav ane inter_screen_open),Nano number = vadhare ads = user ne gusso aavi shake.
+D. Splash screen (app khulti vakhte),inter_splash,isEnable false,Normal splash par full-screen ad. Atyare band.,Ha (SplashActivity),-
+D. Splash screen (app khulti vakhte),inter_splash_uninstall,isEnable true,Uninstall shortcut thi splash khule tyare full-screen ad.,Ha (BActivity),-
+D. Splash screen (app khulti vakhte),banner_splash,true / 30s,Splash par banner ad.,NAHI - code ma use nathi,Aa key sirf JSON ma che. Ene change karvathi kai farak nahi pade.
+D. Splash screen (app khulti vakhte),banner_splash_uninstall,true / 30s,Uninstall splash par banner ad.,NAHI - code ma use nathi,Upar jevu j.
+D. Splash screen (app khulti vakhte),open_resume,isEnable true,App Open ad. App background thi pachhi aave tyare ad batave.,Ha (BActivity),-
+E. Language screen,native_language_1,true,Language screen no pehlo native ad.,NAHI - code ma use nathi,Config ma che pan koi screen ma load nathi thato.
+E. Language screen,native_language_1_click,true,Language select karya pachhi badlay jato native ad.,NAHI - code ma use nathi,Upar jevu j.
+E. Language screen,native_language_2,true,Language screen no bijo native ad.,NAHI - code ma use nathi,-
+E. Language screen,native_language_2_click,true,Language select pachhi nu bijo native ad.,NAHI - code ma use nathi,-
+F. Onboarding,native_onboarding_1_1 ... 2_3,mostly true,"Onboarding na dar page no native ad. Name = round_page. 1_1 = round 1, page 1. native_onboarding_1_1 band (false) che.",NAHI - code ma use nathi,Aa 6 keys config ma che pan koi activity ma load nathi.
+F. Onboarding,native_onboarding_fullscreen_1_3 / 2_3 / 1_4 / 2_4,true,Fullscreen native ad (media upar) onboarding na last pages par.,NAHI - code ma use nathi,-
+F. Onboarding,inter_onboarding,isEnable false,Onboarding ma full-screen ad. Atyare band.,Ha (AdsManager),Onboarding ma ad ochho rakho to user ne vadhu pasand padse.
+G. Permission screen,native_permission,true,Permission screen ma native ad.,Ha (AdsManager),-
+H. Home ane Notes,home_screen,"type: banner, reload 30s","Home screen niche no ad. type=banner to bannerId vaprase, type=native to nativeId.",Ha (HomeActivity),Aa ek j key ma banner/native/reload badhu control thay che.
+H. Home ane Notes,create_note,"isEnable false, type: banner",Note banavti screen no top ad. Atyare band.,Ha (CreateNotesActivity),-
+H. Home ane Notes,native_drawing,true,Drawing screen no native ad.,Ha (DrawingActivity),-
+H. Home ane Notes,banner_home,true / 30s,Alag home banner ad.,NAHI - code ma use nathi,Home ad matra home_screen thi chale che. banner_home badlavo to kai farak nahi pade.
+H. Home ane Notes,inter_bottom_nav,clickCount 5,Bottom navigation par darek 5ma click e full-screen ad.,Ha (AdsManager),-
+H. Home ane Notes,inter_screen_open,clickCount 2,Darek 2 screen open e full-screen ad. Create Note back par pan aa j config.,Ha (AdsManager),-
+I. Bija screens,native_survey,true,Uninstall survey screen no native ad.,Ha (AdsManager),-
+I. Bija screens,native_confirm_uninstall,true,Confirm uninstall screen no native ad.,Ha (AdsManager),-
+I. Bija screens,native_welcome,true,Welcome back screen no native ad.,Ha (AdsManager),-
+I. Bija screens,inter_welcome,true,Welcome back par full-screen ad.,Ha (AdsManager),-
+I. Bija screens,reward_example,true,Rewarded ad (user video jove to inaam male).,Ha (AdsManager),Atyare test ID che. Real reward ID nakho.
+I. Bija screens,setting_screen,type: banner,Settings screen no ad.,Ha (SettingActivity),-
+I. Bija screens,set_password_screen,type: native,Set Password screen no ad.,Ha (SetPasswordActivity),-
+I. Bija screens,other_screen,type: banner,Call Permission jevi bija screens no ad.,Ha (CallPermissionActivity),-
+J. Call End screen,callend_screen.is_call_end_show,true,Call end screen chalu rakhvi.,Ha (CallEndConfigApplier),-
+J. Call End screen,callend_screen.app_logo_show,false,App logo batavvo ke nahi.,Ha,-
+J. Call End screen,callend_screen.is_callend_bottom_ad_show,true,Niche ad batavvo ke nahi.,Ha,-
+J. Call End screen,callend_screen.callend_bottom_ads_type,banner,Niche kayo ad: banner ke native.,Ha,-
+J. Call End screen,callend_screen.callend_banner_ad_id,real ID,Call End na banner ni ID.,Ha,-
+J. Call End screen,callend_screen.callend_native_ad_id,real ID,Call End na native ni ID.,Ha,-
+J. Call End screen,callend_screen.notification_install_days,1,Install pachhi ketla divas pachhi notification batavvu (jyare matra notification permission hoy).,Ha,-
+J. Call End screen,callend_screen.notification_call_install_days,1,Notification ane Call permission hoy to ketla divas pachhi.,Ha,-
+J. Call End screen,callend_screen.notification_call_overlay_install_days,1,Badhi 3 permission hoy to ketla divas pachhi.,Ha,-
+J. Call End screen,callend_screen.All_allow_permission_show_fb_notification,true,Badhi permission hoy to Firebase notification batavvu.,Ha,-
+J. Call End screen,callend_screen.close_button_show_on_full_native_ads,false,Fullscreen native par close button batavvo ke nahi.,Ha,-
+J. Call End screen,callend_screen.country_get_with_ip,false,Country IP thi lavi ke nahi.,Ha,-
+J. Call End screen,callend_screen.notification_country,[],Khali = badha desh ma. Naam hoy to matra te desh ma.,Ha,Country code (jem ke IN) lakho.
+J. Call End screen,callend_screen.call_end_bacK_inter.call_end_inter_ads_show,false,Call end back par full-screen ad. Atyare band.,Ha,"Key name ma ""bacK"" (K capital) j chhe, ene badlasho nahi."
+J. Call End screen,callend_screen.call_end_bacK_inter.notification_screen_back_ads_show,false,Notification flow ma back par ad batavvo ke nahi.,Ha,-
+J. Call End screen,callend_screen.call_end_bacK_inter.callend_again_open_count,2,Banner/native load na thay to call end screen vadhu ma vadhu ketli var fari khule.,Ha,-
+J. Call End screen,callend_screen.call_end_bacK_inter.callend_inter_ad_id,real ID,Call End full-screen ad ni ID.,Ha,-
+J. Call End screen,callend_screen.call_end_bacK_inter.call_end_inter_day_count,25,Install pachhi ketla divas pachhi aa ad shuru thay. 0 = band.,Ha,-
+J. Call End screen,callend_screen.call_end_bacK_inter.call_end_inter_active_total_show_count,3,Ad ketli var vadhu ma vadhu batavvo. 0 = band.,Ha,-
+J. Call End screen,callend_screen.call_end_bacK_inter.call_end_inter_ads_show_country,[],Khali = badha desh ma.,Ha,-
+J. Call End screen,callend_screen.call_end_bacK_inter.call_end_inter_ads_exclude_country,[],Aa desh ma ad nahi batavvo. Khali = koi exclude nahi.,Ha,-

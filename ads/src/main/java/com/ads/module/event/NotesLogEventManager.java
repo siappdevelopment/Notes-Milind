@@ -21,7 +21,28 @@ public class NotesLogEventManager {
 
     private static final String TAG = "NotesLogEventManager";
 
+    /**
+     * Standard Firebase `ad_impression` event, logged from the AdMob paid callback.
+     * value = real revenue (double) in the currency AdMob reports, plus ad_platform/ad_source/ad_format/ad_unit_name.
+     */
+    private static void logStandardAdImpression(Context context, AdValue adValue, String adUnitId, String adapterClassName, AdType adType) {
+        try {
+            Bundle params = new Bundle();
+            params.putString(FirebaseAnalytics.Param.AD_PLATFORM, "admob");
+            params.putString(FirebaseAnalytics.Param.AD_SOURCE, adapterClassName != null ? adapterClassName : "unknown");
+            params.putString(FirebaseAnalytics.Param.AD_FORMAT, adType != null ? adType.name().toLowerCase(java.util.Locale.ROOT) : "unknown");
+            params.putString(FirebaseAnalytics.Param.AD_UNIT_NAME, adUnitId != null ? adUnitId : "unknown");
+            params.putDouble(FirebaseAnalytics.Param.VALUE, adValue.getValueMicros() / 1_000_000.0);
+            params.putString(FirebaseAnalytics.Param.CURRENCY, adValue.getCurrencyCode());
+            FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.AD_IMPRESSION, params);
+            Log.e("Milind", "logStandardAdImpression: "+params );
+        } catch (Exception e) {
+            Log.w(TAG, "ad_impression log failed", e);
+        }
+    }
+
     public static void logPaidAdImpression(Context context, AdValue adValue, String adUnitId, String mediationAdapterClassName, AdType adType) {
+        logStandardAdImpression(context, adValue, adUnitId, mediationAdapterClassName, adType);
         logEventWithAds(context, (float) adValue.getValueMicros(), adValue.getPrecisionType(), adUnitId, mediationAdapterClassName, NotesAdConfig.PROVIDER_ADMOB);
         NotesAdjust.pushTrackEventAdmob(adValue);
         // Log revenue Facebook 30/08

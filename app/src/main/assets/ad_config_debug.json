@@ -1,34 +1,34 @@
 {
   "inter_splash": {
     "id": "ca-app-pub-3417769219752908/9343392105",
-    "isEnable": false,
+     "isEnable": true,
     "enable_ua_check": false
   },
   "inter_splash_uninstall": {
     "id": "ca-app-pub-3417769219752908/6222404747",
-    "isEnable": false,
+     "isEnable": true,
     "enable_ua_check": false
   },
   "banner_splash": {
     "id": "ca-app-pub-3417769219752908/8059984617",
-    "isEnable": false,
+     "isEnable": true,
     "reloadIntervalSeconds": 30,
     "enable_ua_check": false
   },
   "banner_splash_uninstall": {
     "id": "ca-app-pub-3417769219752908/4909323071",
-    "isEnable": false,
+     "isEnable": true,
     "reloadIntervalSeconds": 30,
     "enable_ua_check": false
   },
   "open_resume": {
     "id": "ca-app-pub-3940256099942544/9257395921",
-    "isEnable": false,
+     "isEnable": true,
     "enable_ua_check": false
   },
   "native_language": {
     "id": "ca-app-pub-3417769219752908/2292652617",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -42,7 +42,7 @@
   },
   "native_language_click": {
     "id": "ca-app-pub-3417769219752908/5672749562",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -56,7 +56,7 @@
   },
   "native_language_2": {
     "id": "ca-app-pub-3417769219752908/9955609506",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -70,7 +70,7 @@
   },
   "native_language_click_2": {
     "id": "ca-app-pub-3417769219752908/7329446161",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -84,7 +84,7 @@
   },
   "native_onboarding_page1": {
     "id": "ca-app-pub-3417769219752908/7054024704",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -98,7 +98,7 @@
   },
   "native_onboarding_page1_2": {
     "id": "ca-app-pub-3417769219752908/1353221449",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -112,7 +112,7 @@
   },
   "native_onboarding_1_3": {
     "id": "ca-app-pub-3417769219752908/9125654274",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -126,7 +126,7 @@
   },
   "native_onboarding_2_3": {
     "id": "ca-app-pub-3417769219752908/6499490938",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -140,7 +140,7 @@
   },
   "native_onboarding_fullscreen_1_2": {
     "id": "ca-app-pub-3417769219752908/7868412920",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -154,7 +154,7 @@
   },
   "native_onboarding_fullscreen_2_2": {
     "id": "ca-app-pub-3417769219752908/6555331258",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -168,7 +168,7 @@
   },
   "native_permission": {
     "id": "ca-app-pub-3940256099942544/2247696110",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -182,7 +182,7 @@
   },
   "native_home": {
     "id": "ca-app-pub-3417769219752908/5824792804",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -196,12 +196,12 @@
   },
   "inter_home": {
     "id": "ca-app-pub-3417769219752908/8367195669",
-    "isEnable": false,
+     "isEnable": true,
     "enable_ua_check": false
   },
   "native_full": {
     "id": "ca-app-pub-3417769219752908/3929167912",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 40,
     "positionCTA": "BOTTOM",
@@ -214,23 +214,23 @@
   },
   "inter_save": {
     "id": "ca-app-pub-3417769219752908/2616086240",
-    "isEnable": false,
+     "isEnable": true,
     "enable_ua_check": false
   },
   "inter_onboarding": {
     "id": "ca-app-pub-3417769219752908/9343392105",
-    "isEnable": false,
+     "isEnable": true,
     "enable_ua_check": true
   },
   "banner_home": {
     "id": "ca-app-pub-3417769219752908/8059984617",
-    "isEnable": false,
+     "isEnable": true,
     "reloadIntervalSeconds": 30,
     "enable_ua_check": false
   },
   "native_survey": {
     "id": "ca-app-pub-3417769219752908/7876241071",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -244,7 +244,7 @@
   },
   "native_confirm_uninstall": {
     "id": "ca-app-pub-3417769219752908/6363759565",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -258,7 +258,7 @@
   },
   "native_welcome": {
     "id": "ca-app-pub-3940256099942544/2247696110",
-    "isEnable": false,
+     "isEnable": true,
     "colorCTA": "default",
     "heightCTA": 45,
     "positionCTA": "BOTTOM",
@@ -272,12 +272,12 @@
   },
   "inter_welcome": {
     "id": "ca-app-pub-3940256099942544/1033173712",
-    "isEnable": false,
+     "isEnable": true,
     "enable_ua_check": false
   },
   "reward_example": {
     "id": "ca-app-pub-3940256099942544/5224354917",
-    "isEnable": false,
+     "isEnable": true,
     "enable_ua_check": false
   }
 }
